@@ -12,15 +12,14 @@ class MonitorSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('monitor')->insert([
-            [
-                'id' => 1,  // que coincida con un empleado existente
+        $empleado = Empleado::where('email', 'juan@example.com')->first();
+
+        if ($empleado) {
+            $empleado->monitor()->create([
                 'especialidad' => 'Yoga',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ]);
+        }
     }
 }

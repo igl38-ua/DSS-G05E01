@@ -12,15 +12,14 @@ class EntrenadorPersonalSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('entrenador_personal')->insert([
-            [
-                'id' => 2,
+        $empleado = Empleado::where('email', 'maria@example.com')->first();
+
+        if ($empleado) {
+            $empleado->entrenadorPersonal()->create([
                 'suplemento_nomina' => 200.00,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ]);
+        }
     }
 }

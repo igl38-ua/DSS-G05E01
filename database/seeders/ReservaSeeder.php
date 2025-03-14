@@ -14,21 +14,28 @@ class ReservaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('reserva')->insert([
-            [
-                'ID_Usuario' => 1, 
-                'ID_Clase' => 1,   
-                'ID_Fecha' => 1,   
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'ID_Usuario' => 2,
-                'ID_Clase' => 2,
-                'ID_Fecha' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        $usuario1 = Usuario::where('email', 'usuario1@example.com')->first();
+        $usuario2 = Usuario::where('email', 'usuario2@example.com')->first();
+
+        $clasePilates = Clase::where('nombre', 'Pilates')->first();
+        $claseCrossFit = Clase::where('nombre', 'CrossFit')->first();
+
+        // Obtener las fechas previamente creadas
+        $fechaJuan  = Fecha::where('dia', 1)->where('mes', 3)->where('anyo', 2023)->first();
+        $fechaMaria = Fecha::where('dia', 2)->where('mes', 3)->where('anyo', 2023)->first();
+
+        if ($usuario1 && $clasePilates && $fechaJuan) {
+            $usuario1->reservas()->create([
+                'ID_Clase' => $clasePilates->id,
+                'ID_Fecha' => $fechaJuan->id,
+            ]);
+        }
+
+        if ($usuario2 && $claseCrossFit && $fechaMaria) {
+            $usuario2->reservas()->create([
+                'ID_Clase' => $claseCrossFit->id,
+                'ID_Fecha' => $fechaMaria->id,
+            ]);
+        }
     }
 }
