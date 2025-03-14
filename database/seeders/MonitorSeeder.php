@@ -14,11 +14,19 @@ class MonitorSeeder extends Seeder
      */
     public function run()
     {
-        $empleado = Empleado::where('email', 'juan@example.com')->first();
-
-        if ($empleado) {
-            $empleado->monitor()->create([
+        // Monitor para Juan Pérez
+        $empleadoJuan = Empleado::where('email', 'juan@example.com')->first();
+        if ($empleadoJuan) {
+            $empleadoJuan->monitor()->create([
                 'especialidad' => 'Yoga',
+            ]);
+        }
+        
+        // Monitor para Carlos Ruiz
+        $empleadoCarlos = Empleado::where('email', 'carlos@example.com')->first();
+        if ($empleadoCarlos) {
+            $empleadoCarlos->monitor()->create([
+                'especialidad' => 'Spinning',
             ]);
         }
     }

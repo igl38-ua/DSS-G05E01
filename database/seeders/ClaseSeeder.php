@@ -29,5 +29,21 @@ class ClaseSeeder extends Seeder
             'capacidad_max' => 15,
             'JAM'           => 'Evening',
         ]);
+
+        Clase::create([
+            'nombre'        => 'Zumba',
+            'descripcion'   => 'Clase de baile para cardio y diversión',
+            'horario'       => '11:00:00',
+            'capacidad_max' => 25,
+            'JAM'           => 'Midday',
+        ]);
+
+        Clase::create([
+            'nombre'        => 'Boxeo',
+            'descripcion'   => 'Entrenamiento de boxeo para mejorar la resistencia',
+            'horario'       => '17:00:00',
+            'capacidad_max' => 10,
+            'JAM'           => 'Afternoon',
+        ]);
     }
 }

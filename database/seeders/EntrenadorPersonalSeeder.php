@@ -14,11 +14,19 @@ class EntrenadorPersonalSeeder extends Seeder
      */
     public function run()
     {
-        $empleado = Empleado::where('email', 'maria@example.com')->first();
-
-        if ($empleado) {
-            $empleado->entrenadorPersonal()->create([
+        // Entrenador para María López
+        $empleadoMaria = Empleado::where('email', 'maria@example.com')->first();
+        if ($empleadoMaria) {
+            $empleadoMaria->entrenadorPersonal()->create([
                 'suplemento_nomina' => 200.00,
+            ]);
+        }
+        
+        // Entrenador para Ana Martínez
+        $empleadoAna = Empleado::where('email', 'ana@example.com')->first();
+        if ($empleadoAna) {
+            $empleadoAna->entrenadorPersonal()->create([
+                'suplemento_nomina' => 250.00,
             ]);
         }
     }

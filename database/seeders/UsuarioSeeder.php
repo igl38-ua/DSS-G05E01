@@ -29,5 +29,21 @@ class UsuarioSeeder extends Seeder
             'contrasena'        => Hash::make('password2'),
             'fecha_inscripcion' => '2023-02-01',
         ]);
+
+        Usuario::create([
+            'nombre'            => 'Usuario3',
+            'email'             => 'usuario3@example.com',
+            'telefono'          => '555123456',
+            'contrasena'        => Hash::make('password3'),
+            'fecha_inscripcion' => '2023-03-15',
+        ]);
+
+        Usuario::create([
+            'nombre'            => 'Usuario4',
+            'email'             => 'usuario4@example.com',
+            'telefono'          => '444987654',
+            'contrasena'        => Hash::make('password4'),
+            'fecha_inscripcion' => '2023-04-10',
+        ]);
     }
 }
