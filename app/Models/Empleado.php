@@ -17,4 +17,19 @@ class Empleado extends Model
         'horarioTrabajo',
         'nomina',
     ];
+
+    public function monitor()
+    {
+        return $this->hasOne(Monitor::class, 'id', 'id');
+    }
+
+    public function entrenadorPersonal()
+    {
+        return $this->hasOne(EntrenadorPersonal::class, 'id', 'id');
+    }
+
+    public function fechas()
+    {
+        return $this->hasMany(Fecha::class, 'ID_Empleado');
+    }
 }

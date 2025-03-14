@@ -12,27 +12,38 @@ class UsuarioSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('usuario')->insert([
-            [
-                'nombre' => 'Usuario1',
-                'email' => 'usuario1@example.com',
-                'telefono' => '123456789',
-                'contrasena' => bcrypt('password1'),
-                'fecha_inscripcion' => '2023-01-01',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombre' => 'Usuario2',
-                'email' => 'usuario2@example.com',
-                'telefono' => '987654321',
-                'contrasena' => bcrypt('password2'),
-                'fecha_inscripcion' => '2023-02-01',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        Usuario::create([
+            'nombre'            => 'Usuario1',
+            'email'             => 'usuario1@example.com',
+            'telefono'          => '123456789',
+            'contrasena'        => Hash::make('password1'),
+            'fecha_inscripcion' => '2023-01-01',
+        ]);
+
+        Usuario::create([
+            'nombre'            => 'Usuario2',
+            'email'             => 'usuario2@example.com',
+            'telefono'          => '987654321',
+            'contrasena'        => Hash::make('password2'),
+            'fecha_inscripcion' => '2023-02-01',
+        ]);
+
+        Usuario::create([
+            'nombre'            => 'Usuario3',
+            'email'             => 'usuario3@example.com',
+            'telefono'          => '555123456',
+            'contrasena'        => Hash::make('password3'),
+            'fecha_inscripcion' => '2023-03-15',
+        ]);
+
+        Usuario::create([
+            'nombre'            => 'Usuario4',
+            'email'             => 'usuario4@example.com',
+            'telefono'          => '444987654',
+            'contrasena'        => Hash::make('password4'),
+            'fecha_inscripcion' => '2023-04-10',
         ]);
     }
 }

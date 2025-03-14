@@ -12,29 +12,78 @@ class FechaSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('fecha')->insert([
-            [
-                'dia' => 1,
-                'mes' => 3,
-                'anyo' => 2023,
-                'hora' => 10,
+        // Fecha para Juan Pérez
+        $empleado = Empleado::where('email', 'juan@example.com')->first();
+        if ($empleado) {
+            $empleado->fechas()->create([
+                'dia'     => 1,
+                'mes'     => 3,
+                'anyo'    => 2023,
+                'hora'    => 10,
                 'minutos' => 30,
-                'ID_Empleado' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'dia' => 2,
-                'mes' => 3,
-                'anyo' => 2023,
-                'hora' => 12,
+            ]);
+        }
+
+        // Fecha para María López
+        $empleado = Empleado::where('email', 'maria@example.com')->first();
+        if ($empleado) {
+            $empleado->fechas()->create([
+                'dia'     => 2,
+                'mes'     => 3,
+                'anyo'    => 2023,
+                'hora'    => 12,
                 'minutos' => 15,
-                'ID_Empleado' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+            ]);
+        }
+
+        // Fecha para Carlos Ruiz
+        $empleado = Empleado::where('email', 'carlos@example.com')->first();
+        if ($empleado) {
+            $empleado->fechas()->create([
+                'dia'     => 3,
+                'mes'     => 3,
+                'anyo'    => 2023,
+                'hora'    => 14,
+                'minutos' => 0,
+            ]);
+        }
+
+        // Fecha para Ana Martínez
+        $empleado = Empleado::where('email', 'ana@example.com')->first();
+        if ($empleado) {
+            $empleado->fechas()->create([
+                'dia'     => 4,
+                'mes'     => 3,
+                'anyo'    => 2023,
+                'hora'    => 16,
+                'minutos' => 45,
+            ]);
+        }
+
+        // Fecha para Pedro Gómez
+        $empleado = Empleado::where('email', 'pedro@example.com')->first();
+        if ($empleado) {
+            $empleado->fechas()->create([
+                'dia'     => 5,
+                'mes'     => 3,
+                'anyo'    => 2023,
+                'hora'    => 9,
+                'minutos' => 15,
+            ]);
+        }
+
+        // Fecha para Lucía Fernández
+        $empleado = Empleado::where('email', 'lucia@example.com')->first();
+        if ($empleado) {
+            $empleado->fechas()->create([
+                'dia'     => 6,
+                'mes'     => 3,
+                'anyo'    => 2023,
+                'hora'    => 11,
+                'minutos' => 30,
+            ]);
+        }
     }
 }
