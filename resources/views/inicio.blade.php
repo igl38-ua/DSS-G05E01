@@ -146,6 +146,20 @@
       </form>
   </section>
 
+  <!-- Sección de Suscripciones -->
+  <section id="suscripciones" class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">Suscripciones</h2>
+    <!-- Ajusta la rejilla para 3 columnas en pantallas md+ -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Plan Básico -->
+        @include('suscripciones.basico')
+        <!-- Plan Dorado -->
+        @include('suscripciones.dorado')
+        <!-- Plan Platino -->   
+        @include('suscripciones.platino')
+    </div>
+    </section>
+
   <!-- Sección de Localizar Gimnasio -->
   <section id="localizar-gimnasio" class="mb-8">
       <h2 class="text-2xl font-bold mb-4">Localizar Gimnasio</h2>
@@ -154,20 +168,7 @@
       </div>
   </section>
 
-  <!-- Sección de Suscripciones -->
-    <section id="suscripciones" class="mb-8">
-        <h2 class="text-2xl font-bold mb-4">Suscripciones</h2>
-        <!-- Ajusta la rejilla para 3 columnas en pantallas md+ -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Plan Básico -->
-            @include('suscripciones.basico')
-            <!-- Plan Dorado -->
-            @include('suscripciones.dorado')
-            <!-- Plan Platino -->   
-            @include('suscripciones.platino')
-        </div>
-    </section>
-
+  
 
 </div>
 

@@ -16,6 +16,7 @@
         %3C/svg%3E">
 
     <title>Gimnasio</title>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Puedes incluir Bootstrap o tu CSS personalizado -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite('resources/css/app.css')
