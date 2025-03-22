@@ -12,9 +12,10 @@
             <a href="{{ route('inicio') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">
                 Inicio
             </a>
-            <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">
+            <a href="{{ route('clases') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">
                 Clases
             </a>
+
             <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">
                 Entrenadores
             </a>

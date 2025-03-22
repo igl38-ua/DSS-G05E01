@@ -1,0 +1,138 @@
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f6f7f9; /* Fondo global suave */
+  margin: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================
+   ESTILOS DE LA TABLA
+   ========================= */
+table {
+  width: 100%;
+  border-collapse: separate;  /* Para permitir espacio entre celdas */
+  border-spacing: 0px;        /* Luego lo ajustaremos con ?cell? y ?row? gaps */
+  background-color: #fff;     /* Fondo de la tabla */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Encabezados superiores (Mañana, Medio Día, etc.) */
+thead tr.time-grouping th {
+  background-color: #e9ecef;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+/* Encabezados con las horas específicas */
+thead tr.hours th {
+  background-color: #f8f9fa;
+  font-size: 12px;
+  font-weight: normal;
+  color: #666;
+}
+
+/* Ajuste de ancho para columnas (para ver las líneas verticales) */
+thead th, tbody td {
+  width: 80px; /* Ajusta según el espacio que desees */
+  text-align: center;
+  padding: 8px;
+  position: relative;
+}
+
+/* =========================
+   LÍNEAS VERTICALES
+   ========================= */
+/* Ponemos un borde a la derecha de cada columna para simular la línea */
+thead th, tbody td {
+  border-right: 1px solid #dee2e6; 
+}
+
+/* Quitamos el borde a la última columna para que no se duplique */
+thead th:last-child, tbody td:last-child {
+  border-right: none;
+}
+
+/* Línea horizontal en cada fila */
+tbody tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Quitamos el borde a la última fila */
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* =========================
+   CABECERA IZQUIERDA (NOMBRE CLASE)
+   ========================= */
+/* La primera celda de cada fila (nombre de la actividad) */
+tbody td:first-child {
+  font-weight: bold;
+  background-color: #f2f2f2;
+  border-right: 2px solid #ccc; /* Un poco más grueso para separar ?Clases? del resto */
+  width: 120px; /* Un poco más ancho para que quepa el texto */
+}
+
+/* =========================
+   BLOQUES DE ACTIVIDAD
+   ========================= */
+/* Clase genérica para todos los bloques (ajusta altura, bordes, etc.) */
+.block {
+  display: inline-block;   /* Para que se ajuste al contenido */
+  width: 100%;            /* O un valor fijo si prefieres */
+  height: 25px;           /* Alto de los bloques */
+  border-radius: 6px;     /* Bordes redondeados */
+  color: #fff;            /* Texto en blanco por defecto */
+  line-height: 30px;      /* Centrar verticalmente el texto */
+  text-align: center;
+  font-size: 14px;
+  margin: 4px 0;          /* Espacio vertical entre bloques */
+}
+
+/* Ejemplos de colores para cada actividad */
+.zumba {
+  background-color: rgb(233, 225, 2);
+  color: #000;
+}
+.musculacion {
+  background-color: #f44336;
+}
+.cardio {
+  background-color: #4caf50;
+}
+.johnny-sins {
+  background-color: #2196f3;
+}
+.jordi-enp {
+  background-color: #9c27b0;
+}
+.lana-rhoades {
+  background-color: #e91e63;
+}
+.jason-luv {
+  background-color: #009688;
+}
+.rocco-siffredi {
+  background-color: #607d8b;
+}
