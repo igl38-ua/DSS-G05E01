@@ -19,7 +19,7 @@
           <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
           <a href="{{ route('jam') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">JAM</a>
-          <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Mi perfil</a>
+          <a href="{{ route('perfil') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Mi perfil</a>
 
         </nav>
 

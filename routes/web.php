@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamController;
+use App\Http\Controllers\PerfilController;
 
 use App\Http\Controllers\SuscripcionesController;
 
@@ -23,3 +24,5 @@ Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 
 Route::get('/jam', [JamController::class, 'index']) ->name('jam');
+
+Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
