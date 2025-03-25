@@ -58,7 +58,7 @@
             <tbody>
                 <tr>
                     <td class="py-3 px-4 border-b border-gray-200">Entradas semanales</td>
-                    <td class="py-3 px-4 border-b border-gray-200">3</td>
+                    <td class="py-3 px-4 border-b border-gray-200">5</td>
                     <td class="py-3 px-4 border-b border-gray-200">Ilimitadas</td>
                     <td class="py-3 px-4 border-b border-gray-200">Ilimitadas</td>
                 </tr>
