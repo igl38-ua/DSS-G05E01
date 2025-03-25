@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class EntrenadorPersonal extends Model
 {
-    use HasFactory;
-
     protected $table = 'entrenador_personal';
 
     public $incrementing = false;
