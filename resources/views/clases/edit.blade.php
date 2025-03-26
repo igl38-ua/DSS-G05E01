@@ -58,7 +58,7 @@
                     <a href="{{ route('classes.index') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                         <i class="fas fa-times mr-2"></i> Cancelar
                     </a>
-                    <button type="submit" class="btn-primary">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                         <i class="fas fa-save mr-2"></i> Guardar Cambios
                     </button>
                 </div>

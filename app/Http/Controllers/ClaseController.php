@@ -14,16 +14,33 @@ class ClaseController extends Controller
     }
 
     public function index(Request $request){
-        // Búsqueda combinada (nombre y JAM)
-        $search = $request->input('search');
+        // Parámetros de ordenación
+        $sortField = $request->get('sort', 'id');
+        $sortDirection = $request->get('direction', 'asc');
         
-        $clases = Clase::when($search, function ($query, $search) {
-            return $query->where('nombre', 'like', "%{$search}%")->orWhere('jam', 'like', "%{$search}%");
-        })
-        ->orderBy('nombre') // Orden por defecto
-        ->paginate(10); // Paginación (10 items por página)
-
-        return view('clases.index', compact('clases', 'search'));
+        // Búsqueda combinada
+        $search = $request->input('search');
+        $searchJam = $request->input('search_jam');
+    
+        $query = Clase::query();
+    
+        // Aplicar búsquedas
+        if ($search) {
+            $query->where('nombre', 'like', "%{$search}%");
+        }
+        
+        if ($searchJam) {
+            $query->where('jam', 'like', "%{$searchJam}%");
+        }
+    
+        // Aplicar ordenación
+        if (in_array($sortField, ['nombre', 'capacidad_max'])) {
+            $query->orderBy($sortField, $sortDirection);
+        }
+    
+        $clases = $query->paginate(10);
+    
+        return view('clases.index', compact('clases', 'sortField', 'sortDirection', 'search', 'searchJam'));
     }
 
     public function create(){
