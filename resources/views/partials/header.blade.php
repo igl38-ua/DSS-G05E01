@@ -14,7 +14,7 @@
         <!-- Menú de navegación (visible en md y superiores) -->
         <nav class="hidden md:flex items-center space-x-8">
           <a href="{{ route('inicio') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Inicio</a>
-          <a href="{{ route('clases') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Clases</a>
+          <a href="{{ route('clases.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Clases</a>
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Entrenadores</a>
           <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
