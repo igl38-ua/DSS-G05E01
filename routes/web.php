@@ -10,26 +10,25 @@ use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\UsuarioController;
 
 
-
-
 // Route::get('/', function () {
-    //     return view('welcome');
-    // });
-    
-    // Route::get('/', [HomeController::class, 'index'])->name('inicio');
-    
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    
-    Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
-    
-    Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
-    
-    Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
-    
-    Route::get('/jam', [JamController::class, 'index']) ->name('jam');
-    
-    Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
-    
-    Route::resource('usuarios', UsuarioController::class);
-    Route::resource('clases', ClasesController::class);
-    Route::resource('empleados', EmpleadoController::class);
+//     return view('welcome');
+// });
+
+// Route::get('/', [HomeController::class, 'index'])->name('inicio');
+Route::resource('classes', ClaseController::class);
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
+
+Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
+
+Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
+
+Route::get('/jam', [JamController::class, 'index']) ->name('jam');
+
+Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
+
+Route::resource('usuarios', UsuarioController::class);
+Route::resource('clases', ClaseController::class);
+Route::resource('empleados', EmpleadosController::class);
