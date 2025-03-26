@@ -3,84 +3,63 @@
 @section('title', 'Crear Nueva Clase')
 
 @section('content')
-<div class="max-w-2xl mx-auto">
-    <!-- Card Container -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <!-- Card Header -->
-        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
-            <h2 class="text-2xl font-bold text-white flex items-center">
+<div class="max-w-md mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-xl font-bold flex items-center">
                 <i class="fas fa-plus-circle mr-3"></i> Nueva Clase
             </h2>
         </div>
-
-        <!-- Card Body -->
         <div class="p-6">
             <form action="{{ route('classes.store') }}" method="POST">
                 @csrf
-
-                <!-- Grid de 2 columnas para pantallas medianas/grandes -->
-                <div class="grid md:grid-cols-2 gap-6">
-
-                    <!-- Campo: Nombre -->
-                    <div class="col-span-2">
-                        <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">
-                            <i class="fas fa-tag mr-2 text-blue-500"></i>Nombre de la Clase
+                
+                <div class="space-y-4">
+                    <!-- Campo Nombre -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            <i class="fas fa-tag mr-2 text-indigo-500"></i> Nombre de la clase
                         </label>
-                        <input type="text" id="nombre" name="nombre" 
-                               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                               placeholder="Ej: Yoga Matutino" required>
-                        @error('nombre')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <input type="text" name="nombre" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                               placeholder="Ej: Yoga Matutino">
                     </div>
 
-                    <!-- Campo: Capacidad -->
+                    <!-- Campo Capacidad -->
                     <div>
-                        <label for="capacidad_max" class="block text-sm font-medium text-gray-700 mb-1">
-                            <i class="fas fa-users mr-2 text-blue-500"></i>Capacidad Máxima
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            <i class="fas fa-users mr-2 text-indigo-500"></i> Capacidad máxima
                         </label>
                         <div class="relative">
-                            <input type="number" id="capacidad_max" name="capacidad_max" min="1" max="50"
-                                   class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                                   placeholder="Ej: 20" required>
+                            <input type="number" name="capacidad_max" min="1" required
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 pr-12"
+                                   placeholder="20">
                             <span class="absolute right-3 top-2 text-gray-400">personas</span>
                         </div>
-                        @error('capacidad_max')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
                     </div>
 
-                    <!-- Campo: Horario -->
+                    <!-- Campo Horario -->
                     <div>
-                        <label for="horario" class="block text-sm font-medium text-gray-700 mb-1">
-                            <i class="far fa-clock mr-2 text-blue-500"></i>Horario
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            <i class="far fa-clock mr-2 text-indigo-500"></i> Horario
                         </label>
-                        <input type="time" id="horario" name="horario"
-                               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                               required>
-                        @error('horario')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <input type="time" name="horario" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
 
-                    <!-- Campo: JAM (Opcional) -->
-                    <div class="col-span-2">
-                        <label for="jam" class="block text-sm font-medium text-gray-700 mb-1">
-                            <i class="fas fa-music mr-2 text-blue-500"></i>Instructor JAM (Opcional)
+                    <!-- Campo Instructor -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            <i class="fas fa-user-tie mr-2 text-indigo-500"></i> Instructor (opcional)
                         </label>
-                        <input type="text" id="jam" name="jam"
-                               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                               placeholder="Ej: DJ Carlos">
-                        @error('jam')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <input type="text" name="jam"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                               placeholder="Nombre del instructor">
                     </div>
-
                 </div>
 
-                <!-- Botones de acción -->
-                <div class="mt-8 flex justify-end space-x-4">
-                    <a href="{{ route('classes.index') }}" class="btn-secondary">
+                <div class="mt-6 flex justify-end space-x-3">
+                    <a href="{{ route('classes.index') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                         <i class="fas fa-times mr-2"></i> Cancelar
                     </a>
                     <button type="submit" class="btn-primary">
