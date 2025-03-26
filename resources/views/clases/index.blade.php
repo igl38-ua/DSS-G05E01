@@ -3,13 +3,14 @@
 @section('title', 'Gestión de Clases')
 
 @section('content')
+
+
 <!-- Cabecera Mejorada -->
 <div class="bg-gradient-to-r from-blue-600 to-indigo-800 shadow-lg rounded-t-xl">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-4">
-                <a href="{{ route('inicio') }}" class="flex items-center text-white hover:text-blue-200 transition-colors">
-                    <i class="fas fa-home text-2xl mr-2"></i>
+                <a href="{{ route('home') }}" class="flex items-center text-white hover:text-blue-200 transition-colors">                    <i class="fas fa-home text-2xl mr-2"></i>
                     <span class="text-xl font-bold">Inicio</span>
                 </a>
                 <h1 class="text-2xl font-bold text-white ml-4">

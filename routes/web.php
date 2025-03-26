@@ -16,6 +16,7 @@ use App\Http\Controllers\UsuarioController;
 // });
 
 // Route::get('/', [HomeController::class, 'index'])->name('inicio');
+Route::resource('classes', ClaseController::class);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -30,5 +31,5 @@ Route::get('/jam', [JamController::class, 'index']) ->name('jam');
 Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
 
 Route::resource('usuarios', UsuarioController::class);
-Route::resource('clases', ClasesController::class);
+Route::resource('clases', ClaseController::class);
 Route::resource('empleados', EmpleadosController::class);

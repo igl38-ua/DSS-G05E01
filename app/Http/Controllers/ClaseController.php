@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ClaseController extends Controller
 {
+
+    public function edit($id){
+        $clase = Clase::findOrFail($id);
+        return view('clases.edit', compact('clase'));
+    }
+
     public function index(Request $request){
         // Búsqueda combinada (nombre y JAM)
         $search = $request->input('search');
@@ -39,11 +45,9 @@ class ClaseController extends Controller
         return redirect()->route('clases.index')->with('success', 'Clase creada correctamente.');
     }
 
-    public function edit(Clase $clase){
-        return view('clases.edit', compact('clase'));
-    }
-
-    public function update(Request $request, Clase $clase){
+    public function update(Request $request, $id){
+        $clase = Clase::findOrFail($id);
+        
         // Misma validación que en store()
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
@@ -56,4 +60,12 @@ class ClaseController extends Controller
 
         return redirect()->route('clases.index')->with('success', 'Clase actualizada correctamente.');
     }
+
+    public function destroy($id){
+        $clase = Clase::findOrFail($id);
+        $clase->delete();
+
+        return redirect()->route('classes.index')->with('success', 'Clase eliminada correctamente.');
+    }
+
 }
