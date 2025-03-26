@@ -3,41 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Crear Usuario</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-<div class="container mt-5">
-    <h1>Crear Usuario</h1>
-    <form action="{{ route('usuarios.store') }}" method="POST">
+<body class="bg-gray-100 text-gray-800">
+
+<div class="max-w-3xl mx-auto my-10 px-4">
+    <!-- Título -->
+    <h1 class="text-2xl font-bold mb-6 flex items-center">
+        <i class="fas fa-user-plus mr-2"></i> Crear Usuario
+    </h1>
+
+    <!-- Formulario -->
+    <form action="{{ route('usuarios.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
         @csrf
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" class="form-control" value="{{ old('nombre') }}">
-            @error('nombre') <small class="text-danger">{{ $message }}</small>@enderror
+        <!-- Campo: Nombre -->
+        <div class="mb-4">
+            <label for="nombre" class="block font-medium text-gray-700 mb-1">Nombre</label>
+            <input type="text" name="nombre" value="{{ old('nombre') }}"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md 
+                          focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                          focus:border-indigo-500"
+            >
+            @error('nombre')
+            <small class="text-red-600">{{ $message }}</small>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="email">Correo electrónico</label>
-            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
-            @error('email') <small class="text-danger">{{ $message }}</small>@enderror
+
+        <!-- Campo: Email -->
+        <div class="mb-4">
+            <label for="email" class="block font-medium text-gray-700 mb-1">Correo electrónico</label>
+            <input type="email" name="email" value="{{ old('email') }}"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md 
+                          focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                          focus:border-indigo-500"
+            >
+            @error('email')
+            <small class="text-red-600">{{ $message }}</small>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="text" name="telefono" class="form-control" value="{{ old('telefono') }}">
-            @error('telefono') <small class="text-danger">{{ $message }}</small>@enderror
+
+        <!-- Campo: Teléfono -->
+        <div class="mb-4">
+            <label for="telefono" class="block font-medium text-gray-700 mb-1">Teléfono</label>
+            <input type="text" name="telefono" value="{{ old('telefono') }}"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md 
+                          focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                          focus:border-indigo-500"
+            >
+            @error('telefono')
+            <small class="text-red-600">{{ $message }}</small>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="contrasena">Contraseña</label>
-            <input type="password" name="contrasena" class="form-control">
-            @error('contrasena') <small class="text-danger">{{ $message }}</small>@enderror
+
+        <!-- Campo: Contraseña -->
+        <div class="mb-4">
+            <label for="contrasena" class="block font-medium text-gray-700 mb-1">Contraseña</label>
+            <input type="password" name="contrasena"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md 
+                          focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                          focus:border-indigo-500"
+            >
+            @error('contrasena')
+            <small class="text-red-600">{{ $message }}</small>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="fecha_inscripcion">Fecha de Inscripción</label>
-            <input type="date" name="fecha_inscripcion" class="form-control" value="{{ old('fecha_inscripcion') }}">
-            @error('fecha_inscripcion') <small class="text-danger">{{ $message }}</small>@enderror
+
+        <!-- Campo: Fecha de Inscripción -->
+        <div class="mb-4">
+            <label for="fecha_inscripcion" class="block font-medium text-gray-700 mb-1">Fecha de Inscripción</label>
+            <input type="date" name="fecha_inscripcion" value="{{ old('fecha_inscripcion') }}"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md 
+                          focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                          focus:border-indigo-500"
+            >
+            @error('fecha_inscripcion')
+            <small class="text-red-600">{{ $message }}</small>
+            @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Crear Usuario</button>
-        <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
+
+        <!-- Botones de acción -->
+        <div class="flex items-center space-x-2">
+            <button type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center">
+                <i class="fas fa-save mr-1"></i> Crear Usuario
+            </button>
+            <a href="{{ route('usuarios.index') }}"
+               class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition flex items-center">
+                <i class="fas fa-times mr-1"></i> Cancelar
+            </a>
+        </div>
     </form>
 </div>
+
 </body>
 </html>

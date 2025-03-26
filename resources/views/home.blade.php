@@ -9,17 +9,19 @@
     <div class="container mt-5">
         <h1>Panel de Administración - Gestión de Gimnasios</h1>
         <hr>
-        <div class="list-group">
-            <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action">
-                Gestión de Usuarios
-            </a>
-            <a href="{{ route('clases.index') }}" class="list-group-item list-group-item-action">
-                Gestión de Clases
-            </a>
-            <a href="{{ route('empleados.index') }}" class="list-group-item list-group-item-action">
-                Gestión de Empleados
-            </a>
-        </div>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="list-group">
+                <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action">
+                    Gestión de Usuarios
+                </a>
+                <a href="{{ route('clases.index') }}" class="list-group-item list-group-item-action">
+                    Gestión de Clases
+                </a>
+                <a href="{{ route('empleados.index') }}" class="list-group-item list-group-item-action">
+                    Gestión de Empleados
+                </a>
+            </div>
+        </div>  
     </div>
 </body>
 </html>

@@ -30,5 +30,5 @@ Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
 
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('clases', ClaseController::class);
-Route::resource('empleados', EmpleadosController::class);
+Route::resource('empleados', EmpleadoController::class);
 

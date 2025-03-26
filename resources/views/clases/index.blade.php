@@ -13,11 +13,16 @@
             <h1 class="text-2xl font-bold flex items-center">
                 <i class="fas fa-calendar-week mr-3"></i> Listado de Clases
             </h1>
+        </div>
+        <div class="px-6 py-4 border-b flex justify-between items-center">
+            <!-- Para volver a home -->
+            <a href="{{ route('home') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
+                <i class="fas fa-home mr-2"></i> Volver al Inicio
+            </a>
             <a href="{{ route('classes.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
                 <i class="fas fa-plus-circle mr-2"></i> Nueva Clase
             </a>
         </div>
-
         <!-- Búsqueda -->
         <form action="{{ route('classes.index') }}" method="GET" class="px-6 py-4 bg-gradient-to-r from-purple-50 to-blue-50">
             <input type="hidden" name="sort" value="{{ $sortField }}">
@@ -174,12 +179,12 @@
         <!-- Paginación -->
         <div class="px-6 py-4 bg-gray-50 border-t flex items-center justify-between">
             <div class="text-sm text-gray-500">
-                Mostrando <span class="font-medium">{{ $clases->firstItem() }}</span> a 
+                Mostrando <span class="font-medium">{{ $clases->firstItem() }}</span> - 
                 <span class="font-medium">{{ $clases->lastItem() }}</span> de 
                 <span class="font-medium">{{ $clases->total() }}</span> resultados
             </div>
             <div>
-                {{ $clases->links() }}
+                {{ $clases->links('pagination::simple-tailwind') }}
             </div>
         </div>
     </div>
