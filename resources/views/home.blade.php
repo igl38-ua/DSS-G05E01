@@ -20,6 +20,9 @@
                 <a href="{{ route('empleados.index') }}" class="list-group-item list-group-item-action">
                     Gestión de Empleados
                 </a>
+                <a href="{{ route('dynamic.index') }}" class="list-group-item list-group-item-action">
+                    Listado de objetos
+                </a>
             </div>
         </div>  
     </div>
