@@ -24,16 +24,40 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                @php
+                    // Para la columna Nombre
+                    $newDirectionNombre = ($sort === 'nombre' && $direction === 'asc') ? 'desc' : 'asc';
+                @endphp
                 <th>
-                    <a href="{{ route('usuarios.index', ['sort' => 'nombre']) }}">
+                    <a href="{{ route('usuarios.index', ['sort' => 'nombre', 'direction' => $newDirectionNombre]) }}">
                         Nombre
+                        @if($sort === 'nombre')
+                            @if($direction === 'asc')
+                                <small>&uarr;</small>
+                            @else
+                                <small>&darr;</small>
+                            @endif
+                        @endif
                     </a>
                 </th>
+                
+                @php
+                    // Para la columna Fecha de Inscripción
+                    $newDirectionFecha = ($sort === 'fecha_inscripcion' && $direction === 'asc') ? 'desc' : 'asc';
+                @endphp
                 <th>
-                    <a href="{{ route('usuarios.index', ['sort' => 'fecha_inscripcion']) }}">
+                    <a href="{{ route('usuarios.index', ['sort' => 'fecha_inscripcion', 'direction' => $newDirectionFecha]) }}">
                         Fecha de Inscripción
+                        @if($sort === 'fecha_inscripcion')
+                            @if($direction === 'asc')
+                                <small>&uarr;</small>
+                            @else
+                                <small>&darr;</small>
+                            @endif
+                        @endif
                     </a>
                 </th>
+                
                 <th>Email</th>
                 <th>Teléfono</th>
                 <th>Acciones</th>
