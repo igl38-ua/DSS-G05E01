@@ -12,10 +12,17 @@ class UsuarioController extends Controller
      */
     public function index(Request $request)
     {
+        $numero = $this->paginacion;
         // Permite ordenar por nombre o fecha_inscripcion, por defecto ordena por nombre
         $sort = $request->get('sort', 'nombre');
-        $usuarios = Usuario::orderByRaw("CAST(substr(nombre, 8) AS INTEGER) ASC")->paginate(15);
-        return view('usuarios.index', compact('usuarios', 'sort'));
+        $direction = $request->get('direction', 'asc');
+        if ($sort === 'nombre') {
+            $usuarios = Usuario::orderByRaw("CAST(substr(nombre, 8) AS INTEGER) $direction")->paginate($numero);
+        } else {
+            $usuarios = Usuario::orderBy($sort, $direction)->paginate($numero);
+        }
+
+        return view('usuarios.index', compact('usuarios', 'sort', 'direction'));
     }
 
     /**
@@ -33,7 +40,7 @@ class UsuarioController extends Controller
     {
         $validatedData = $request->validate([
             'nombre'            => 'required|max:50',
-            'email'             => 'required|email|unique:usuario,email',
+            'email'             => 'required|email|unique:usuario,email|ends_with:.com,.es',
             'telefono'          => 'nullable|max:15',
             'contrasena'        => 'required|min:6',
             'fecha_inscripcion' => 'required|date',
@@ -60,7 +67,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
         $validatedData = $request->validate([
             'nombre'            => 'required|max:50',
-            'email'             => 'required|email|unique:usuario,email,'.$usuario->id,
+            'email'             => 'required|email|unique:usuario,email|ends_with:.com,.es'.$usuario->id,
             'telefono'          => 'nullable|max:15',
             'contrasena'        => 'required|min:6',
             'fecha_inscripcion' => 'required|date',
