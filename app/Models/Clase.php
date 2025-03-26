@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Clase extends Model
 {
-    use HasFactory;
-
     protected $table = 'clase';
 
     protected $fillable = [
