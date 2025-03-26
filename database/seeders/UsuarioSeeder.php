@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 
+
 class UsuarioSeeder extends Seeder
 {
     /**

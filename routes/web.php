@@ -9,7 +9,6 @@ use App\Http\Controllers\SuscripcionesController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\UsuarioController;
 
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -32,3 +31,4 @@ Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('clases', ClaseController::class);
 Route::resource('empleados', EmpleadosController::class);
+
