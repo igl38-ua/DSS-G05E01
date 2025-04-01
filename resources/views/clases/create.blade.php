@@ -56,7 +56,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-1">
                             <i class="fas fa-user-tie mr-2 text-indigo-500"></i> Instructor (opcional)
                         </label>
-                        <input type="text" name="jam"
+                        <input type="text" name="instructor"
                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                placeholder="Nombre del instructor">
                     </div>

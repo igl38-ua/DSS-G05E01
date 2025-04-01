@@ -20,7 +20,7 @@ class ClaseController extends Controller
         
         // Búsqueda combinada
         $search = $request->input('search');
-        $searchJam = $request->input('search_jam');
+        $searchInstructor = $request->input('search_instructor');
     
         $query = Clase::query();
     
@@ -29,8 +29,8 @@ class ClaseController extends Controller
             $query->where('nombre', 'like', "%{$search}%");
         }
         
-        if ($searchJam) {
-            $query->where('jam', 'like', "%{$searchJam}%");
+        if ($searchInstructor) {
+            $query->where('instructor', 'like', "%{$searchInstructor}%");
         }
     
         // Aplicar ordenación
@@ -40,7 +40,7 @@ class ClaseController extends Controller
     
         $clases = $query->paginate(10);
     
-        return view('clases.index', compact('clases', 'sortField', 'sortDirection', 'search', 'searchJam'));
+        return view('clases.index', compact('clases', 'sortField', 'sortDirection', 'search', 'searchInstructor'));
     }
 
     public function create(){
@@ -51,9 +51,9 @@ class ClaseController extends Controller
         // Validación
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
-            'capacidad_max' => 'required|integer|min:1',
+            'capacidad_max' => 'required|integer|min:1|max:100',
             'horario' => 'required|date_format:H:i',
-            'jam' => 'nullable|string|max:50',
+            'instructor' => 'nullable|string|max:50',
         ]);
 
         // Crear la clase
@@ -68,9 +68,9 @@ class ClaseController extends Controller
         // Misma validación que en store()
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
-            'capacidad_max' => 'required|integer|min:1',
+            'capacidad_max' => 'required|integer|min:1|max:100',
             'horario' => 'required|date_format:H:i',
-            'jam' => 'nullable|string|max:50',
+            'instructor' => 'nullable|string|max:50',
         ]);
 
         $clase->update($validated);

@@ -41,7 +41,7 @@
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-music text-blue-500"></i>
                     </div>
-                    <input type="text" name="search_jam" value="{{ $searchJam }}"
+                    <input type="text" name="search_instructor" value="{{ $searchInstructor }}"
                            class="pl-10 w-full rounded-lg border-0 ring-1 ring-blue-200 focus:ring-2 focus:ring-blue-500 shadow-sm"
                            placeholder="Buscar por instructor...">
                 </div>
@@ -53,7 +53,7 @@
                     <i class="fas fa-search mr-2"></i> Buscar
                 </button>
 
-                @if($search || $searchJam)
+                @if($search || $searchInstructor)
                     <a href="{{ route('classes.index', ['sort' => $sortField, 'direction' => $sortDirection]) }}"
                        class="text-sm text-gray-500 hover:text-purple-700 flex items-center">
                         <i class="fas fa-times mr-1"></i> Limpiar filtros
@@ -62,21 +62,21 @@
             </div>
         </form>
 
-        @if($search || $searchJam)
+        @if($search || $searchInstructor)
         <div class="px-6 py-2">
             <div class="flex flex-wrap gap-2">
                 @if($search)
                     <span class="inline-flex items-center bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full">
                         Clase: {{ $search }}
-                        <a href="{{ route('classes.index', ['search_jam' => $searchJam, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
+                        <a href="{{ route('classes.index', ['search_instructor' => $searchInstructor, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
                            class="ml-1 text-purple-500 hover:text-purple-700">
                             <i class="fas fa-times"></i>
                         </a>
                     </span>
                 @endif
-                @if($searchJam)
+                @if($searchInstructor)
                     <span class="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
-                        JAM: {{ $searchJam }}
+                        INSTRUCTOR: {{ $searchInstructor }}
                         <a href="{{ route('classes.index', ['search' => $search, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
                            class="ml-1 text-blue-500 hover:text-blue-700">
                             <i class="fas fa-times"></i>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">{{ $clase->nombre }}</div>
-                                    <div class="text-sm text-gray-500">{{ $clase->jam ?? 'Sin instructor' }}</div>
+                                    <div class="text-sm text-gray-500">{{ $clase->instructor ?? 'Sin instructor' }}</div>
                                 </div>
                             </div>
                         </td>
