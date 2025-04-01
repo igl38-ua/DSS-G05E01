@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('descripcion', 255)->nullable();
             $table->time('horario')->nullable();
             $table->integer('capacidad_max');
-            $table->string('JAM', 50)->nullable();
+            $table->string('instructor', 50)->nullable();
             $table->timestamps();
         });
     }

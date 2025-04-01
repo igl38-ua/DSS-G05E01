@@ -14,7 +14,7 @@ class Clase extends Model
         'descripcion',
         'horario',
         'capacidad_max',
-        'JAM',
+        'instructor',
     ];
 
     /**
