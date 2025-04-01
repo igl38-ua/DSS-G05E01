@@ -67,7 +67,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
         $validatedData = $request->validate([
             'nombre'            => 'required|max:50',
-            'email'             => 'required|email|unique:usuario,email|ends_with:.com,.es'.$usuario->id,
+            'email'             => 'required|email|ends_with:.com,.es'.$usuario->id,
             'telefono'          => 'nullable|max:15',
             'contrasena'        => 'required|min:6',
             'fecha_inscripcion' => 'required|date',
