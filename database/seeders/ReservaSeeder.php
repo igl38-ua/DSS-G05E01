@@ -5,7 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Reserva;
+use App\Models\Usuario;
+use App\Models\Clase;
+use App\Models\Fecha;
 
 class ReservaSeeder extends Seeder
 {
