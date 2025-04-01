@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers; // ¡Namespace exacto!
+namespace App\Http\Controllers;
 
 use App\Models\Clase;
 use Illuminate\Http\Request;
@@ -14,6 +14,8 @@ class ClaseController extends Controller
     }
 
     public function index(Request $request){
+
+        $numero = $this->paginacion;
         // Parámetros de ordenación
         $sortField = $request->get('sort', 'id');
         $sortDirection = $request->get('direction', 'asc');
@@ -38,7 +40,7 @@ class ClaseController extends Controller
             $query->orderBy($sortField, $sortDirection);
         }
     
-        $clases = $query->paginate(10);
+        $clases = $query->paginate($numero);
     
         return view('clases.index', compact('clases', 'sortField', 'sortDirection', 'search', 'searchJam'));
     }
