@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 class Monitor extends Model
 {
-    use HasFactory;
-
     protected $table = 'monitor';
 
     // la clave primaria es la misma que la de empleado y no es autoincremental

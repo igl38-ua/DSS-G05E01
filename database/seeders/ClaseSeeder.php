@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Clase;
 
 class ClaseSeeder extends Seeder
 {
@@ -17,33 +17,33 @@ class ClaseSeeder extends Seeder
         Clase::create([
             'nombre'        => 'Pilates',
             'descripcion'   => 'Clase de Pilates para principiantes',
-            'horario'       => '09:00:00',
+            'horario'       => '09:00',
             'capacidad_max' => 20,
-            'JAM'           => 'Morning',
+            'instructor'           => 'Lana Rhoades',
         ]);
 
         Clase::create([
             'nombre'        => 'CrossFit',
             'descripcion'   => 'Entrenamiento de alta intensidad',
-            'horario'       => '18:00:00',
+            'horario'       => '18:00',
             'capacidad_max' => 15,
-            'JAM'           => 'Evening',
+            'instructor'           => 'Juan',
         ]);
 
         Clase::create([
             'nombre'        => 'Zumba',
             'descripcion'   => 'Clase de baile para cardio y diversión',
-            'horario'       => '11:00:00',
+            'horario'       => '11:00',
             'capacidad_max' => 25,
-            'JAM'           => 'Midday',
+            'instructor'           => 'Esteban',
         ]);
 
         Clase::create([
             'nombre'        => 'Boxeo',
             'descripcion'   => 'Entrenamiento de boxeo para mejorar la resistencia',
-            'horario'       => '17:00:00',
+            'horario'       => '17:00',
             'capacidad_max' => 10,
-            'JAM'           => 'Afternoon',
+            'instructor'    => 'Levan',
         ]);
     }
 }

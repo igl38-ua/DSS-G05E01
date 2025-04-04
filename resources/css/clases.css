@@ -1,5 +1,5 @@
 
-/* Reset básico */
+/* Reset bï¿½sico */
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +35,7 @@ table {
   overflow: hidden;
 }
 
-/* Encabezados superiores (Mañana, Medio Día, etc.) */
+/* Encabezados superiores (Maï¿½ana, Medio Dï¿½a, etc.) */
 thead tr.time-grouping th {
   background-color: #e9ecef;
   font-weight: normal;
@@ -44,7 +44,7 @@ thead tr.time-grouping th {
   font-size: 13px;
 }
 
-/* Encabezados con las horas específicas */
+/* Encabezados con las horas especï¿½ficas */
 thead tr.hours th {
   background-color: #f8f9fa;
   font-size: 12px;
@@ -52,33 +52,33 @@ thead tr.hours th {
   color: #666;
 }
 
-/* Ajuste de ancho para columnas (para ver las líneas verticales) */
+/* Ajuste de ancho para columnas (para ver las lï¿½neas verticales) */
 thead th, tbody td {
-  width: 80px; /* Ajusta según el espacio que desees */
+  width: 80px; /* Ajusta segï¿½n el espacio que desees */
   text-align: center;
   padding: 8px;
   position: relative;
 }
 
 /* =========================
-   LÍNEAS VERTICALES
+   Lï¿½NEAS VERTICALES
    ========================= */
-/* Ponemos un borde a la derecha de cada columna para simular la línea */
+/* Ponemos un borde a la derecha de cada columna para simular la lï¿½nea */
 thead th, tbody td {
   border-right: 1px solid #dee2e6; 
 }
 
-/* Quitamos el borde a la última columna para que no se duplique */
+/* Quitamos el borde a la ï¿½ltima columna para que no se duplique */
 thead th:last-child, tbody td:last-child {
   border-right: none;
 }
 
-/* Línea horizontal en cada fila */
+/* Lï¿½nea horizontal en cada fila */
 tbody tr {
   border-bottom: 1px solid #dee2e6;
 }
 
-/* Quitamos el borde a la última fila */
+/* Quitamos el borde a la ï¿½ltima fila */
 tbody tr:last-child {
   border-bottom: none;
 }
@@ -90,14 +90,14 @@ tbody tr:last-child {
 tbody td:first-child {
   font-weight: bold;
   background-color: #f2f2f2;
-  border-right: 2px solid #ccc; /* Un poco más grueso para separar ?Clases? del resto */
-  width: 120px; /* Un poco más ancho para que quepa el texto */
+  border-right: 2px solid #ccc; /* Un poco mï¿½s grueso para separar ?Clases? del resto */
+  width: 120px; /* Un poco mï¿½s ancho para que quepa el texto */
 }
 
 /* =========================
    BLOQUES DE ACTIVIDAD
    ========================= */
-/* Clase genérica para todos los bloques (ajusta altura, bordes, etc.) */
+/* Clase genï¿½rica para todos los bloques (ajusta altura, bordes, etc.) */
 .block {
   display: inline-block;   /* Para que se ajuste al contenido */
   width: 100%;            /* O un valor fijo si prefieres */
@@ -135,4 +135,40 @@ tbody td:first-child {
 }
 .rocco-siffredi {
   background-color: #607d8b;
+}
+.sortable-header {
+  transition: color 0.2s;
+}
+
+.sortable-header:hover {
+  color: #4f46e5; /* indigo-600 */
+}
+
+.sort-arrow-inactive {
+  color: #d1d5db; /* gray-300 */
+  transition: color 0.2s;
+}
+
+.sortable-header:hover .sort-arrow-inactive {
+  color: #a5b4fc; /* indigo-300 */
+}
+
+/* Efecto de flotaciÃ³n para los inputs */
+.ring-1 {
+  transition: all 0.3s ease;
+}
+
+.ring-1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* BotÃ³n de bÃºsqueda con efecto */
+.bg-gradient-to-r {
+  transition: all 0.3s ease;
+}
+
+.bg-gradient-to-r:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }

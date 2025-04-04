@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 class Clase extends Model
 {
-    use HasFactory;
-
     protected $table = 'clase';
 
     protected $fillable = [
@@ -15,7 +14,7 @@ class Clase extends Model
         'descripcion',
         'horario',
         'capacidad_max',
-        'JAM',
+        'instructor',
     ];
 
     /**
