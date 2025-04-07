@@ -16,7 +16,7 @@
         </div>
         <div class="px-6 py-4 border-b flex justify-between items-center">
             <!-- Para volver a home -->
-            <a href="{{ route('home') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
+            <a href="{{ route('inicio') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
                 <i class="fas fa-home mr-2"></i> Volver al Inicio
             </a>
             <a href="{{ route('classes.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
