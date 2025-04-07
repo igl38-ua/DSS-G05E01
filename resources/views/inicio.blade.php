@@ -2,7 +2,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <!-- Sección 'hero' con texto y botones de acción -->
 <header class="bg-gradient-to-r from-orange-800 via-red-800 to-pink-900 text-white py-8">
 <div class="container mx-auto px-4">

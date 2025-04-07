@@ -26,9 +26,9 @@
 </head>
 <body class="bg-gray-50 min-h-screen">
     @include('partials.header')
-    <main class="container mx-auto px-4 py-8">
-        @yield('content')
-    </main>
+    
+    @yield('content')
+    
     @include('partials.footer')
 </body>
 </html>
