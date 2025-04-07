@@ -18,13 +18,18 @@ class Usuario extends Authenticatable
         'fecha_inscripcion',
         'rol',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
     
     /**
      * El campo que se usará para la autenticación.
      */
     public function getAuthPassword()
     {
-        return $this->contrasena;
+        return $this->password;
     }
 
     /**
