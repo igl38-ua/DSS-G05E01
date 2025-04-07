@@ -35,7 +35,7 @@ class RegisterController extends Controller
 
         $usuario = Usuario::create($validatedData);
 
-        // Auth::login($usuario); // Iniciar sesión automáticamente al registrarse
+        Auth::login($usuario); // Iniciar sesión automáticamente al registrarse
 
         return redirect()->route('inicio')->with('success', 'Usuario creado exitosamente.');
     }

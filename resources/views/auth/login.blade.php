@@ -7,10 +7,10 @@
         <!-- Título principal -->
         <h2 class="text-2xl font-bold mb-2">Iniciar sesión</h2>
         <p class="text-gray-600 mb-6 text-sm">
-            Inicia sesión ingresando tu dirección de correo electrónico y contraseña.
+            Introduce tu dirección de correo y contraseña para acceder.
         </p>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login.store') }}">
             @csrf
             <!-- Campo de correo -->
             <div class="mb-4">
@@ -29,7 +29,7 @@
                         type="email" 
                         name="email" 
                         class="pl-9 pr-3 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        placeholder="email@address.com"
+                        placeholder="email@ejemplo.com"
                         required 
                         autofocus
                     >
@@ -49,10 +49,11 @@
                         </svg>
                     </span>
                     <input 
-                        id="contrasena" 
+                        id="password" 
                         type="password" 
-                        name="contrasena" 
+                        name="password" 
                         class="pl-9 pr-3 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        placeholder="●●●●●●●●●●●"
                         required
                     >
                 </div>
@@ -76,12 +77,15 @@
             </div>
 
             <!-- Botón de Iniciar sesión -->
-            <button 
-                type="submit" 
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded transition-colors"
-            >
-                Inicia sesión
-            </button>
+            <form method="POST" action="{{ route('login.store') }}">
+            @csrf
+                <button 
+                    type="submit" 
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded transition-colors"
+                >
+                    Inicia sesión
+                </button>
+            </form>
 
             <!-- Recordarme + Google Login -->
             <div class="flex items-center justify-between mt-4">
@@ -110,7 +114,7 @@
             <!-- Enlace de registro -->
             <div class="text-center mt-4 text-sm">
                 ¿No tienes cuenta? 
-                <a href="{{ route('register') }}" class="text-purple-600 hover:underline">
+                <a href="{{ route('register.index') }}" class="text-purple-600 hover:underline">
                     Pincha aquí
                 </a>
             </div>

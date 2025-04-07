@@ -149,7 +149,7 @@
       <!-- Enlace para iniciar sesión -->
       <p class="text-center text-sm mt-6">
         ¿Ya tienes una cuenta? 
-        <a href="{{ route('login.index') }}" class="text-purple-600 hover:underline">
+        <a href="{{ route('login') }}" class="text-purple-600 hover:underline">
           Inicia sesión
         </a>
       </p>

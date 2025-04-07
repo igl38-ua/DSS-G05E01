@@ -5,43 +5,52 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Usuario; 
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function index()
     {
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function store(Request $request)
     {
-        // Validación de las credenciales
-        $credentials = $request->validate([
+        // Validar los datos de entrada
+        $validated = $request->validate([
             'email'    => 'required|email',
-            'contrasena' => 'required',
+            'password' => 'required',
         ]);
 
-        // Mapear el campo 'contrasena' al índice 'password' que espera Auth::attempt
-        $loginData = [
-            'email'    => $credentials['email'],
-            'password' => $credentials['contrasena']
-        ];
+        $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($loginData)) {
+        // Validar las credenciales sin iniciar sesión
+        if (Auth::validate($credentials)) {
+            $user = Usuario::where('email', $credentials['email'])->first();
 
-            $request->session()->regenerate();
+            if ($user) {
+                Auth::login($user);
+                $request->session()->regenerate();
 
-            // Verificar el rol y redirigir en consecuencia.
-            if (Auth::user()->rol === 'admin') {
-                return redirect()->intended('/admin/dashboard');
-            } else {
-                return redirect()->intended('/');
+                if ($user->rol === 'admin') {
+                    return redirect()->intended('/admin');
+                } else {
+                    return redirect()->intended('/');
+                }
             }
         }
 
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no son correctas.',
         ]);
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('login');
     }
 }
