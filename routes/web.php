@@ -18,21 +18,20 @@ Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 
 // RUTAS DE AUTENTICACION
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-// Mostrar el formulario de solicitud de restablecimiento de contraseña
+
+Route::resource('login', LoginController::class);
+
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
-    ->name('password.request');
-// Procesar el envío del enlace de restablecimiento
+    ->name('password.request'); // Mostrar el formulario de solicitud de restablecimiento de contraseña
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
-    ->name('password.email');
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [RegisterController::class, 'register'])->name('register.post');
+    ->name('password.email'); // Procesar el envío del enlace de restablecimiento
+
+Route::resource('register', RegisterController::class);
 
 
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
-    Route::resource('/clases', App\Http\Controllers\Admin\ClaseController::class);
-    Route::resource('/empleados', App\Http\Controllers\Admin\EmpleadoController::class);
-    Route::resource('/usuarios', App\Http\Controllers\Admin\UsuarioController::class);
+    Route::resource('clases', App\Http\Controllers\Admin\ClaseController::class);
+    Route::resource('empleados', App\Http\Controllers\Admin\EmpleadoController::class);
+    Route::resource('usuarios', App\Http\Controllers\Admin\UsuarioController::class);
 });

@@ -12,7 +12,7 @@ class RegisterController extends Controller
     /**
      * Muestra el formulario de registro.
      */
-    public function showRegistrationForm()
+    public function index()
     {
         return view('auth.register');
     }
@@ -20,22 +20,22 @@ class RegisterController extends Controller
     /**
      * Registra un nuevo usuario en la base de datos.
      */
-    public function register(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nombre'            => 'required|max:50',
-            'email'             => 'required|email|unique:usuario,email|ends_with:.com,.es',
+            'email'             => 'required|email|ends_with:.com,.es',
             'telefono'          => 'nullable|max:15',
-            'contrasena'        => 'required|min:6',
+            'password'          => 'required|min:6',
         ]);
 
         $validatedData['fecha_inscripcion'] = now()->format('Y-m-d');
         $validatedData['rol'] = 'user';
-        $validatedData['contrasena'] = bcrypt($validatedData['contrasena']);
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
         $usuario = Usuario::create($validatedData);
 
-        Auth::login($usuario); // Iniciar sesión automáticamente al registrarse
+        // Auth::login($usuario); // Iniciar sesión automáticamente al registrarse
 
         return redirect()->route('inicio')->with('success', 'Usuario creado exitosamente.');
     }

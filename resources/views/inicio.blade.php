@@ -13,7 +13,7 @@
                 Y llévate una mochila de regalo. Entrena con los mejores instructores y las instalaciones más modernas.
             </p>
             <div class="flex flex-wrap gap-4">
-                <a href="#"
+                <a href="{{ route('register.index') }}"
                     class="bg-pink-900 hover:bg-pink-700 text-white font-semibold px-5 py-2 rounded shadow transition-colors">
                     Apúntate
                 </a>

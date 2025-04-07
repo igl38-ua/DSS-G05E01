@@ -24,7 +24,7 @@
     </button>
 
     <!-- Formulario de registro -->
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register.store') }}">
       @csrf
 
       <!-- Nombre -->
@@ -67,7 +67,7 @@
             type="email" 
             name="email"
             class="pl-9 pr-3 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500" 
-            placeholder="email@address.com"
+            placeholder="email@ejemplo.com"
             required
           >
         </div>
@@ -97,7 +97,7 @@
 
       <!-- Contraseña -->
       <div class="mb-4">
-        <label for="contrasena" class="block text-sm font-medium text-gray-700 mb-1">
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
           Contraseña
         </label>
         <div class="relative">
@@ -108,9 +108,9 @@
             </svg>
           </span>
           <input 
-            id="contrasena" 
+            id="password" 
             type="password" 
-            name="contrasena"
+            name="password"
             class="pl-9 pr-3 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500" 
             required
           >
@@ -149,7 +149,7 @@
       <!-- Enlace para iniciar sesión -->
       <p class="text-center text-sm mt-6">
         ¿Ya tienes una cuenta? 
-        <a href="{{ route('login') }}" class="text-purple-600 hover:underline">
+        <a href="{{ route('login.index') }}" class="text-purple-600 hover:underline">
           Inicia sesión
         </a>
       </p>

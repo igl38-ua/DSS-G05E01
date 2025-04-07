@@ -43,7 +43,7 @@
 
         <!-- Enlace para volver al login -->
         <div class="text-center mt-4 text-sm">
-            <a href="{{ route('login') }}" class="text-purple-600 hover:underline">
+            <a href="{{ route('login.index') }}" class="text-purple-600 hover:underline">
                 Volver a iniciar sesión
             </a>
         </div>
