@@ -49,14 +49,24 @@
                         </svg>
                     </span>
                     <input 
-                        id="password" 
+                        id="contrasena" 
                         type="password" 
-                        name="password" 
+                        name="contrasena" 
                         class="pl-9 pr-3 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
                         required
                     >
                 </div>
             </div>
+
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <!-- Enlace "¿Contraseña olvidada?" -->
             <div class="text-right mb-4">

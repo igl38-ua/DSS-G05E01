@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {   
@@ -25,8 +27,11 @@ class RegisterController extends Controller
             'email'             => 'required|email|unique:usuario,email|ends_with:.com,.es',
             'telefono'          => 'nullable|max:15',
             'contrasena'        => 'required|min:6',
-            'fecha_inscripcion' => 'required|date',
         ]);
+
+        $validatedData['fecha_inscripcion'] = now()->format('Y-m-d');
+        $validatedData['rol'] = 'user';
+        $validatedData['contrasena'] = bcrypt($validatedData['contrasena']);
 
         $usuario = Usuario::create($validatedData);
 

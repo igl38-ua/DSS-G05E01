@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -14,22 +16,30 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Validar campos de entrada
+        // Validación de las credenciales
         $credentials = $request->validate([
             'email'    => 'required|email',
             'contrasena' => 'required',
         ]);
 
-        // Intentar autenticar al usuario usando las credenciales
-        if (Auth::attempt($credentials)) {
-            // Regenerar la sesión para prevenir fijación de sesión
+        // Mapear el campo 'contrasena' al índice 'password' que espera Auth::attempt
+        $loginData = [
+            'email'    => $credentials['email'],
+            'password' => $credentials['contrasena']
+        ];
+
+        if (Auth::attempt($loginData)) {
+
             $request->session()->regenerate();
 
-            // Redirigir al usuario a su página de destino (por ejemplo, dashboard)
-            return redirect()->intended('dashboard');
+            // Verificar el rol y redirigir en consecuencia.
+            if (Auth::user()->rol === 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            } else {
+                return redirect()->intended('/');
+            }
         }
 
-        // Si falla la autenticación, redirigir atrás con mensaje de error
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no son correctas.',
         ]);
