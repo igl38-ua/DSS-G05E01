@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Http\Controllers\Controller;
 
-
 class EmpleadoController extends Controller
 {
     /**
@@ -19,7 +18,7 @@ class EmpleadoController extends Controller
         $sort = $request->get('sort', 'nombre');
         $direction = $request->get('direction', 'asc');
         $empleados = Empleado::orderBy($sort, $direction)->paginate($numero);
-        return view('empleados.index', compact('empleados', 'sort', 'direction'));
+        return view('admin.empleados.index', compact('empleados', 'sort', 'direction'));
     }
 
     /**

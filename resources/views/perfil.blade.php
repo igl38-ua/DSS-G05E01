@@ -8,7 +8,18 @@
     <div class="bg-white rounded shadow p-6">
         <p><strong>Nombre:</strong> {{ $user->nombre }}</p>
         <p><strong>Email:</strong> {{ $user->email }}</p>
-        <!-- Puedes agregar más información del usuario si la tienes -->
+        
+        <!-- Botón para administradores -->
+        @if($user->rol === 'admin')
+            <div class="mt-4">
+                <a 
+                    href="{{ route('admin.dashboard') }}" 
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded inline-block"
+                >
+                    Panel de Administración
+                </a>
+            </div>
+        @endif
 
         <!-- Botón de logout -->
         <form action="{{ route('logout') }}" method="POST" class="mt-6">

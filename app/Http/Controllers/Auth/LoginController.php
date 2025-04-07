@@ -33,7 +33,7 @@ class LoginController extends Controller
                 $request->session()->regenerate();
 
                 if ($user->rol === 'admin') {
-                    return redirect()->intended('/admin');
+                    return redirect()->intended('/perfil');
                 } else {
                     return redirect()->intended('/');
                 }

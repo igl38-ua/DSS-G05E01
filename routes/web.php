@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PerfilController;
+use App\Http\Controllers\Admin\DashboardController;
 
 // RUTAS DE LA APP
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
@@ -34,11 +35,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
+Route::get('/admin', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'is_admin'])
+    ->name('admin.dashboard');
 
+// cambiar esto
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin');
     Route::resource('/clases', App\Http\Controllers\Admin\ClaseController::class);
     Route::resource('/empleados', App\Http\Controllers\Admin\EmpleadoController::class);
     Route::resource('/usuarios', App\Http\Controllers\Admin\UsuarioController::class);
-    Route::resource('/dynamic', App\Http\Controllers\Admin\DynamicController::class);
+    Route::resource('/dynamic', App\Http\Controllers\Admin\DynamicListingController::class);
+    // Ruta para eliminar registros (nota los parámetros {entity} e {id})
+    Route::delete('dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])
+        ->name('dynamic.destroy');
 });
