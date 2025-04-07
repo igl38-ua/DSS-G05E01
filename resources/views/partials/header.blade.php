@@ -4,17 +4,15 @@
     <!-- Contenedor principal con título y navegación en la misma línea -->
     <div class="flex items-center justify-between">
       <!-- Título / Logo -->
-      <a href="{{ route('home') }}" class="text-3xl font-bold uppercase tracking-wider">
+      <a href="{{ route('inicio') }}" class="text-3xl font-bold uppercase tracking-wider">
         Mi Gimnasio
       </a>
-
-
       <!-- Menú y botón móvil agrupados -->
       <div class="flex items-center">
         <!-- Menú de navegación (visible en md y superiores) -->
         <nav class="hidden md:flex items-center space-x-8">
-          <a href="{{ route('home') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Inicio</a>
-          <a href="{{ route('clases.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Clases</a>
+          <a href="{{ route('inicio') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Inicio</a>
+          <a href="{{ route('clases') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Clases</a>
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Entrenadores</a>
           <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
@@ -35,7 +33,7 @@
     <!-- Menú de navegación para móviles (desplegable) -->
     <div x-show="open" class="md:hidden mt-4">
       <nav class="flex flex-col items-center space-y-4">
-        <a href="{{ route('home') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Inicio</a>
+        <a href="{{ route('inicio') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Inicio</a>
         <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Clases</a>
         <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Entrenadores</a>
         <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
