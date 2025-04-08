@@ -23,11 +23,11 @@
 
     <div class="px-6 py-4 border-b flex justify-between items-center">
         <!-- Para volver a home -->
-        <a href="{{ route('home') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
+        <a href="{{ route('admin.dashboard') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
             <i class="fas fa-home mr-2"></i> Volver al Inicio
         </a>
         <!-- Para crear un usuario nuevo -->
-        <a href="{{ route('usuarios.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
+        <a href="{{ route('admin.usuarios.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center">
             <i class="fas fa-user-plus mr-2"></i> Crear Usuario
         </a>
     </div>
@@ -40,7 +40,7 @@
                     $newDirectionNombre = ($sort === 'nombre' && $direction === 'asc') ? 'desc' : 'asc';
                 @endphp
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                    <a href="{{ route('usuarios.index', ['sort' => 'nombre', 'direction' => $newDirectionNombre]) }}" class="flex items-center group">
+                    <a href="{{ route('admin.usuarios.index', ['sort' => 'nombre', 'direction' => $newDirectionNombre]) }}" class="flex items-center group">
                         <i class="fas fa-user mr-1"></i> Nombre
                         @if($sort === 'nombre')
                             <i class="fas fa-arrow-{{ $direction === 'asc' ? 'up' : 'down' }} text-indigo-600 ml-1"></i>
@@ -54,7 +54,7 @@
                     $newDirectionFecha = ($sort === 'fecha_inscripcion' && $direction === 'asc') ? 'desc' : 'asc';
                 @endphp
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                    <a href="{{ route('usuarios.index', ['sort' => 'fecha_inscripcion', 'direction' => $newDirectionFecha]) }}" class="flex items-center group">
+                    <a href="{{ route('admin.usuarios.index', ['sort' => 'fecha_inscripcion', 'direction' => $newDirectionFecha]) }}" class="flex items-center group">
                         <i class="fas fa-calendar-alt mr-1"></i> Fecha de Inscripción
                         @if($sort === 'fecha_inscripcion')
                             <i class="fas fa-arrow-{{ $direction === 'asc' ? 'up' : 'down' }} text-indigo-600 ml-1"></i>
@@ -92,10 +92,10 @@
                     </td>
                     <td class="px-6 py-4 text-right text-sm font-medium">
                         <div class="flex justify-end space-x-2">
-                            <a href="{{ route('usuarios.edit', $usuario->id) }}" class="text-indigo-600 hover:text-indigo-900 flex items-center">
+                            <a href="{{ route('admin.usuarios.edit', $usuario->id) }}" class="text-indigo-600 hover:text-indigo-900 flex items-center">
                                 <i class="fas fa-edit mr-1"></i> Editar
                             </a>
-                            <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" class="inline">
+                            <form action="{{ route('admin.usuarios.destroy', $usuario->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-800 flex items-center" onclick="return confirm('¿Seguro de eliminar este usuario?')">

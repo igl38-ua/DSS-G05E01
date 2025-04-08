@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory; 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     protected $table = 'usuario';
 
@@ -14,9 +14,23 @@ class Usuario extends Model
         'nombre',
         'email',
         'telefono',
-        'contrasena',
+        'password',
         'fecha_inscripcion',
+        'rol',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    
+    /**
+     * El campo que se usará para la autenticación.
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
     /**
      * Relación con Reserva (1:N).
@@ -26,4 +40,5 @@ class Usuario extends Model
     {
         return $this->hasMany(Reserva::class, 'ID_Usuario');
     }
+
 }

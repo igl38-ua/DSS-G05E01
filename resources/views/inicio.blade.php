@@ -2,11 +2,10 @@
 @extends('layouts.app')
 
 @section('content')
-
 <!-- Sección 'hero' con texto y botones de acción -->
-<header class="bg-gradient-to-r from-orange-800 via-red-800 to-pink-900 text-white py-8">
-<div class="container mx-auto px-4">
-        <div class="mt-8 max-w-2xl">
+<header class="bg-gradient-to-r from-indigo-500 to-purple-700 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="max-w-2xl">
             <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
                 ¡Empieza ahora por 9,99€/4 semanas!
             </h1>
@@ -14,18 +13,23 @@
                 Y llévate una mochila de regalo. Entrena con los mejores instructores y las instalaciones más modernas.
             </p>
             <div class="flex flex-wrap gap-4">
-                <a href="#"
-                    class="bg-pink-900 hover:bg-pink-700 text-white font-semibold px-5 py-2 rounded shadow transition-colors">
+                <!-- Botón principal: tono oscuro de violeta -->
+                <a href="{{ route('register.index') }}"
+                   class="bg-purple-800 hover:bg-purple-900 text-white font-semibold px-5 py-2 shadow transition-colors">
                     Apúntate
                 </a>
-                <a href="#"
-                    class="border border-white text-white px-5 py-2 rounded shadow hover:bg-pink-900 hover:text-white transition-colors">
+                
+                <!-- Botón secundario: borde violeta claro -->
+                <a href="{{ route('suscripciones') }}"
+                   class="border border-purple-200 text-purple-100 px-5 py-2 shadow 
+                          hover:bg-purple-900 hover:text-white transition-colors">
                     Ver precio
                 </a>
             </div>
         </div>
     </div>
 </header>
+
 
 <!-- Sección de Carrusel de Imagenes (Full Width) -->
 <section id="carousel-fullwidth" class="mb-8">

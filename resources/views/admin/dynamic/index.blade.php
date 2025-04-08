@@ -9,7 +9,7 @@
         // Función para redirigir al cambiar la entidad
         function changeEntity(selectObj) {
             var entity = selectObj.value;
-            window.location.href = "{{ route('dynamic.index') }}?entity=" + entity;
+            window.location.href = "{{ route('admin.dynamic.index') }}?entity=" + entity;
         }
     </script>
 </head>
@@ -34,7 +34,7 @@
         <!-- Botón para volver al inicio y casilla de selección de entidad -->
         <div class="px-6 py-4 border-b flex justify-between items-center">
             <!-- Botón Volver al Inicio -->
-            <a href="{{ route('home') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
+            <a href="{{ route('admin.dashboard') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
                 <i class="fas fa-home mr-2"></i> Volver al Inicio
             </a>
             <!-- Dropdown de selección de entidad -->
@@ -73,7 +73,7 @@
                             </td>
                         @endforeach
                         <td class="px-6 py-4 text-right text-sm font-medium">
-                            <form action="{{ route('dynamic.destroy', ['entity' => $selectedEntity, 'id' => $record->id]) }}" method="POST" class="inline">
+                            <form action="{{ route('admin.dynamic.destroy', ['entity' => $selectedEntity, 'id' => $record->id]) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-800 flex items-center" onclick="return confirm('¿Seguro de eliminar este registro?')">
