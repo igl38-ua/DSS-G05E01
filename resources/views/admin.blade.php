@@ -24,7 +24,11 @@
                     Listado de objetos
                 </a>
             </div>
-        </div>  
+        </div>
+        <!-- Botón para volver a la página de inicio -->
+        <div class="mt-4">
+            <a href="{{ route('perfil.index') }}" class="btn btn-primary">Volver a Perfil</a>
+        </div>
     </div>
 </body>
 </html>
