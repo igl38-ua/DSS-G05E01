@@ -7,7 +7,7 @@
             <div>
                 <h5 class="font-bold mb-2">¿Necesitas ayuda?</h5>
                 <p class="text-sm text-gray-400 mb-4">Contacta con nosotros para resolver tus dudas.</p>
-                <a href="#"
+                <a href="{{ route('contacto') }}"
                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors text-sm font-semibold"
                 >
                     Contáctanos
