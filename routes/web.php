@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamController;
 use App\Http\Controllers\SuscripcionesController;
+use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -14,8 +16,8 @@ use App\Http\Controllers\Admin\DashboardController;
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
 Route::get('/jam', [JamController::class, 'index']) ->name('jam');
-Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil.index');
-Route::get('/clases', [App\Http\Controllers\ClaseController::class, 'index']) ->name('clases');
+Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
+Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto');
 
 // RUTAS DE AUTENTICACION
 
@@ -23,9 +25,9 @@ Route::resource('login', LoginController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
-    ->name('password.request'); // Mostrar el formulario de solicitud de restablecimiento de contraseña
+->name('password.request'); // Mostrar el formulario de solicitud de restablecimiento de contraseña
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
-    ->name('password.email'); // Procesar el envío del enlace de restablecimiento
+->name('password.email'); // Procesar el envío del enlace de restablecimiento
 
 Route::resource('register', RegisterController::class);
 
@@ -44,7 +46,6 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('/empleados', App\Http\Controllers\Admin\EmpleadoController::class);
     Route::resource('/usuarios', App\Http\Controllers\Admin\UsuarioController::class);
     Route::resource('/dynamic', App\Http\Controllers\Admin\DynamicListingController::class);
-    // Ruta para eliminar registros (nota los parámetros {entity} e {id})
     Route::delete('dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])
         ->name('dynamic.destroy');
 });

@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between">
       <!-- Título / Logo -->
       <a href="{{ route('inicio') }}" class="text-3xl font-bold uppercase tracking-wider">
-        Mi Gimnasio
+        Smart Fit
       </a>
       <!-- Menú y botón móvil agrupados -->
       <div class="flex items-center">
@@ -15,7 +15,7 @@
           <a href="{{ route('clases') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Clases</a>
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Entrenadores</a>
           <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
-          <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
+          <a href="{{ route('contacto') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
           <a href="{{ route('jam') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">JAM</a>
           <a href="{{ route('perfil.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Mi perfil</a>
 

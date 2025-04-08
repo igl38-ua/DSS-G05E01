@@ -17,7 +17,7 @@
                     class="bg-pink-900 hover:bg-pink-700 text-white font-semibold px-5 py-2 rounded shadow transition-colors">
                     Apúntate
                 </a>
-                <a href="#"
+                <a href="{{ route('suscripciones') }}"
                     class="border border-white text-white px-5 py-2 rounded shadow hover:bg-pink-900 hover:text-white transition-colors">
                     Ver precio
                 </a>
