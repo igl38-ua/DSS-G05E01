@@ -1,14 +1,15 @@
-{{-- resources/views/perfil.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Perfil de Usuario</h1>
+<div class="min-h-screen flex flex-col justify-center bg-gray-100 py-6">
+    <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Perfil de Usuario</h1>
 
-    <div class="bg-white rounded shadow p-6">
-        <p><strong>Nombre:</strong> {{ $user->nombre }}</p>
-        <p><strong>Email:</strong> {{ $user->email }}</p>
-        
+        <div class="mb-4">
+            <p><strong>Nombre:</strong> {{ $user->nombre }}</p>
+            <p><strong>Email:</strong> {{ $user->email }}</p>
+        </div>
+
         <!-- Botón para administradores -->
         @if($user->rol === 'admin')
             <div class="mt-4">
@@ -22,15 +23,17 @@
         @endif
 
         <!-- Botón de logout -->
-        <form action="{{ route('logout') }}" method="POST" class="mt-6">
-            @csrf
-            <button 
-                type="submit" 
-                class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
-            >
-                Cerrar Sesión
-            </button>
-        </form>
+        <div class="mt-6">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button 
+                    type="submit" 
+                    class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
+                >
+                    Cerrar Sesión
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
