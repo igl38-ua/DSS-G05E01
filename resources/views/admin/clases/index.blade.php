@@ -16,15 +16,15 @@
         </div>
         <div class="px-6 py-4 border-b flex justify-between items-center">
             <!-- Para volver a home -->
-            <a href="{{ route('inicio') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
+            <a href="{{ route('admin.dashboard') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition flex items-center">
                 <i class="fas fa-home mr-2"></i> Volver al Inicio
             </a>
-            <a href="{{ route('classes.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            <a href="{{ route('admin.clases.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
                 <i class="fas fa-plus-circle mr-2"></i> Nueva Clase
             </a>
         </div>
         <!-- Búsqueda -->
-        <form action="{{ route('classes.index') }}" method="GET" class="px-6 py-4 bg-gradient-to-r from-purple-50 to-blue-50">
+        <form action="{{ route('admin.clases.index') }}" method="GET" class="px-6 py-4 bg-gradient-to-r from-purple-50 to-blue-50">
             <input type="hidden" name="sort" value="{{ $sortField }}">
             <input type="hidden" name="direction" value="{{ $sortDirection }}">
 
@@ -59,7 +59,7 @@
                 </button>
 
                 @if($search || $searchInstructor)
-                    <a href="{{ route('classes.index', ['sort' => $sortField, 'direction' => $sortDirection]) }}"
+                    <a href="{{ route('admin.clases.index', ['sort' => $sortField, 'direction' => $sortDirection]) }}"
                        class="text-sm text-gray-500 hover:text-purple-700 flex items-center">
                         <i class="fas fa-times mr-1"></i> Limpiar filtros
                     </a>
@@ -73,7 +73,7 @@
                 @if($search)
                     <span class="inline-flex items-center bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full">
                         Clase: {{ $search }}
-                        <a href="{{ route('classes.index', ['search_instructor' => $searchInstructor, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
+                        <a href="{{ route('admin.clases.index', ['search_instructor' => $searchInstructor, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
                            class="ml-1 text-purple-500 hover:text-purple-700">
                             <i class="fas fa-times"></i>
                         </a>
@@ -82,7 +82,7 @@
                 @if($searchInstructor)
                     <span class="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
                         INSTRUCTOR: {{ $searchInstructor }}
-                        <a href="{{ route('classes.index', ['search' => $search, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
+                        <a href="{{ route('admin.clases.index', ['search' => $search, 'sort' => $sortField, 'direction' => $sortDirection]) }}"
                            class="ml-1 text-blue-500 hover:text-blue-700">
                             <i class="fas fa-times"></i>
                         </a>
@@ -98,7 +98,7 @@
                 <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                        <a href="{{ route('classes.index', ['sort' => 'nombre', 'direction' => ($sortField === 'nombre' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}"
+                        <a href="{{ route('admin.clases.index', ['sort' => 'nombre', 'direction' => ($sortField === 'nombre' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}"
                            class="flex items-center group">
                             <i class="fas fa-tag mr-1"></i> Nombre
                             @if($sortField === 'nombre')
@@ -112,7 +112,7 @@
                         <i class="far fa-clock mr-1"></i> Horario
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                        <a href="{{ route('classes.index', ['sort' => 'capacidad_max', 'direction' => ($sortField === 'capacidad_max' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}"
+                        <a href="{{ route('admin.clases.index', ['sort' => 'capacidad_max', 'direction' => ($sortField === 'capacidad_max' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}"
                            class="flex items-center group">
                             <i class="fas fa-users mr-1"></i> Capacidad
                             @if($sortField === 'capacidad_max')
@@ -158,10 +158,10 @@
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex justify-end space-x-2">
-                                <a href="{{ route('classes.edit', $clase) }}" class="text-indigo-600 hover:text-indigo-900">
+                                <a href="{{ route('admin.clases.edit', $clase) }}" class="text-indigo-600 hover:text-indigo-900">
                                     <i class="fas fa-edit mr-1"></i> Editar
                                 </a>
-                                <form action="{{ route('classes.destroy', $clase) }}" method="POST" class="inline">
+                                <form action="{{ route('admin.clases.destroy', $clase) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-800" onclick="return confirm('¿Eliminar esta clase?')">

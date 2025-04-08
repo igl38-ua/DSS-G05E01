@@ -11,7 +11,7 @@ class ClaseController extends Controller
 
     public function edit($id){
         $clase = Clase::findOrFail($id);
-        return view('clases.edit', compact('clase'));
+        return view('admin.clases.edit', compact('clase'));
     }
 
     public function index(Request $request){
@@ -43,11 +43,11 @@ class ClaseController extends Controller
     
         $clases = $query->paginate($numero);
     
-        return view('clases', compact('clases', 'sortField', 'sortDirection', 'search', 'searchInstructor'));
+        return view('admin.clases.index', compact('clases', 'sortField', 'sortDirection', 'search', 'searchInstructor'));
     }
 
     public function create(){
-        return view('clases.create');
+        return view('admin.clases.create');
     }   
 
     public function store(Request $request){
@@ -62,7 +62,7 @@ class ClaseController extends Controller
         // Crear la clase
         Clase::create($validated);
 
-        return redirect()->route('clases.index')->with('success', 'Clase creada correctamente.');
+        return redirect()->route('admin.clases.index')->with('success', 'Clase creada correctamente.');
     }
 
     public function update(Request $request, $id){
@@ -78,14 +78,14 @@ class ClaseController extends Controller
 
         $clase->update($validated);
 
-        return redirect()->route('clases.index')->with('success', 'Clase actualizada correctamente.');
+        return redirect()->route('admin.clases.index')->with('success', 'Clase actualizada correctamente.');
     }
 
     public function destroy($id){
         $clase = Clase::findOrFail($id);
         $clase->delete();
 
-        return redirect()->route('classes.index')->with('success', 'Clase eliminada correctamente.');
+        return redirect()->route('admin.clases.index')->with('success', 'Clase eliminada correctamente.');
     }
 
 }
