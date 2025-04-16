@@ -11,6 +11,8 @@ class SpotifyController extends Controller
     // Inicia el proceso de autenticación redirigiendo a Spotify
     public function redirectToSpotify()
     {
+        session()->forget('spotify_access_token');
+        
         $session = new Session(
             env('SPOTIFY_CLIENT_ID'),
             env('SPOTIFY_CLIENT_SECRET'),
@@ -20,7 +22,7 @@ class SpotifyController extends Controller
         $options = [
             'scope' => [
                 'user-read-email',
-                // Añade otros scopes que necesites
+                'playlist-modify-public',
             ],
         ];
 
@@ -49,6 +51,8 @@ class SpotifyController extends Controller
             $accessToken = $session->getAccessToken();
             $api->setAccessToken($accessToken);
 
+            session(['spotify_access_token' => $accessToken]);
+            
             // Obtén la información del usuario logueado en Spotify
             $userInfo = $api->me();
 

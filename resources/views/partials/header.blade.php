@@ -16,7 +16,7 @@
           <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Entrenadores</a>
           <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
           <a href="{{ route('contacto') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
-          <a href="{{ route('jam') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">JAM</a>
+          <a href="{{ route('jam.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">JAM</a>
           <a href="{{ route('perfil.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Mi perfil</a>
         </nav>
         <!-- Botón hamburguesa para pantallas pequeñas -->
@@ -36,7 +36,7 @@
         <a href="#" class="text-2xl uppercase hover:text-gray-300 transition-colors">Entrenadores</a>
         <a href="{{ route('suscripciones') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Suscripciones</a>
         <a href="{{ route('contacto') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Contacto</a>
-        <a href="{{ route('jam') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">JAM</a>
+        <a href="{{ route('jam.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">JAM</a>
         <a href="{{ route('perfil.index') }}" class="text-2xl uppercase hover:text-gray-300 transition-colors">Mi perfil</a>
       </nav>
     </div>
