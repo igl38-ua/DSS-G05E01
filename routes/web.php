@@ -6,6 +6,7 @@ use App\Http\Controllers\JamController;
 use App\Http\Controllers\SuscripcionesController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;

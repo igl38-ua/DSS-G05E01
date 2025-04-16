@@ -14,7 +14,7 @@ class SpotifyController extends Controller
         $session = new Session(
             env('SPOTIFY_CLIENT_ID'),
             env('SPOTIFY_CLIENT_SECRET'),
-            route('spotify.callback') // Asegúrate de que este URI esté registrado en el dashboard
+            env('SPOTIFY_REDIRECT_URI')
         );
 
         $options = [
@@ -31,10 +31,14 @@ class SpotifyController extends Controller
     // Maneja el callback de Spotify
     public function handleSpotifyCallback(Request $request)
     {
+        if (!$request->has('code')) {
+            dd('No llegó el parámetro "code".');
+        }
+
         $session = new Session(
             env('SPOTIFY_CLIENT_ID'),
             env('SPOTIFY_CLIENT_SECRET'),
-            route('spotify.callback')
+            env('SPOTIFY_REDIRECT_URI')
         );
 
         $api = new SpotifyWebAPI();
