@@ -13,11 +13,17 @@ use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 
 // RUTAS DE LA APP
+
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
 Route::get('/jam', [JamController::class, 'index']) ->name('jam');
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto');
+
+// RUTAS DE INTEGRACIÓN CON SPOTIFY
+
+Route::get('/login/spotify', [SpotifyController::class, 'redirectToSpotify'])->name('spotify.login');
+Route::get('/spotify/callback', [SpotifyController::class, 'handleSpotifyCallback'])->name('spotify.callback');
 
 // RUTAS DE AUTENTICACION
 
