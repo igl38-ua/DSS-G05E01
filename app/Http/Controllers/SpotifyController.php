@@ -23,6 +23,8 @@ class SpotifyController extends Controller
             'scope' => [
                 'user-read-email',
                 'playlist-modify-public',
+                'user-modify-playback-state',
+                'user-read-currently-playing',
             ],
         ];
 
