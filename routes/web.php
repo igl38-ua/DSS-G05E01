@@ -6,6 +6,7 @@ use App\Http\Controllers\JamController;
 use App\Http\Controllers\SuscripcionesController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -13,11 +14,22 @@ use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 
 // RUTAS DE LA APP
+
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
-Route::get('/jam', [JamController::class, 'index']) ->name('jam');
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto');
+
+// RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
+
+Route::get('/login/spotify', [SpotifyController::class, 'redirectToSpotify'])->name('spotify.login');
+Route::get('/spotify/callback', [SpotifyController::class, 'handleSpotifyCallback'])->name('spotify.callback');
+Route::get('/jam', [JamController::class, 'index'])->name('jam.index');
+// Formulario (o campo) para introducir el término de búsqueda
+Route::get('/jam/search', [JamController::class, 'searchForm'])->name('jam.search.form');
+// Procesar la búsqueda
+Route::post('/jam/search', [JamController::class, 'search'])->name('jam.search');
+Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
 
 // RUTAS DE AUTENTICACION
 
