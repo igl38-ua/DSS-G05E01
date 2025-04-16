@@ -22,6 +22,9 @@
         .card-header {
             @apply bg-gradient-to-r from-indigo-600 to-purple-700 px-6 py-4 text-white;
         }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -30,5 +33,8 @@
     @yield('content')
     
     @include('partials.footer')
+
+    <!-- Agregar Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
 </html>
