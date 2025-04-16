@@ -107,8 +107,6 @@ class JamController extends Controller
         $playlistId = '5vfq9lcBaUyi5FfoXHMSuv'; // Ajusta con el ID de tu playlist
         try {
             $api->addPlaylistTracks($playlistId, [$trackUri]);
-            dd($result);
-            \Log::debug('Resultado addPlaylistTracks:', (array) $result);
 
             // Guardarlo en la base de datos
             JamQueue::create([
