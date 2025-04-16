@@ -17,7 +17,7 @@
     </h1>
 
     <!-- Formulario -->
-    <form action="{{ route('usuarios.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
+    <form action="{{ route('admin.usuarios.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
         @csrf
         <!-- Campo: Nombre -->
         <div class="mb-4">
@@ -90,7 +90,7 @@
                     class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center">
                 <i class="fas fa-save mr-1"></i> Crear Usuario
             </button>
-            <a href="{{ route('usuarios.index') }}"
+            <a href="{{ route('admin.usuarios.index') }}"
                class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition flex items-center">
                 <i class="fas fa-times mr-1"></i> Cancelar
             </a>

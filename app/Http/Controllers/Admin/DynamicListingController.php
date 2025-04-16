@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use App\Http\Controllers\Controller;
 
 class DynamicListingController extends Controller
 {
@@ -37,7 +38,7 @@ class DynamicListingController extends Controller
 
         $records = $modelClass::paginate($numero);
 
-        return view('dynamic.index', [
+        return view('admin.dynamic.index', [
             'selectedEntity' => $selectedEntity,
             'columns'        => $columns,
             'records'        => $records,
@@ -54,7 +55,7 @@ class DynamicListingController extends Controller
         $record = $modelClass::findOrFail($id);
         $record->delete();
 
-        return redirect()->route('dynamic.index', ['entity' => $entity])
+        return redirect()->route('admin.dynamic.index', ['entity' => $entity])
             ->with('success', "Registro eliminado exitosamente.");
     }
 }

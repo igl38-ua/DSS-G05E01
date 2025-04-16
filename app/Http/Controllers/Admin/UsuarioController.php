@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Http\Controllers\Controller;
 
 class UsuarioController extends Controller
 {
@@ -22,7 +23,7 @@ class UsuarioController extends Controller
             $usuarios = Usuario::orderBy($sort, $direction)->paginate($numero);
         }
 
-        return view('usuarios.index', compact('usuarios', 'sort', 'direction'));
+        return view('admin.usuarios.index', compact('usuarios', 'sort', 'direction'));
     }
 
     /**
@@ -30,7 +31,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuarios.create');
+        return view('admin.usuarios.create');
     }
 
     /**
@@ -47,7 +48,7 @@ class UsuarioController extends Controller
         ]);
 
         Usuario::create($validatedData);
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
+        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
 
     /**
@@ -56,7 +57,7 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = Usuario::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
+        return view('admin.usuarios.edit', compact('usuario'));
     }
 
     /**
@@ -74,7 +75,7 @@ class UsuarioController extends Controller
         ]);
 
         $usuario->update($validatedData);
-        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
+        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
     }
 
     /**
@@ -84,6 +85,6 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::findOrFail($id);
         $usuario->delete();
-        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
+        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario eliminado exitosamente.');
     }
 }

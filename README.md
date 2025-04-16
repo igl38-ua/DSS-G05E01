@@ -1,4 +1,4 @@
-# **Gestión de Gimnasios**
+# **Smart Fit**
 
 ## **Objetivos**
 El objetivo de este proyecto es desarrollar una plataforma web que facilite la gestión de reservas de clases en un gimnasio. La aplicación permitirá a los clientes inscribirse en clases, gestionar su historial de reservas, solicitar entrenadores personales y acceder a material audiovisual para mejorar su entrenamiento. Además, ofrecerá herramientas de comunicación para mejorar la interacción entre los usuarios y el personal del gimnasio.

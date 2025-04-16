@@ -11,20 +11,24 @@
         <hr>
         <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <div class="list-group">
-                <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.usuarios.index') }}" class="list-group-item list-group-item-action">
                     Gestión de Usuarios
                 </a>
-                <a href="{{ route('clases.index') }}" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.clases.index') }}" class="list-group-item list-group-item-action">
                     Gestión de Clases
                 </a>
-                <a href="{{ route('empleados.index') }}" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.empleados.index') }}" class="list-group-item list-group-item-action">
                     Gestión de Empleados
                 </a>
-                <a href="{{ route('dynamic.index') }}" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.dynamic.index') }}" class="list-group-item list-group-item-action">
                     Listado de objetos
                 </a>
             </div>
-        </div>  
+        </div>
+        <!-- Botón para volver a la página de inicio -->
+        <div class="mt-4">
+            <a href="{{ route('perfil.index') }}" class="btn btn-primary">Volver a Perfil</a>
+        </div>
     </div>
 </body>
 </html>

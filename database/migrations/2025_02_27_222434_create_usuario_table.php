@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('nombre', 50);
             $table->string('email', 100);
             $table->string('telefono', 15)->nullable();
-            $table->string('contrasena', 50);
+            $table->string('password', 50);
             $table->date('fecha_inscripcion')->nullable();
+            $table->string('rol', 20);
             $table->timestamps();
         });
     }
