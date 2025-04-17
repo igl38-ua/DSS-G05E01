@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\GoogleController;
 
 // RUTAS DE LA APP
 
@@ -55,6 +56,8 @@ Route::get('/admin', [DashboardController::class, 'index'])
     ->middleware(['auth', 'is_admin'])
     ->name('admin.dashboard');
 
+
+
 // cambiar esto
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/clases', App\Http\Controllers\Admin\ClaseController::class);
@@ -64,3 +67,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::delete('dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])
         ->name('dynamic.destroy');
 });
+
+// Rutas para Google Login
+Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
