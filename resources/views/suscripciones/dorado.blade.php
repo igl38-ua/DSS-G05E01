@@ -3,7 +3,7 @@
     <h5 class="uppercase text-sm font-bold text-yellow-600 tracking-wider">DORADO</h5>
 
     <!-- Precio -->
-    <p class="text-4xl font-extrabold text-gray-900 mt-4">34.99€</p>
+    <p class="text-4xl font-extrabold text-gray-900 mt-4">34.99€/mes</p>
 
     <!-- Descripción / Beneficios -->
     <p class="text-gray-700 mt-4">
