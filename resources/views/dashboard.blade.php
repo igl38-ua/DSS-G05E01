@@ -20,6 +20,15 @@
         <i class="fas fa-chart-line mr-3 text-purple-400"></i>
         <span>Progresión</span>
       </a>
+
+      {{-- Botón de Cerrar sesión en la barra lateral --}}
+      <form method="POST" action="{{ route('logout') }}" class="" >
+        @csrf
+        <button type="submit" class="w-full flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+          <i class="fas fa-sign-out-alt mr-3 text-purple-400"></i>
+          <span>Cerrar sesión</span>
+        </button>
+      </form>
     </nav>
     <div class="p-4 border-t">
       <a href="{{ route('help') }}" class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100">
@@ -69,7 +78,7 @@
           <a href="{{ route('suscripciones') }}" class="text-sm text-gray-400 hover:text-white">Ver historial</a>
         </div>
         <ul class="space-y-2">
-        @foreach(auth()->user()->suscripciones()->get() as $sub)
+          @foreach(auth()->user()->suscripciones()->get() as $sub)
             <li class="flex justify-between bg-gray-800 rounded-lg p-3">
               <span class="text-gray-300">
                 {{ optional($sub->fecha_inicio)->format('j M') ?? '—' }} — {{ ucfirst($sub->plan) }}
@@ -100,12 +109,12 @@
             </thead>
             <tbody class="text-gray-300">
               @foreach($upcomingClasses as $class)
-              <tr class="border-t border-gray-700">
-                <td class="py-2">{{ $class->clase->nombre }}</td>
-                <td class="py-2">{{ $class->fecha->format('d/m') }}</td>
-                <td class="py-2">{{ $class->fecha->hora_inicio }} - {{ $class->fecha->hora_fin }}</td>
-                <td class="py-2">{{ $class->clase->instructor }}</td>
-              </tr>
+                <tr class="border-t border-gray-700">
+                  <td class="py-2">{{ $class->clase->nombre }}</td>
+                  <td class="py-2">{{ $class->fecha->format('d/m') }}</td>
+                  <td class="py-2">{{ $class->fecha->hora_inicio }} - {{ $class->fecha->hora_fin }}</td>
+                  <td class="py-2">{{ $class->clase->instructor }}</td>
+                </tr>
               @endforeach
             </tbody>
           </table>
