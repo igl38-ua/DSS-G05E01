@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\YoutubeController;
 
 // RUTAS DE LA APP
 
@@ -23,6 +24,15 @@ Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto')
 Route::get('/progreso', [ProgresoController::class, 'index'])->name('progreso');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
 Route::get('/metas', [MetasController::class, 'index'])->name('metas');
+
+// routes/web.php
+
+// Mostrar una playlist concreta
+Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])
+     ->name('playlists.show');
+
+
+
 
 // RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
 
