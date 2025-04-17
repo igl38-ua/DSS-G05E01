@@ -21,6 +21,8 @@ class Usuario extends Authenticatable
         'fecha_inscripcion',
         'rol',
         'monthly_goal',
+        'google_id',
+        'avatar',
     ];
 
     protected $hidden = [
