@@ -19,6 +19,9 @@ Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto');
+Route::get('/progreso', [ProgresoController::class, 'index'])->name('progreso');
+Route::get('/help', [HelpController::class, 'index'])->name('help');
+Route::get('/metas', [MetasController::class, 'index'])->name('metas');
 
 // RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
 
@@ -44,8 +47,8 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 Route::resource('register', RegisterController::class);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
 });
 
 Route::get('/admin', [DashboardController::class, 'index'])

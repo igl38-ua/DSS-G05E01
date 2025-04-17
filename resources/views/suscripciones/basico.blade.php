@@ -4,7 +4,7 @@
     <h5 class="uppercase text-sm font-bold text-gray-600 tracking-wider">BÁSICO</h5>
     
     <!-- Precio -->
-    <p class="text-4xl font-extrabold text-gray-900 mt-4">24.99€</p>
+    <p class="text-4xl font-extrabold text-gray-900 mt-4">24.99€/mes</p>
     
     <!-- Descripción / Beneficios -->
     <p class="text-gray-700 mt-4">
