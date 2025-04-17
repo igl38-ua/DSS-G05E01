@@ -20,7 +20,7 @@ class UsuarioSeeder extends Seeder
 
         $usuarios = [
             ['admin', 'admin@example.com', '456123789', 'admin', '2024-03-01', 'admin'],
-            ['Usuario1', 'usuario1@example.com', '123456789', 'password1', '2023-01-01', 'user'],
+            ['Usuario1', 'usuario1@example.com', '123456789', '1234', '2023-01-01', 'user'],
             ['Usuario2', 'usuario2@example.com', '987654321', 'password2', '2023-02-01' , 'user'],
             ['Usuario3', 'usuario3@example.com', '555123456', 'password3', '2023-03-15' , 'user'],
             ['Usuario4', 'usuario4@example.com', '444987654', 'password4', '2023-04-10' , 'user'],

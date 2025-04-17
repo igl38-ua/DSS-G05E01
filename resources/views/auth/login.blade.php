@@ -4,10 +4,10 @@
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-gray-100 py-6">
     <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
-        {{-- Nota: Corrige los caracteres como 'Ã³' a 'ó' si tu editor/archivo no está en UTF-8 --}}
-        <h2 class="text-2xl font-bold mb-2">Iniciar sesión</h2>
+        {{-- Nota: Corrige los caracteres como 'Ã³' a 'ï¿½' si tu editor/archivo no estï¿½ en UTF-8 --}}
+        <h2 class="text-2xl font-bold mb-2">Iniciar sesiÃ³n</h2>
         <p class="text-gray-600 mb-6 text-sm">
-            Introduce tu dirección de correo y contraseña para acceder.
+            Introduce tu direcciÃ³n de correo y contraseÃ±a para acceder.
         </p>
 
         {{-- Muestra errores generales o de Google si existen --}}
@@ -16,7 +16,7 @@
                 {{ session('error') }}
             </div>
         @endif
-        {{-- Muestra errores de validación del formulario normal --}}
+        {{-- Muestra errores de validaciÃ³n del formulario normal --}}
          @if($errors->any())
             <div class="mb-4 p-3 bg-red-100 text-red-700 border border-red-300 rounded text-sm">
                  <ul class="list-disc list-inside">
@@ -33,7 +33,7 @@
             @csrf
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                    Dirección de correo
+                    DirecciÃ³n de correo
                 </label>
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -49,14 +49,14 @@
                         placeholder="email@ejemplo.com"
                         required
                         autofocus
-                        value="{{ old('email') }}" {{-- Añadido old('email') --}}
+                        value="{{ old('email') }}" {{-- AÃ±adido old('email') --}}
                     >
                 </div>
             </div>
 
             <div class="mb-2">
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
-                    Contraseña
+                    ContraseÃ±a
                 </label>
                 <div class="relative">
                      <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -69,7 +69,7 @@
                         type="password"
                         name="password"
                         class="pl-9 pr-3 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        placeholder="???????????"
+                        placeholder="â—â—â—â—â—â—â—â—â—â—â—"
                         required
                     >
                 </div>
@@ -77,22 +77,22 @@
 
             <div class="text-right mb-4">
                  <a href="{{ route('password.request') }}" class="text-sm text-purple-600 hover:underline">
-                     ¿Contraseña olvidada?
+                     Â¿ContraseÃ±a olvidada?
                  </a>
             </div>
 
-             <div class="mb-4"> {{-- Movido aquí para mejor flujo antes del submit --}}
+             <div class="mb-4"> {{-- Movido aquÃ­ para mejor flujo antes del submit --}}
                 <label class="inline-flex items-center text-sm text-gray-600">
                     <input type="checkbox" name="remember" id="remember" class="form-checkbox h-4 w-4 text-purple-600">
-                    <span class="ml-2">Recuérdame</span>
+                    <span class="ml-2">RecuÃ©rdame</span>
                 </label>
              </div>
 
             <button
                 type="submit"
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded transition-colors mb-4" {{-- Añadido mb-4 --}}
+                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded transition-colors mb-4" {{-- Aï¿½adido mb-4 --}}
             >
-                Iniciar sesión
+                Iniciar sesiÃ³n
             </button>
 
              {{-- SEPARADOR VISUAL (Opcional) --}}
@@ -106,7 +106,7 @@
             </div>
 
             <a
-                href="{{ route('google.redirect') }}"  {{-- ¡LA CLAVE! Llama a la ruta de redirección --}}
+                href="{{ route('google.redirect') }}"  {{-- ï¿½LA CLAVE! Llama a la ruta de redirecciï¿½n --}}
                 class="w-full border border-gray-300 bg-white text-gray-700 font-semibold py-2 rounded flex items-center justify-center hover:bg-gray-100 transition-colors"
             >
                 <svg class="w-5 h-5 mr-2" viewBox="0 0 48 48">
@@ -121,7 +121,7 @@
             </form> {{-- Cierre del formulario principal --}}
 
         <div class="text-center mt-6 text-sm"> {{-- Ajustado margen superior --}}
-            ¿No tienes cuenta?
+            Â¿No tienes cuenta?
             <a href="{{ route('register.index') }}" class="text-purple-600 hover:underline">
                 Pincha aqui
             </a>
