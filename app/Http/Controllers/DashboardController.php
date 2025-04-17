@@ -7,13 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    /**
-     * Muestra el dashboard de usuario con:
-     * - Progresión de asistencia (reservas del mes)
-     * - Suscripción actual
-     * - Próximas clases
-     * - Objetivo mensual y progreso
-     */
     public function index()
     {
         $user = Auth::user();
@@ -22,7 +15,6 @@ class DashboardController extends Controller
         $attendanceData = $user->reservasThisMonth()
             ->with('fecha')
             ->get()
-            // conviertes la colección en un array día→totales:
             ->groupBy(fn($r) => $r->fecha->dia)
             ->map(fn($group, $dia) => ['day'=>$dia, 'total'=>$group->count()])
             ->values();
@@ -48,5 +40,11 @@ class DashboardController extends Controller
             'completedClasses'  => $completedClasses,
             'progressPercentage'=> $progressPercentage,
         ]);
+    }
+
+    public function suscripcionUsuario()
+    {
+        $sub = Auth::user()->suscripcionActual()->first();
+        return view('suscripcionUsuario', compact('sub'));
     }
 }
