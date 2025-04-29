@@ -3,39 +3,35 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory; 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reserva extends Model
 {
-    protected $table = 'reserva';
+    use HasFactory;
+
+    protected $table = 'reserva'; // Recomendado usar nombre en plural
 
     protected $fillable = [
-        'ID_Usuario',
-        'ID_Clase',
-        'ID_Fecha',
+        'user_id',       // Cambiar a snake_case
+        'clase_id',      // Cambiar a snake_case
+        'fecha_reserva', // Cambiar a nombre más descriptivo
     ];
 
     /**
      * Relación con Usuario (N:1).
      */
+    public function user()
+    {
+        return $this->belongsTo(User::class); // Asumiendo que usas el modelo User de Laravel
+    }
+
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'ID_Usuario');
+        return $this->belongsTo(Usuario::class);
     }
 
-    /**
-     * Relación con Clase (N:1).
-     */
     public function clase()
     {
-        return $this->belongsTo(Clase::class, 'ID_Clase');
-    }
-
-    /**
-     * Relación con Fecha (N:1).
-     */
-    public function fecha()
-    {
-        return $this->belongsTo(Fecha::class, 'ID_Fecha');
+        return $this->belongsTo(Clase::class);
     }
 }

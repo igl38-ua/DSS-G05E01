@@ -74,19 +74,48 @@
             @enderror
         </div>
 
-        <!-- Campo: Fecha de Inscripción -->
-        <div class="mb-4">
-            <label for="fecha_inscripcion" class="block font-medium text-gray-700 mb-1">Fecha de Inscripción</label>
-            <input type="date" name="fecha_inscripcion" 
-                   value="{{ old('fecha_inscripcion', $usuario->fecha_inscripcion) }}"
-                   class="w-full px-3 py-2 border border-gray-300 rounded-md 
-                          focus:outline-none focus:ring-2 focus:ring-indigo-500 
-                          focus:border-indigo-500"
-            >
-            @error('fecha_inscripcion')
-            <small class="text-red-600">{{ $message }}</small>
-            @enderror
-        </div>
+<!-- Campo: Clases del Usuario -->
+<div class="mb-4">
+    <label for="clase_id" class="block font-medium text-gray-700 mb-1">Clases del Usuario</label>
+    <select name="clase_id[]" class="form-control" multiple>
+        @if($clasesApuntadas && $clasesApuntadas->isNotEmpty())
+            <optgroup label="Clases Apuntadas">
+                @foreach($clasesApuntadas as $clase)
+                    <option value="{{ $clase->id }}" selected>
+                        {{ $clase->nombre }} ({{ $clase->horario }})
+                    </option>
+                @endforeach
+            </optgroup>
+        @endif
+
+        @if($clasesDisponibles && $clasesDisponibles->isNotEmpty())
+            <optgroup label="Clases Disponibles">
+                @foreach($clasesDisponibles as $clase)
+                    <option value="{{ $clase->id }}">
+                        {{ $clase->nombre }} ({{ $clase->horario }})
+                    </option>
+                @endforeach
+            </optgroup>
+        @else
+            <option value="">No hay clases disponibles</option>
+        @endif
+    </select>
+    <small class="text-gray-500">Mantén presionada la tecla Ctrl (o Cmd en Mac) para seleccionar múltiples clases.</small>
+</div>
+
+<!-- Campo: Fecha de Inscripción -->
+<div class="mb-4">
+    <label for="fecha_inscripcion" class="block font-medium text-gray-700 mb-1">Fecha de Inscripción</label>
+    <input type="date" name="fecha_inscripcion" 
+           value="{{ old('fecha_inscripcion', $usuario->fecha_inscripcion) }}"
+           class="w-full px-3 py-2 border border-gray-300 rounded-md 
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 
+                  focus:border-indigo-500"
+    >
+    @error('fecha_inscripcion')
+    <small class="text-red-600">{{ $message }}</small>
+    @enderror
+</div>
 
         <!-- Botones de acción -->
         <div class="flex items-center space-x-2">
@@ -99,6 +128,7 @@
                 <i class="fas fa-times mr-1"></i> Cancelar
             </a>
         </div>
+
     </form>
 </div>
 
