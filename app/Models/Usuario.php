@@ -26,4 +26,10 @@ class Usuario extends Model
     {
         return $this->hasMany(Reserva::class, 'ID_Usuario');
     }
+
+    public function clases()
+    {
+        return $this->belongsToMany(Clase::class, 'reserva', 'ID_Usuario', 'ID_Clase')
+                    ->withPivot('ID_Fecha');
+    }
 }

@@ -36,4 +36,21 @@ use App\Http\Controllers\DynamicListingController;
     
     Route::get('/dynamic', [DynamicListingController::class, 'index'])->name('dynamic.index');
     Route::delete('/dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])->name('dynamic.destroy');
-    
+
+    Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+    // Rutas para usuarios
+    Route::resource('usuarios', UsuarioController::class);
+
+    // Ruta simple de login
+    Route::get('/login', function() {
+        return view('auth.login'); // Asegúrate de tener esta vista
+    })->name('login');
+
+    // Corrige la ruta de actualización de usuario
+    Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
+
+    // Sistema de autenticación completo (recomendado)
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
