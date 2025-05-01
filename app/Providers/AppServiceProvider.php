@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('is_admin', \App\Http\Middleware\IsAdmin::class);
     }
 
     /**
@@ -21,5 +21,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+
+        if (config('database.default') === 'sqlite') {
+            $databasePath = database_path('database.sqlite');
+            if (!file_exists($databasePath)) {
+                file_put_contents($databasePath, '');
+            }
+        }
     }
 }

@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             ClaseSeeder::class,
             FechaSeeder::class,
             ReservaSeeder::class,
+            SuscripcionesSeeder::class,
+            MetasSeeder::class,
         ]);
     }
 }

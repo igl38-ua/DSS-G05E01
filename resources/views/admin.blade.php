@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Gestión de Gimnasios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Panel de Administración - Gestión de Gimnasios</h1>
+        <hr>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="list-group">
+                <a href="{{ route('admin.usuarios.index') }}" class="list-group-item list-group-item-action">
+                    Gestión de Usuarios
+                </a>
+                <a href="{{ route('admin.clases.index') }}" class="list-group-item list-group-item-action">
+                    Gestión de Clases
+                </a>
+                <a href="{{ route('admin.empleados.index') }}" class="list-group-item list-group-item-action">
+                    Gestión de Empleados
+                </a>
+                <a href="{{ route('admin.dynamic.index') }}" class="list-group-item list-group-item-action">
+                    Listado de objetos
+                </a>
+            </div>
+        </div>
+        <!-- Botón para volver a la página de inicio -->
+        <div class="mt-4">
+            <a href="{{ route('dashboard') }}" class="btn btn-primary">Volver a Perfil</a>
+        </div>
+    </div>
+</body>
+</html>
