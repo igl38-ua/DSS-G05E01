@@ -28,7 +28,7 @@
       {{-- Content Grid --}}
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
-        {{-- Progresión asistencia --}}
+        <!-- {{-- Progresión asistencia --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-white">Progresión asistencia</h2>
@@ -42,7 +42,7 @@
 
           {{-- fixed-height container --}}
           <div id="calendar-heatmap" class="pt-2 h-40">hola</div>
-        </div>
+        </div> -->
 
         {{-- Suscripción actual --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
