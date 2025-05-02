@@ -51,12 +51,6 @@ class SpotifyController extends Controller
         $accessToken  = $session->getAccessToken();
         $refreshToken = $session->getRefreshToken();
 
-        // Muestra el refresh token para que lo copies a tu .env:
-        dd([
-            'COPIA_Y_PEGA_ ESTO_EN_TU_.ENV' => 'SPOTIFY_REFRESH_TOKEN=' . $refreshToken
-        ]);
-
-        // Una vez copiado, elimina el dd() y ya no necesitarás este callback en producción.
     }
 
 }
