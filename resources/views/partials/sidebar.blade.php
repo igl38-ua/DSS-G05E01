@@ -3,7 +3,11 @@
     <h2 class="text-2xl font-bold">Smart Fit</h2>
   </div>
   <nav class="flex-1 p-4 space-y-3">
-    <a href="{{ route('clases') }}" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+    <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+      <i class="fas fa-home mr-3 text-purple-400"></i>
+      <span>Mi Perfil</span>
+    </a>
+    <a href="{{ route('mis-clases') }}" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
       <i class="fas fa-dumbbell mr-3 text-purple-400"></i>
       <span>Clases</span>
     </a>
@@ -11,10 +15,10 @@
       <i class="fas fa-credit-card mr-3 text-purple-400"></i>
       <span>Suscripción</span>
     </a>
-    <a href="{{ route('progreso') }}" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+    <!-- <a href="{{ route('progreso') }}" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
       <i class="fas fa-chart-line mr-3 text-purple-400"></i>
       <span>Progresión</span>
-    </a>
+    </a> -->
 
     {{-- Botón Admin (solo para administradores) --}}
     @if(auth()->user()->rol === 'admin')

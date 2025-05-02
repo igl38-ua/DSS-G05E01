@@ -52,12 +52,9 @@ class Usuario extends Authenticatable
     public function reservasThisMonth()
     {
         return $this->reservas()
-            ->whereHas('fecha', function($q){
-                $q->where('mes',  Carbon::now()->month)
-                ->where('anyo', Carbon::now()->year);
-            });
+            ->whereMonth('fecha', Carbon::now()->month)
+            ->whereYear('fecha',  Carbon::now()->year);
     }
-
 
     /**
      * Últimas 4 suscripciones del usuario.
@@ -90,6 +87,14 @@ class Usuario extends Authenticatable
                     ->take($limit)
                     ->get();
     }
-    
+
+    // En App\Models\Usuario.php
+    public function upcomingClassesQuery()
+    {
+        return $this->reservas()
+                    ->with(['clase','fecha'])
+                    ->whereDate('fecha','>=',now())
+                    ->orderBy('fecha','asc');
+    }
 
 }

@@ -35,4 +35,22 @@ class Fecha extends Model
     {
         return $this->hasMany(Reserva::class, 'ID_Fecha');
     }
+
+    public function getFechaFormateadaAttribute()
+    {
+        // Asegúrate de que los enteros tengan dos dígitos
+        $dd = str_pad($this->dia, 2, '0', STR_PAD_LEFT);
+        $mm = str_pad($this->mes, 2, '0', STR_PAD_LEFT);
+        return "{$dd}/{$mm}/{$this->anyo}";
+    }
+
+    /**
+     * Devuelve la hora de inicio formateada HH:MM
+     */
+    public function getHoraInicioFormateadaAttribute()
+    {
+        $hh = str_pad($this->hora, 2, '0', STR_PAD_LEFT);
+        $ii = str_pad($this->minutos, 2, '0', STR_PAD_LEFT);
+        return "{$hh}:{$ii}";
+    }
 }

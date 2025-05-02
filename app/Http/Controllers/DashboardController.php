@@ -8,39 +8,51 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        // 1. Chart de asistencia: número de reservas cada día  
-        $attendanceData = $user->reservasThisMonth()
-            ->with('fecha')
-            ->get()
-            ->groupBy(fn($r) => $r->fecha->dia)
-            ->map(fn($group, $dia) => ['day'=>$dia, 'total'=>$group->count()])
-            ->values();
+    // 1. Asistencia del mes
+    $attendanceData = $user->reservasThisMonth()
+        ->with('fecha')
+        ->get()
+        ->groupBy(fn($r) => $r->fecha->dia)
+        ->map(fn($group, $dia) => ['day' => (int)$dia, 'total' => $group->count()])
+        ->values();
 
-        // 2. Suscripción activa
-        $currentSub = $user->suscripcionActual()->first();
 
-        // 3. Próximas clases
-        $upcomingClasses = $user->upcomingClasses();
+    // 2. Suscripción activa
+    $currentSubscription = $user->suscripcionActual()->first();
 
-        // 4. Cálculo de objetivo mensual
-        $monthlyGoal       = $user->monthly_goal ?? 0;
-        $completedClasses  = $user->reservasThisMonth()->count();
-        $progressPercentage = $monthlyGoal > 0
-            ? round($completedClasses / $monthlyGoal * 100, 2)
-            : 0;
+    // 3. Próximas clases (hasta 6)
+    $upcomingClasses = $user->upcomingClassesQuery()
+                            ->take(6)
+                            ->get();
 
-        return view('dashboard', [
-            'attendanceData'    => $attendanceData,
-            'currentSubscription' => $currentSub,
-            'upcomingClasses'   => $upcomingClasses,
-            'monthlyGoal'       => $monthlyGoal,
-            'completedClasses'  => $completedClasses,
-            'progressPercentage'=> $progressPercentage,
-        ]);
-    }
+    // 4. Clases recientes: últimas 3 reservas
+    $recentClasses = auth()->user()->reservas()
+                            ->with(['clase','fecha'])
+                            ->orderBy('fecha', 'desc')
+                            ->take(3)
+                            ->get();
+
+    // 5. Objetivo mensual
+    $monthlyGoal       = $user->monthly_goal ?? 0;
+    $completedClasses  = $user->reservasThisMonth()->count();
+    $progressPercentage = $monthlyGoal
+        ? round($completedClasses/$monthlyGoal*100,2)
+        : 0;
+
+    return view('dashboard', [
+        'attendanceData'     => $attendanceData,
+        'currentSubscription'=> $currentSubscription,
+        'upcomingClasses'    => $upcomingClasses,
+        'recentClasses'      => $recentClasses,
+        'monthlyGoal'        => $monthlyGoal,
+        'completedClasses'   => $completedClasses,
+        'progressPercentage' => $progressPercentage,
+    ]);
+}
+
 
     public function suscripcionUsuario()
     {

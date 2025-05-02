@@ -3,12 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\JamQueue; // Suponiendo que ya creaste este modelo
+use App\Models\JamQueue;
 use SpotifyWebAPI\Session;
 use SpotifyWebAPI\SpotifyWebAPI;
 
 class JamController extends Controller
 {
+    /**
+     * Crea y devuelve un cliente SpotifyWebAPI con token recién renovado.
+     */
+    protected function getSpotifyApi(): SpotifyWebAPI
+    {
+        $session = new Session(
+            env('SPOTIFY_CLIENT_ID'),
+            env('SPOTIFY_CLIENT_SECRET'),
+            env('SPOTIFY_REDIRECT_URI')
+        );
+
+        // Usa el refresh token que guardaste en .env
+        $session->setRefreshToken(env('SPOTIFY_REFRESH_TOKEN'));
+
+        // Renueva el access token
+        $session->refreshAccessToken();
+        $api = new SpotifyWebAPI();
+        $api->setAccessToken($session->getAccessToken());
+
+        return $api;
+    }
+
     // 1) Muestra la cola y el botón/búsqueda
     public function index()
     {
@@ -19,47 +41,29 @@ class JamController extends Controller
     // 2) Formulario para la búsqueda
     public function searchForm()
     {
-        // Simplemente retorna la vista con el formulario
         return view('jam.search_form');
     }
 
     // 3) Procesa la búsqueda en Spotify
     public function search(Request $request)
     {
-        // Validamos que el usuario haya ingresado algo
         $request->validate([
             'searchTerm' => 'required|string',
         ]);
 
-        // Recuperamos el término de búsqueda
-        $searchTerm = $request->input('searchTerm');
-
-        // Obtenemos el token de acceso de la sesión (o de donde lo guardes)
-        $accessToken = session('spotify_access_token');
-        if (!$accessToken) {
-            // Redirige si no hay token; el usuario debe loguearse con Spotify
-            return redirect()->route('spotify.login')->withErrors('Necesitas autenticarte con Spotify');
-        }
-
-        // Inicializamos la API de Spotify con el token
-        $api = new SpotifyWebAPI();
-        $api->setAccessToken($accessToken);
+        $api = $this->getSpotifyApi();
 
         try {
-            // Buscamos canciones (tracks)
-            // Puedes ajustar 'limit' a la cantidad de resultados deseada
-            $results = $api->search($searchTerm, 'track', [
+            $results = $api->search($request->input('searchTerm'), 'track', [
                 'limit' => 10,
             ]);
         } catch (\Exception $e) {
-            return back()->withErrors('Hubo un error al buscar: ' . $e->getMessage());
+            return back()->withErrors('Error al buscar: ' . $e->getMessage());
         }
 
-        // Retornamos una vista con los resultados
-        // $results->tracks->items es donde vienen las canciones
         return view('jam.search_results', [
-            'tracks' => $results->tracks->items ?? [],
-            'searchTerm' => $searchTerm,
+            'tracks'     => $results->tracks->items ?? [],
+            'searchTerm' => $request->input('searchTerm'),
         ]);
     }
 
@@ -72,53 +76,38 @@ class JamController extends Controller
 
         $trackUri = $request->input('track_uri');
 
-        // Obtenemos el token de acceso
-        $accessToken = session('spotify_access_token');
-        if (!$accessToken) {
-            return redirect()->route('spotify.login')->withErrors('Necesitas autenticarte con Spotify');
+        // Valida el formato spotify:track:ID
+        $parts = explode(':', $trackUri);
+        if (count($parts) !== 3 || $parts[1] !== 'track') {
+            return back()->withErrors(['track_uri' => 'URI de Spotify no válida.']);
         }
+        $trackId = $parts[2];
 
-        $api = new SpotifyWebAPI();
-        $api->setAccessToken($accessToken);
+        $api = $this->getSpotifyApi();
 
-        // 1. Obtener detalles del track (para almacenarlo localmente en jam_queue)
-        $segments = explode(':', $trackUri);
-        if (count($segments) === 3 && $segments[1] === 'track') {
-            $trackId = $segments[2];
-        } else {
-            return back()->withErrors(['track_uri' => 'La URI de Spotify no parece ser válida.']);
-        }
-
+        // Obtiene datos del track (opcionalmente para guardar en BD)
         try {
             $track = $api->getTrack($trackId);
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'No se pudo obtener la información del track.']);
+            return back()->withErrors('No se pudo obtener información del track.');
         }
 
-
-        // // Guardarlo en la base de datos
-        // JamQueue::create([
-        //     'track_uri'    => $trackUri,
-        //     'track_name'   => $track->name ?? 'Desconocido',
-        //     'track_artist' => isset($track->artists[0]) ? $track->artists[0]->name : 'Desconocido',
-        // ]);
-
-        // 2. Agregar la canción a la playlist en Spotify (opcional)
-        $playlistId = '5vfq9lcBaUyi5FfoXHMSuv'; // Ajusta con el ID de tu playlist
+        // Añade a la playlist (usa tu playlist ID)
+        $playlistId = '5vfq9lcBaUyi5FfoXHMSuv';
         try {
             $api->addPlaylistTracks($playlistId, [$trackUri]);
-
-            // Guardarlo en la base de datos
-            JamQueue::create([
-                'track_uri'    => $trackUri,
-                'track_name'   => $track->name ?? 'Desconocido',
-                'track_artist' => isset($track->artists[0]) ? $track->artists[0]->name : 'Desconocido',
-            ]);
-
         } catch (\Exception $e) {
-            return back()->withErrors(['spotify' => 'Error al agregar la canción a la playlist: ' . $e->getMessage()]);
+            return back()->withErrors('Error al añadir a la playlist: ' . $e->getMessage());
         }
 
-        return redirect()->route('jam.index')->with('success', 'Canción agregada correctamente a la JAM');
+        // Guarda en la cola local
+        JamQueue::create([
+            'track_uri'    => $trackUri,
+            'track_name'   => $track->name,
+            'track_artist' => $track->artists[0]->name ?? 'Desconocido',
+        ]);
+
+        return redirect()->route('jam.index')
+                         ->with('success', 'Canción añadida correctamente a la JAM');
     }
 }
