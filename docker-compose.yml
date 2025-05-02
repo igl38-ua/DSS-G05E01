@@ -1,0 +1,35 @@
+
+services:
+  # ─────────────────────────────────────────────
+  # Contenedor PHP‑FPM + Composer
+  # ─────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: laravel_app
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www                             # Código fuente
+      - ./database/database.sqlite:/var/www/database/database.sqlite
+    env_file:
+      - .env                                    # Tu .env original
+    networks: [laravel]
+
+  # ─────────────────────────────────────────────
+  # Servidor Nginx
+  # ─────────────────────────────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: laravel_nginx
+    depends_on: [app]
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8000:80"                               # Puerto host → contenedor
+    networks: [laravel]
+
+networks:
+  laravel:
+    driver: bridge
