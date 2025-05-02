@@ -46,6 +46,7 @@ class Usuario extends Authenticatable
         return $this->hasMany(Reserva::class, 'ID_Usuario');
     }
 
+<<<<<<< HEAD
     /**
      * Reservas de este mes (para calcular progreso).
      */
@@ -101,4 +102,11 @@ class Usuario extends Authenticatable
     }
 
 
+=======
+    public function clases()
+    {
+        return $this->belongsToMany(Clase::class, 'reserva', 'ID_Usuario', 'ID_Clase')
+                    ->withPivot('ID_Fecha');
+    }
+>>>>>>> Levan
 }

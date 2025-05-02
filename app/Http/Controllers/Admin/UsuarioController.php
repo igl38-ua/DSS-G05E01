@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+<<<<<<< HEAD:app/Http/Controllers/Admin/UsuarioController.php
 use App\Http\Controllers\Controller;
+=======
+use App\Models\Clase;
+>>>>>>> Levan:app/Http/Controllers/UsuarioController.php
 
 class UsuarioController extends Controller
 {
@@ -56,13 +60,26 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD:app/Http/Controllers/Admin/UsuarioController.php
         $usuario = Usuario::findOrFail($id);
         return view('admin.usuarios.edit', compact('usuario'));
+=======
+        $usuario = Usuario::with('clases')->findOrFail($id); // Carga el usuario con sus clases asociadas
+
+        // Clases a las que el usuario ya está apuntado
+        $clasesApuntadas = $usuario->clases;
+
+        // Clases disponibles (no asociadas al usuario)
+        $clasesDisponibles = Clase::whereNotIn('id', $clasesApuntadas->pluck('id'))->get();
+
+        return view('usuarios.edit', compact('usuario', 'clasesApuntadas', 'clasesDisponibles'));
+>>>>>>> Levan:app/Http/Controllers/UsuarioController.php
     }
 
     /**
      * Actualiza un usuario existente en la base de datos.
      */
+<<<<<<< HEAD:app/Http/Controllers/Admin/UsuarioController.php
     public function update(Request $request, $id)
     {
         $usuario = Usuario::findOrFail($id);
@@ -77,6 +94,30 @@ class UsuarioController extends Controller
         $usuario->update($validatedData);
         return redirect()->route('admin.usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
     }
+=======
+
+     public function update(Request $request, $id)
+     {
+         $usuario = Usuario::findOrFail($id);
+     
+         $validatedData = $request->validate([
+             'nombre'            => 'required|max:50',
+             'email'             => 'required|email|unique:usuarios,email,' . $usuario->id,
+             'telefono'          => 'nullable|max:15',
+             'contrasena'        => 'required|min:6',
+             'fecha_inscripcion' => 'required|date',
+             'clase_id'          => 'array', // Validar que sea un array de IDs
+         ]);
+     
+         // Actualizar los datos del usuario
+         $usuario->update($validatedData);
+     
+         // Sincronizar las clases seleccionadas en la tabla intermedia
+         $usuario->clases()->sync($request->input('clase_id', []));
+     
+         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
+     }
+>>>>>>> Levan:app/Http/Controllers/UsuarioController.php
 
     /**
      * Elimina un usuario de la base de datos.
