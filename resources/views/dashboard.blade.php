@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex min-h-screen bg-gray-100 px-4">
+<div class="flex min-h-screen bg-gray-100">
   {{-- Sidebar --}}
   @include('partials.sidebar')
 
