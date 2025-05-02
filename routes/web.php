@@ -29,10 +29,15 @@ Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])
      ->name('playlists.show');
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
 // RUTAS DE CONTACTO
 Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 Route::post('/contacto/pregunta', [ContactoController::class, 'enviarPregunta'])->name('contacto.pregunta');
+>>>>>>> b52fb9bfe0c7b06e1ae3cede7c605a4cd5ca6b09
 
 // RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
 
@@ -61,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::get('/mi-suscripcion', [App\Http\Controllers\DashboardController::class, 'suscripcionUsuario'])->name('mi-suscripcion');
+    Route::get('/mis-clases', [App\Http\Controllers\ClaseUsuarioController::class, 'index'])->name('mis-clases');
 });
 
 Route::get('/admin', [DashboardController::class, 'index'])
@@ -82,4 +88,52 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 // Rutas para Google Login
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+<<<<<<< HEAD
+=======
+// Route::get('/', function () {
+    //     return view('welcome');
+    // });
+    
+    // Route::get('/', [HomeController::class, 'index'])->name('inicio');
+    Route::resource('classes', ClaseController::class);
+    
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    
+    Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
+    
+    Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
+    
+    Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
+    
+    Route::get('/jam', [JamController::class, 'index']) ->name('jam');
+    
+    Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
+    
+    Route::resource('usuarios', UsuarioController::class);
+    Route::resource('clases', ClaseController::class);
+    Route::resource('empleados', EmpleadoController::class);
+    
+    Route::get('/dynamic', [DynamicListingController::class, 'index'])->name('dynamic.index');
+    Route::delete('/dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])->name('dynamic.destroy');
 
+    Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+    // Rutas para usuarios
+    Route::resource('usuarios', UsuarioController::class);
+
+    // Ruta simple de login
+    Route::get('/login', function() {
+        return view('auth.login'); // Asegúrate de tener esta vista
+    })->name('login');
+
+    // Corrige la ruta de actualización de usuario
+    Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
+
+    // Sistema de autenticación completo (recomendado)
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+>>>>>>> Levan
+=======
+
+>>>>>>> b52fb9bfe0c7b06e1ae3cede7c605a4cd5ca6b09

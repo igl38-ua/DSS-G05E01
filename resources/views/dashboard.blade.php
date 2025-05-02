@@ -27,14 +27,22 @@
 
       {{-- Content Grid --}}
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        {{-- Progresión asistencia --}}
+
+        <!-- {{-- Progresión asistencia --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-white">Progresión asistencia</h2>
             <a href="{{ route('progreso') }}" class="text-sm text-gray-400 hover:text-white">Ver más</a>
           </div>
-          <canvas id="attendanceChart"></canvas>
-        </div>
+
+          {{-- Raw JSON data for JS --}}
+          <script type="application/json" id="attendance-data-json">
+            {!! json_encode($attendanceData) !!}
+          </script>
+
+          {{-- fixed-height container --}}
+          <div id="calendar-heatmap" class="pt-2 h-40">hola</div>
+        </div> -->
 
         {{-- Suscripción actual --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
@@ -56,11 +64,11 @@
           </ul>
         </div>
 
-        {{-- Clases recientes --}}
-        <div class="bg-gray-900 rounded-2xl shadow p-6 xl:col-span-2">
+        {{-- Próximas clases --}}
+        <div class="bg-gray-900 rounded-2xl shadow p-6">
           <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-white">Clases recientes</h2>
-            <a href="{{ route('clases') }}" class="text-sm text-gray-400 hover:text-white">Ver historial completo</a>
+            <h2 class="text-xl font-semibold text-white">Próximas clases</h2>
+            <a href="{{ route('clases') }}" class="text-sm text-gray-400 hover:text-white">Ver todas</a>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left">
@@ -73,14 +81,52 @@
                 </tr>
               </thead>
               <tbody class="text-gray-300">
-                @foreach($upcomingClasses as $class)
+                @forelse($upcomingClasses as $reserva)
                   <tr class="border-t border-gray-700">
-                    <td class="py-2">{{ $class->clase->nombre }}</td>
-                    <td class="py-2">{{ $class->fecha->format('d/m') }}</td>
-                    <td class="py-2">{{ $class->fecha->hora_inicio }} - {{ $class->fecha->hora_fin }}</td>
-                    <td class="py-2">{{ $class->clase->instructor }}</td>
+                    <td class="py-2">{{ $reserva->clase->nombre }}</td>
+                    <td class="py-2">{{ $reserva->fecha->fecha_formateada }}</td>
+                    <td class="py-2">{{ $reserva->fecha->hora_inicio_formateada }}</td>
+                    <td class="py-2">{{ $reserva->clase->instructor }}</td>
                   </tr>
-                @endforeach
+                @empty
+                  <tr>
+                    <td colspan="4" class="py-4 text-center text-gray-500">No hay próximas clases.</td>
+                  </tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {{-- Clases recientes --}}
+        <div class="bg-gray-900 rounded-2xl shadow p-6 xl:col-span-2">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-white">Clases recientes</h2>
+            <a href="{{ route('mis-clases') }}" class="text-sm text-gray-400 hover:text-white">Ver historial completo</a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="text-gray-500 uppercase text-sm">
+                  <th class="pb-2">Clase</th>
+                  <th class="pb-2">Fecha</th>
+                  <th class="pb-2">Horario</th>
+                  <th class="pb-2">Entrenador</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-300">
+                @forelse($recentClasses as $res)
+                  <tr class="border-t border-gray-700">
+                    <td class="py-2">{{ $res->clase->nombre }}</td>
+                    <td class="py-2">{{ $res->fecha->fecha_formateada }}</td>
+                    <td class="py-2">{{ $res->fecha->hora_inicio_formateada }}</td>
+                    <td class="py-2">{{ $res->clase->instructor }}</td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="4" class="py-4 text-center text-gray-500">No tienes clases recientes.</td>
+                  </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
@@ -92,14 +138,22 @@
             <h2 class="text-xl font-semibold text-white">Objetivo del mes</h2>
             <a href="{{ route('metas') }}" class="text-sm text-gray-400 hover:text-white">Editar</a>
           </div>
-          <p class="text-gray-400 mb-4">Has completado <strong class="text-white">{{ $completedClasses }}</strong> de <strong class="text-white">{{ $monthlyGoal }}</strong> clases este mes.</p>
+          <p class="text-gray-400 mb-4">
+            Has completado <strong class="text-white">{{ $completedClasses }}</strong> de 
+            <strong class="text-white">{{ $monthlyGoal }}</strong> clases este mes.
+          </p>
           <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden mb-2">
             <div class="h-full bg-purple-500" style="width: {{ $progressPercentage }}%"></div>
           </div>
           <p class="text-gray-400">{{ $progressPercentage }}% cumplido</p>
         </div>
+
       </div>
     </div>
   </main>
 </div>
 @endsection
+
+@push('scripts')
+  @vite('resources/js/dashboard.js')
+@endpush

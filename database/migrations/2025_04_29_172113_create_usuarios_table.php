@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entrenador_personal', function (Blueprint $table) {
-            $table->unsignedInteger('id')->primary();
-            $table->decimal('suplemento_nomina', 10, 2);
+        Schema::create('usuarios', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-            $table->foreign('id')
-                  ->references('id')
-                  ->on('empleado')
-                  ->onDelete('cascade');
         });
     }
 
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entrenadorPersonal');
+        Schema::dropIfExists('usuarios');
     }
 };
