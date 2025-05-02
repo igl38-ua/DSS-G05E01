@@ -90,6 +90,15 @@ class Usuario extends Authenticatable
                     ->take($limit)
                     ->get();
     }
-    
+
+    // En App\Models\Usuario.php
+    public function upcomingClassesQuery()
+    {
+        return $this->reservas()
+                    ->with(['clase','fecha'])
+                    ->whereDate('fecha','>=',now())
+                    ->orderBy('fecha','asc');
+    }
+
 
 }

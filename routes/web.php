@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::get('/mi-suscripcion', [App\Http\Controllers\DashboardController::class, 'suscripcionUsuario'])->name('mi-suscripcion');
+    Route::get('/mis-clases', [App\Http\Controllers\ClaseUsuarioController::class, 'index'])->name('mis-clases');
 });
 
 Route::get('/admin', [DashboardController::class, 'index'])

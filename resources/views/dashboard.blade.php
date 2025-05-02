@@ -56,11 +56,11 @@
           </ul>
         </div>
 
-        {{-- Clases recientes --}}
-        <div class="bg-gray-900 rounded-2xl shadow p-6 xl:col-span-2">
+        {{-- Próximas clases --}}
+        <div class="bg-gray-900 rounded-2xl shadow p-6">
           <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-white">Clases recientes</h2>
-            <a href="{{ route('clases') }}" class="text-sm text-gray-400 hover:text-white">Ver historial completo</a>
+            <h2 class="text-xl font-semibold text-white">Próximas clases</h2>
+            <a href="{{ route('clases') }}" class="text-sm text-gray-400 hover:text-white">Ver todas</a>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left">
@@ -73,18 +73,54 @@
                 </tr>
               </thead>
               <tbody class="text-gray-300">
-                @foreach($upcomingClasses as $class)
+                @forelse($upcomingClasses as $reserva)
                   <tr class="border-t border-gray-700">
-                    <td class="py-2">{{ $class->clase->nombre }}</td>
-                    <td class="py-2">{{ $class->fecha->format('d/m') }}</td>
-                    <td class="py-2">{{ $class->fecha->hora_inicio }} - {{ $class->fecha->hora_fin }}</td>
-                    <td class="py-2">{{ $class->clase->instructor }}</td>
+                    <td class="py-2">{{ $reserva->clase->nombre }}</td>
+                    <td class="py-2">{{ $reserva->fecha->fecha_formateada }}</td>
+                    <td class="py-2">{{ $reserva->fecha->hora_inicio_formateada }}</td>
+                    <td class="py-2">{{ $reserva->clase->instructor }}</td>
                   </tr>
-                @endforeach
+                @empty
+                  <tr><td colspan="4" class="py-4 text-center text-gray-500">No hay próximas clases.</td></tr>
+                @endforelse
               </tbody>
             </table>
           </div>
         </div>
+
+        {{-- Clases recientes --}}
+        <div class="bg-gray-900 rounded-2xl shadow p-6 xl:col-span-2">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-white">Clases recientes</h2>
+            <a href="{{ route('mis-clases') }}" class="text-sm text-gray-400 hover:text-white">Ver historial completo</a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="text-gray-500 uppercase text-sm">
+                  <th class="pb-2">Clase</th>
+                  <th class="pb-2">Fecha</th>
+                  <th class="pb-2">Horario</th>
+                  <th class="pb-2">Entrenador</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-300">
+                @forelse($recentClasses as $res)
+                  <tr class="border-t border-gray-700">
+                    <td class="py-2">{{ $res->clase->nombre }}</td>
+                    <td class="py-2">{{ $res->fecha->fecha_formateada }}</td>
+                    <td class="py-2">{{ $res->fecha->hora_inicio_formateada }}</td>
+                    <td class="py-2">{{ $res->clase->instructor }}</td>
+                  </tr>
+                @empty
+                  <tr><td colspan="4" class="py-4 text-center text-gray-500">No tienes clases recientes.</td></tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
 
         {{-- Objetivo del mes --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
