@@ -25,6 +25,10 @@
             <img src="{{ asset('images/Icono_Entrenador.png') }}" alt="Entrenadores" class="h-8 w-8 object-contain">
           </a>
 
+          {{-- Sección: Foro --}}
+          <a href="{{ route('foro.index') }}" class="hover:opacity-80 transition-opacity">
+            <img src="{{ asset('images/Icono_Foro.png') }}" alt="Foro" class="h-8 w-8 object-contain">
+          </a>
           {{-- Sección: Rutina y Suscripciones --}}
           <a href="{{ route('playlists.show', ['playlistId' => 'PLz-l7oWFJS0JpFK3d3qSGbMSpcKjZgQI6']) }}" class="hover:opacity-80 transition-opacity">
             <img src="{{ asset('images/Icono_Clases.png') }}" alt="Rutina" class="h-8 w-8 object-contain">
@@ -71,6 +75,11 @@
         <a href="#" class="hover:opacity-80 transition-opacity">
           <img src="{{ asset('images/Icono_Entrenador.png') }}" alt="Entrenadores" class="h-8 w-8 object-contain"> Entrenadores
         </a>
+
+        {{-- Sección: Foro --}}
+          <a href="{{ route('foro.index') }}" class="hover:opacity-80 transition-opacity">
+            <img src="{{ asset('images/Icono_Foro.png') }}" alt="Foro" class="h-8 w-8 object-contain"> Foro
+          </a>
 
         {{-- Sección: Rutina y Suscripciones --}}
         <a href="{{ route('playlists.show', ['playlistId' => 'PLz-l7oWFJS0JpFK3d3qSGbMSpcKjZgQI6']) }}" class="hover:opacity-80 transition-opacity">

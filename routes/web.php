@@ -14,6 +14,12 @@ use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\{
+    ForoController,
+    ThreadController,
+    PostController,
+    CommentController
+};
 // RUTAS DE LA APP
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
@@ -44,6 +50,71 @@ Route::get('/jam/search', [JamController::class, 'searchForm'])->name('jam.searc
 // Procesar la búsqueda
 Route::post('/jam/search', [JamController::class, 'search'])->name('jam.search');
 Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
+
+Route::prefix('foro')->name('foro.')->group(function () {
+
+     /* ───────── Categorías ───────── */
+ 
+     // Página principal del foro (lista de categorías)
+     Route::get('/', [ForoController::class, 'index'])
+         ->name('index');
+ 
+     // Hilos dentro de una categoría
+     Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
+         ->name('show');
+ 
+     /* ───────── Hilos ───────── */
+ 
+     // Mostrar un hilo específico (público)
+     Route::get('hilo/{thread}', [ThreadController::class, 'show'])
+         ->name('threads.show');
+ 
+     // Rutas que requieren autenticación
+     Route::middleware('auth')->group(function () {
+ 
+         // Crear hilo
+         Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
+             ->name('threads.create');
+         Route::post('categoria/{category:slug}/hilos',        [ThreadController::class, 'store'])
+             ->name('threads.store');
+ 
+         // Votar hilo (👍 / 👎)
+         Route::post('hilo/{thread}/like',    [ThreadController::class, 'like'])
+             ->name('threads.like');
+         Route::post('hilo/{thread}/dislike', [ThreadController::class, 'dislike'])
+             ->name('threads.dislike');
+ 
+         /* ───────── Posts ───────── */
+ 
+         Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
+             ->name('posts.store');
+         Route::patch('posts/{post}',       [PostController::class, 'update'])
+             ->name('posts.update');
+         Route::delete('posts/{post}',      [PostController::class, 'destroy'])
+             ->name('posts.destroy');
+ 
+         // Votar post
+         Route::post('posts/{post}/like',    [PostController::class, 'like'])
+             ->name('posts.like');
+         Route::post('posts/{post}/dislike', [PostController::class, 'dislike'])
+             ->name('posts.dislike');
+ 
+         /* ───────── Comentarios ───────── */
+ 
+         Route::post('posts/{post}/comments', [CommentController::class, 'store'])
+             ->name('comments.store');
+         Route::patch('comments/{comment}',   [CommentController::class, 'update'])
+             ->name('comments.update');
+         Route::delete('comments/{comment}',  [CommentController::class, 'destroy'])
+             ->name('comments.destroy');
+ 
+         // Votar comentario
+         Route::post('comments/{comment}/like',    [CommentController::class, 'like'])
+             ->name('comments.like');
+         Route::post('comments/{comment}/dislike', [CommentController::class, 'dislike'])
+             ->name('comments.dislike');
+     });
+ });
 
 // RUTAS DE AUTENTICACION
 
