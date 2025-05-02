@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex min-h-screen bg-gray-100">
+<div class="flex min-h-screen bg-gray-100 px-4">
   {{-- Sidebar --}}
   @include('partials.sidebar')
 
@@ -27,13 +27,21 @@
 
       {{-- Content Grid --}}
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+
         {{-- Progresión asistencia --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-white">Progresión asistencia</h2>
             <a href="{{ route('progreso') }}" class="text-sm text-gray-400 hover:text-white">Ver más</a>
           </div>
-          <canvas id="attendanceChart"></canvas>
+
+          {{-- Raw JSON data for JS --}}
+          <script type="application/json" id="attendance-data-json">
+            {!! json_encode($attendanceData) !!}
+          </script>
+
+          {{-- fixed-height container --}}
+          <div id="calendar-heatmap" class="pt-2 h-40">hola</div>
         </div>
 
         {{-- Suscripción actual --}}
@@ -81,7 +89,9 @@
                     <td class="py-2">{{ $reserva->clase->instructor }}</td>
                   </tr>
                 @empty
-                  <tr><td colspan="4" class="py-4 text-center text-gray-500">No hay próximas clases.</td></tr>
+                  <tr>
+                    <td colspan="4" class="py-4 text-center text-gray-500">No hay próximas clases.</td>
+                  </tr>
                 @endforelse
               </tbody>
             </table>
@@ -113,14 +123,14 @@
                     <td class="py-2">{{ $res->clase->instructor }}</td>
                   </tr>
                 @empty
-                  <tr><td colspan="4" class="py-4 text-center text-gray-500">No tienes clases recientes.</td></tr>
+                  <tr>
+                    <td colspan="4" class="py-4 text-center text-gray-500">No tienes clases recientes.</td>
+                  </tr>
                 @endforelse
               </tbody>
             </table>
           </div>
         </div>
-
-
 
         {{-- Objetivo del mes --}}
         <div class="bg-gray-900 rounded-2xl shadow p-6">
@@ -128,14 +138,22 @@
             <h2 class="text-xl font-semibold text-white">Objetivo del mes</h2>
             <a href="{{ route('metas') }}" class="text-sm text-gray-400 hover:text-white">Editar</a>
           </div>
-          <p class="text-gray-400 mb-4">Has completado <strong class="text-white">{{ $completedClasses }}</strong> de <strong class="text-white">{{ $monthlyGoal }}</strong> clases este mes.</p>
+          <p class="text-gray-400 mb-4">
+            Has completado <strong class="text-white">{{ $completedClasses }}</strong> de 
+            <strong class="text-white">{{ $monthlyGoal }}</strong> clases este mes.
+          </p>
           <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden mb-2">
             <div class="h-full bg-purple-500" style="width: {{ $progressPercentage }}%"></div>
           </div>
           <p class="text-gray-400">{{ $progressPercentage }}% cumplido</p>
         </div>
+
       </div>
     </div>
   </main>
 </div>
 @endsection
+
+@push('scripts')
+  @vite('resources/js/dashboard.js')
+@endpush

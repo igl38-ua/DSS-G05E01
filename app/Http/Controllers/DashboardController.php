@@ -16,8 +16,9 @@ class DashboardController extends Controller
         ->with('fecha')
         ->get()
         ->groupBy(fn($r) => $r->fecha->dia)
-        ->map(fn($group, $dia) => ['day'=>$dia,'total'=>$group->count()])
+        ->map(fn($group, $dia) => ['day' => (int)$dia, 'total' => $group->count()])
         ->values();
+
 
     // 2. Suscripción activa
     $currentSubscription = $user->suscripcionActual()->first();
