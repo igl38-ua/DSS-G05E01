@@ -46,19 +46,15 @@ class Usuario extends Authenticatable
         return $this->hasMany(Reserva::class, 'ID_Usuario');
     }
 
-<<<<<<< HEAD
     /**
      * Reservas de este mes (para calcular progreso).
      */
     public function reservasThisMonth()
     {
         return $this->reservas()
-            ->whereHas('fecha', function($q){
-                $q->where('mes',  Carbon::now()->month)
-                ->where('anyo', Carbon::now()->year);
-            });
+            ->whereMonth('fecha', Carbon::now()->month)
+            ->whereYear('fecha',  Carbon::now()->year);
     }
-
 
     /**
      * Últimas 4 suscripciones del usuario.
@@ -101,12 +97,4 @@ class Usuario extends Authenticatable
                     ->orderBy('fecha','asc');
     }
 
-
-=======
-    public function clases()
-    {
-        return $this->belongsToMany(Clase::class, 'reserva', 'ID_Usuario', 'ID_Clase')
-                    ->withPivot('ID_Fecha');
-    }
->>>>>>> Levan
 }
