@@ -14,6 +14,12 @@ use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\{
+    ForoController,
+    ThreadController,
+    PostController,
+    CommentController
+};
 // RUTAS DE LA APP
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
@@ -28,16 +34,10 @@ Route::get('/metas', [MetasController::class, 'index'])->name('metas');
 Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])
      ->name('playlists.show');
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 // RUTAS DE CONTACTO
 Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 Route::post('/contacto/pregunta', [ContactoController::class, 'enviarPregunta'])->name('contacto.pregunta');
->>>>>>> b52fb9bfe0c7b06e1ae3cede7c605a4cd5ca6b09
 
 // RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
 
@@ -49,6 +49,71 @@ Route::get('/jam/search', [JamController::class, 'searchForm'])->name('jam.searc
 // Procesar la búsqueda
 Route::post('/jam/search', [JamController::class, 'search'])->name('jam.search');
 Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
+
+Route::prefix('foro')->name('foro.')->group(function () {
+
+     /* ───────── Categorías ───────── */
+ 
+     // Página principal del foro (lista de categorías)
+     Route::get('/', [ForoController::class, 'index'])
+         ->name('index');
+ 
+     // Hilos dentro de una categoría
+     Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
+         ->name('show');
+ 
+     /* ───────── Hilos ───────── */
+ 
+     // Mostrar un hilo específico (público)
+     Route::get('hilo/{thread}', [ThreadController::class, 'show'])
+         ->name('threads.show');
+ 
+     // Rutas que requieren autenticación
+     Route::middleware('auth')->group(function () {
+ 
+         // Crear hilo
+         Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
+             ->name('threads.create');
+         Route::post('categoria/{category:slug}/hilos',        [ThreadController::class, 'store'])
+             ->name('threads.store');
+ 
+         // Votar hilo (👍 / 👎)
+         Route::post('hilo/{thread}/like',    [ThreadController::class, 'like'])
+             ->name('threads.like');
+         Route::post('hilo/{thread}/dislike', [ThreadController::class, 'dislike'])
+             ->name('threads.dislike');
+ 
+         /* ───────── Posts ───────── */
+ 
+         Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
+             ->name('posts.store');
+         Route::patch('posts/{post}',       [PostController::class, 'update'])
+             ->name('posts.update');
+         Route::delete('posts/{post}',      [PostController::class, 'destroy'])
+             ->name('posts.destroy');
+ 
+         // Votar post
+         Route::post('posts/{post}/like',    [PostController::class, 'like'])
+             ->name('posts.like');
+         Route::post('posts/{post}/dislike', [PostController::class, 'dislike'])
+             ->name('posts.dislike');
+ 
+         /* ───────── Comentarios ───────── */
+ 
+         Route::post('posts/{post}/comments', [CommentController::class, 'store'])
+             ->name('comments.store');
+         Route::patch('comments/{comment}',   [CommentController::class, 'update'])
+             ->name('comments.update');
+         Route::delete('comments/{comment}',  [CommentController::class, 'destroy'])
+             ->name('comments.destroy');
+ 
+         // Votar comentario
+         Route::post('comments/{comment}/like',    [CommentController::class, 'like'])
+             ->name('comments.like');
+         Route::post('comments/{comment}/dislike', [CommentController::class, 'dislike'])
+             ->name('comments.dislike');
+     });
+ });
 
 // RUTAS DE AUTENTICACION
 
@@ -88,52 +153,5 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 // Rutas para Google Login
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
-<<<<<<< HEAD
-=======
-// Route::get('/', function () {
-    //     return view('welcome');
-    // });
-    
-    // Route::get('/', [HomeController::class, 'index'])->name('inicio');
-    Route::resource('classes', ClaseController::class);
-    
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    
-    Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
-    
-    Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
-    
-    Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
-    
-    Route::get('/jam', [JamController::class, 'index']) ->name('jam');
-    
-    Route::get('/perfil', [PerfilController::class, 'index']) ->name('perfil');
-    
-    Route::resource('usuarios', UsuarioController::class);
-    Route::resource('clases', ClaseController::class);
-    Route::resource('empleados', EmpleadoController::class);
-    
-    Route::get('/dynamic', [DynamicListingController::class, 'index'])->name('dynamic.index');
-    Route::delete('/dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])->name('dynamic.destroy');
 
-    Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
 
-    // Rutas para usuarios
-    Route::resource('usuarios', UsuarioController::class);
-
-    // Ruta simple de login
-    Route::get('/login', function() {
-        return view('auth.login'); // Asegúrate de tener esta vista
-    })->name('login');
-
-    // Corrige la ruta de actualización de usuario
-    Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
-
-    // Sistema de autenticación completo (recomendado)
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
->>>>>>> Levan
-=======
-
->>>>>>> b52fb9bfe0c7b06e1ae3cede7c605a4cd5ca6b09

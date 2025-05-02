@@ -29,11 +29,11 @@ class DashboardController extends Controller
                             ->get();
 
     // 4. Clases recientes: últimas 3 reservas
-    $recentClasses = $user->reservas()
-                          ->with(['clase','fecha'])
-                          ->orderBy('fecha','desc')
-                          ->take(3)
-                          ->get();
+    $recentClasses = auth()->user()->reservas()
+                            ->with(['clase','fecha'])
+                            ->orderBy('fecha', 'desc')
+                            ->take(3)
+                            ->get();
 
     // 5. Objetivo mensual
     $monthlyGoal       = $user->monthly_goal ?? 0;
