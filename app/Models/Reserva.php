@@ -9,8 +9,6 @@ class Reserva extends Model
 {
     protected $table = 'reserva';
 
-
-
     protected $fillable = [
         'ID_Usuario',
         'ID_Clase',
