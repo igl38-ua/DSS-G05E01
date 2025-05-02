@@ -14,7 +14,6 @@ use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\YoutubeController;
-
 // RUTAS DE LA APP
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
@@ -25,15 +24,20 @@ Route::get('/progreso', [ProgresoController::class, 'index'])->name('progreso');
 Route::get('/help', [HelpController::class, 'index'])->name('help');
 Route::get('/metas', [MetasController::class, 'index'])->name('metas');
 
-// routes/web.php
-
 // Mostrar una playlist concreta
 Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])
      ->name('playlists.show');
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+// RUTAS DE CONTACTO
+Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
+Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
+Route::post('/contacto/pregunta', [ContactoController::class, 'enviarPregunta'])->name('contacto.pregunta');
+>>>>>>> b52fb9bfe0c7b06e1ae3cede7c605a4cd5ca6b09
 
 // RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
 
@@ -83,6 +87,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 // Rutas para Google Login
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+<<<<<<< HEAD
 =======
 // Route::get('/', function () {
     //     return view('welcome');
@@ -128,3 +133,6 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 >>>>>>> Levan
+=======
+
+>>>>>>> b52fb9bfe0c7b06e1ae3cede7c605a4cd5ca6b09
