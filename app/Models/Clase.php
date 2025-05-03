@@ -16,7 +16,7 @@ class Clase extends Model
         'descripcion',
         'horario',
         'capacidad_max',
-        'instructor',
+        'instructor_old',
     ];
 
     public function instructorInfo()
