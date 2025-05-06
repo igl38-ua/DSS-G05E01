@@ -81,7 +81,7 @@
                 </tr>
               </thead>
               <tbody class="text-gray-300">
-                @forelse($upcomingClasses as $reserva)
+              @forelse($upcomingClasses as $reserva)
                   <tr class="border-t border-gray-700">
                     <td class="py-2">{{ $reserva->clase->nombre }}</td>
                     <td class="py-2">{{ $reserva->fecha->fecha_formateada }}</td>
@@ -93,7 +93,7 @@
                     <td colspan="4" class="py-4 text-center text-gray-500">No hay próximas clases.</td>
                   </tr>
                 @endforelse
-              </tbody>
+                </tbody>
             </table>
           </div>
         </div>
@@ -115,18 +115,18 @@
                 </tr>
               </thead>
               <tbody class="text-gray-300">
-                @forelse($recentClasses as $res)
+              @forelse($recentClasses as $res)
                   <tr class="border-t border-gray-700">
-                    <td class="py-2">{{ $res->clase->nombre }}</td>
-                    <td class="py-2">{{ $res->fecha->fecha_formateada }}</td>
-                    <td class="py-2">{{ $res->fecha->hora_inicio_formateada }}</td>
-                    <td class="py-2">{{ $res->clase->instructor }}</td>
+                      <td class="py-2">{{ optional($res->clase)->nombre ?? 'Clase no disponible' }}</td>
+                      <td class="py-2">{{ optional($res->fecha)->fecha_formateada ?? 'No definida' }}</td>
+                      <td class="py-2">{{ optional($res->fecha)->hora_inicio_formateada ?? '--:--' }}</td>
+                      <td class="py-2">{{ optional($res->clase)->instructor ?? 'Sin asignar' }}</td>
                   </tr>
-                @empty
+              @empty
                   <tr>
-                    <td colspan="4" class="py-4 text-center text-gray-500">No tienes clases recientes.</td>
+                      <td colspan="4" class="py-4 text-center text-gray-500">No tienes clases recientes.</td>
                   </tr>
-                @endforelse
+              @endforelse
               </tbody>
             </table>
           </div>
@@ -153,7 +153,3 @@
   </main>
 </div>
 @endsection
-
-@push('scripts')
-  @vite('resources/js/dashboard.js')
-@endpush

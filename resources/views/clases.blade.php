@@ -1,4 +1,3 @@
-{{-- resources/views/clases.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
@@ -13,309 +12,44 @@
         <th colspan="3" class="p-2">Noche</th>
       </tr>
       <tr class="hours text-xs text-gray-600 bg-gray-100">
-        <th class="p-2 border-r border-gray-400">8:00</th>
-        <th class="p-2 border-r border-gray-400">9:00</th>
-        <th class="p-2 border-r border-gray-400">10:00</th>
-        <th class="p-2 border-r border-gray-400">11:00</th>
-        <th class="p-2 border-r border-gray-400">12:00</th>
-        <th class="p-2 border-r border-gray-400">13:00</th>
-        <th class="p-2 border-r border-gray-400">14:00</th>
-        <th class="p-2 border-r border-gray-400">15:00</th>
-        <th class="p-2 border-r border-gray-400">16:00</th>
-        <th class="p-2 border-r border-gray-400">17:00</th>
-        <th class="p-2 border-r border-gray-400">18:00</th>
-        <th class="p-2 border-r border-gray-400">19:00</th>
-        <th class="p-2">20:00</th>
+        @foreach(['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'] as $hora)
+          <th class="p-2 border-r border-gray-400">{{ $hora }}</th>
+        @endforeach
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-300">
-      <!-- ZUMBA -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Zumba</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-yellow-300 text-black text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-yellow-300 text-black text-center rounded"></div>
-        </td>
-      </tr>
-      <!-- MUSCULACIÓN -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Musculación</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-red-500 text-white text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-red-500 text-white text-center rounded"></div>
-        </td>
-      </tr>
-      <!-- CARDIO -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Cardio</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-green-500 text-white text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-green-500 text-white text-center rounded"></div>
-        </td>
-      </tr>
-      <!-- JOHNNY SINS -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Johnny Sins</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-blue-500 text-white text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-blue-500 text-white text-center rounded"></div>
-        </td>
-      </tr>
-      <!-- JORDI ENP -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Jordi ENP</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-purple-500 text-white text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-purple-500 text-white text-center rounded"></div>
-        </td>
-      </tr>
-      <!-- LANA RHOADES -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Lana Rhoades</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-pink-500 text-white text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-pink-500 text-white text-center rounded"></div>
-        </td>
-      </tr>
-      <!-- JASON LUV -->
-      <tr>
-        <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
-          <div class="py-3">Jason Luv</div>
-        </td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-teal-500 text-white text-center rounded">MI RESERVA</div>
-        </td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-        <td class="p-2"></td>
-        <td class="p-2"><div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div></td>
-      </tr>
-      <tr>
-        <td class="p-2 border-r-2 border-gray-400"></td>
-        <td class="p-2"></td>
-        <td class="p-2"></td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div>
-        </td>
-        <td colspan="3" class="p-2">
-          <div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2"></td>
-        <td colspan="2" class="p-2">
-          <div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div>
-        </td>
-        <td class="p-2">
-          <div class="block w-full h-6 bg-teal-500 text-white text-center rounded"></div>
-        </td>
-      </tr>
+    @foreach($clasesAgrupadas as $nombreClase => $clases)
+          @php
+            // Colores basados en el NOMBRE real de las clases
+            $colores = [
+              'Boxeo' => 'bg-red-500 text-white',
+              'CrossFit' => 'bg-blue-500 text-white',
+              'Zumba' => 'bg-yellow-300 text-black',
+              'Pilates' => 'bg-purple-500 text-white',
+            ];
+          @endphp
+
+          <tr>
+            <td class="p-2 bg-gray-200 font-bold border-r-2 border-gray-400">
+              <div class="py-3">{{ $nombreClase }}</div>
+            </td>
+            
+            @foreach(['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'] as $hora)
+              @php
+                $claseEnHora = $clases->firstWhere('horario', $hora); // Usar 'horario' ✅
+              @endphp
+
+              <td class="p-2">
+                @if($claseEnHora)
+                  <div class="block w-full h-6 {{ $colores[$nombreClase] ?? 'bg-gray-300' }} text-center rounded 
+                    {{ in_array($claseEnHora->id, $reservasUsuario) ? 'border-2 border-black' : '' }}">
+                    {{ in_array($claseEnHora->id, $reservasUsuario) ? 'MI RESERVA' : '' }}
+                  </div>
+                @endif
+              </td>
+            @endforeach
+          </tr>
+        @endforeach
     </tbody>
   </table>
 </div>
