@@ -22,20 +22,28 @@ class Reserva extends Model
     {
         return $this->belongsTo(Usuario::class, 'ID_Usuario');
     }
-
-    /**
-     * Relación con Clase (N:1).
-     */
-    public function clase()
-    {
-        return $this->belongsTo(Clase::class, 'ID_Clase');
-    }
-
     /**
      * Relación con Fecha (N:1).
      */
     public function fecha()
     {
-        return $this->belongsTo(Fecha::class, 'ID_Fecha');
+        return $this->belongsTo(Fecha::class, 'ID_Fecha'); // O usa un campo datetime
+    }
+
+    // Relación con clase
+    public function clase()
+    {
+        return $this->belongsTo(Clase::class, 'ID_Clase');
+    }
+
+    // En Reserva.php
+    public function getFechaFormateadaAttribute()
+    {
+        return $this->fecha ? $this->fecha->format('d/m/Y') : 'No definida';
+    }
+
+    public function getHoraInicioFormateadaAttribute()
+    {
+        return $this->fecha ? $this->fecha->format('H:i') : '--:--';
     }
 }

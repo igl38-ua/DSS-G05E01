@@ -1,33 +1,54 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
+use App\Models\Reserva;
+use App\Models\Clase;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ReservaController extends Controller
 {
-    public function store(Request $request)
-    {
+    //public function __construct(){
+        // Sintaxis correcta para el middleware
+      //  $this->middleware('auth');
+    //}
+
+    public function store(Request $request){
+        // Validación de la solicitud
         $validated = $request->validate([
-            'ID_Usuario' => 'required|exists:usuarios,id',
-            'ID_Clase' => 'required|array',
-            'ID_Clase.*' => 'exists:clase,id',
-            'ID_Fecha' => 'required|date',
+            'ID_Clase' => 'required|exists:clase,id',
         ]);
 
-        foreach ($validated['ID_Clase'] as $claseId) {
-            Reserva::create([
-                'ID_Usuario' => $validated['ID_Usuario'],
-                'ID_Clase' => $claseId,
-                'ID_Fecha' => $validated['ID_Fecha'],
-            ]);
+        // Obtener ID del usuario autenticado
+        $userId = Auth::id();
+        $claseId = $validated['ID_Clase'];
+
+        // Verificar si el usuario ya reservó esta clase
+        if (Reserva::where('ID_Usuario', $userId)
+                 ->where('ID_Clase', $claseId)
+                 ->exists()) {
+            return back()->with('error', 'Ya has reservado esta clase');
         }
 
-        return redirect()->route('reservas.index')->with('success', 'Reservas realizadas correctamente.');
+        // Verificar disponibilidad
+        $clase = Clase::withCount('reservas')->findOrFail($claseId);
+        
+        if ($clase->capacidad_max && $clase->reservas_count >= $clase->capacidad_max) {
+            return back()->with('error', 'La clase está llena');
+        }
+
+        // Crear la reserva
+        Reserva::create([
+            'ID_Usuario' => $userId,
+            'ID_Clase' => $claseId,
+            'fecha' => now(),
+        ]);
+
+        return back()->with('success', 'Reserva realizada con éxito');
     }
 
     public function edit($id)
-    {
+{
         // Obtener el usuario por su ID
         $usuario = Usuario::findOrFail($id);
 
@@ -42,7 +63,7 @@ class ReservaController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+{
         $usuario = Usuario::findOrFail($id);
 
         $validatedData = $request->validate([
