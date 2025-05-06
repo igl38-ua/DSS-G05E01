@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\EntrenadorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamController;
@@ -145,6 +148,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('/clases', App\Http\Controllers\Admin\ClaseController::class);
     Route::resource('/empleados', App\Http\Controllers\Admin\EmpleadoController::class);
     Route::resource('/usuarios', App\Http\Controllers\Admin\UsuarioController::class);
+    Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
     Route::resource('/dynamic', App\Http\Controllers\Admin\DynamicListingController::class);
     Route::delete('dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])
         ->name('dynamic.destroy');
@@ -154,4 +158,5 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
 
-
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
+Route::get('/entrenadores', [EntrenadorController::class, 'index'])->name('entrenadores.index');
