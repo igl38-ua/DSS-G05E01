@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="flex-grow px-20 py-20">
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-center mb-8">
         <i class="fas fa-list-alt mr-2"></i> Listado Completo de Clases
@@ -153,5 +154,6 @@
             @endif
         </div>
     @endif
+</div>
 </div>
 @endsection

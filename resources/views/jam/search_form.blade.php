@@ -2,10 +2,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-900 py-8">
+<div class="min-h-screen bg-gray-50 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-        <h1 class="text-4xl font-extrabold text-center text-white mb-10">Buscar Canciones en Spotify</h1>
+        <h1 class="text-4xl font-extrabold text-center text-black mb-10">Buscar Canciones en Spotify</h1>
 
         @if($errors->any())
             <div class="bg-red-600 text-white px-4 py-3 rounded-md mb-6 max-w-md mx-auto">

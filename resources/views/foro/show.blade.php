@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="flex-grow px-20 py-20">
 <div class="container mx-auto px-4 py-8 space-y-6">
 
   {{-- Título del hilo --}}
@@ -176,6 +177,8 @@
     @endforeach
   </div>
 </div>
+</div>
+
 
 {{-- Pequeño script para mostrar/ocultar edición inline --}}
 <script>
