@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="flex-grow px-20 py-20">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
   {{-- ───────── Encabezado de la categoría + botón ───────── --}}
@@ -102,5 +103,6 @@
     @endforelse
   </section>
 
+</div>
 </div>
 @endsection

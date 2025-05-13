@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="flex-grow px-20 py-20">
 <div class="container mx-auto px-4 py-8">
   <div class="flex flex-col lg:flex-row -mx-2">
     {{-- Panel izquierdo: categorías --}}
@@ -101,5 +102,6 @@
 
 
   </div>
+</div>
 </div>
 @endsection
