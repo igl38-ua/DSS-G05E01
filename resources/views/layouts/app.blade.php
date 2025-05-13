@@ -27,7 +27,8 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="flex flex-col bg-gray-50 min-h-screen">
+    
     @include('partials.header')
     
     @yield('content')

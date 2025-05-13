@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="flex-grow px-20 py-20">
 <div class="container mx-auto px-4 py-8 max-w-2xl">
   <h1 class="text-2xl font-bold mb-4">Crear nuevo hilo en {{ $category->name }}</h1>
 
@@ -36,5 +37,6 @@
          class="px-4 py-2 rounded border text-gray-700">Cancelar</a>
     </div>
   </form>
+</div>
 </div>
 @endsection

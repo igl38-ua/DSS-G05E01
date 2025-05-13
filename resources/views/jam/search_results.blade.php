@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-900 py-8">
+<div class="min-h-screen bg-gray-50 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl font-extrabold text-center text-white mb-10">
+        <h1 class="text-4xl font-extrabold text-center text-black mb-10">
             Resultados de búsqueda para: <span class="text-green-500">{{ $searchTerm }}</span>
         </h1>
 
