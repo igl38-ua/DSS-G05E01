@@ -40,7 +40,7 @@
             <h2 class="text-xl font-semibold text-black">Suscripción</h2>
             <a href="{{ route('mi-suscripcion') }}"
                class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-indigo-500 to-purple-700 text-white rounded hover:from-indigo-600 hover:to-purple-800">
-              Ver historial
+              Ver suscripción
             </a>
           </div>
           <ul class="space-y-2">

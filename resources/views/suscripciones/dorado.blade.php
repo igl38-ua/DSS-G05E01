@@ -27,10 +27,9 @@
         Posibilidad de tener una dieta personalizada
     </p>
 
+    @php($url = route('payment.summary', 'dorado'))
     <!-- Botón de acción -->
-    <button 
-        class="mt-6 px-4 py-2 border border-yellow-600 text-yellow-600 rounded hover:bg-yellow-100 transition-colors"
-    >
-        Elige este plan
-    </button>
+    <a x-bind:href="`${ '{{ $url }}' }?period=${payment}`">
+        <button class="mt-6 px-4 py-2 border border-yellow-600 text-yellow-600 rounded hover:bg-yellow-100 transition-colors">Elige este plan</button>
+    </a>  
 </div>

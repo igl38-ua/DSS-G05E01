@@ -27,11 +27,10 @@
         Dieta incluida en la suscripción<br>
         Reservas antes de tiempo
     </p>
-
+    
+    @php($url = route('payment.summary', 'platino'))
     <!-- Botón de acción -->
-    <button 
-        class="mt-6 px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-100 transition-colors"
-    >
-        Elige este plan
-    </button>
+     <a x-bind:href="`${ '{{ $url }}' }?period=${payment}`">
+        <button class="mt-6 px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-100 transition-colors">Elige este plan</button>
+    </a>  
 </div>

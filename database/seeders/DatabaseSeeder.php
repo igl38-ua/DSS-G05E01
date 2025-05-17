@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EmpleadoSeeder::class,
-            MonitorSeeder::class,
+            // MonitorSeeder::class,
             EntrenadorPersonalSeeder::class,
             UsuarioSeeder::class,
             ClaseSeeder::class,
             FechaSeeder::class,
-            ReservaSeeder::class,
+            // ReservaSeeder::class,
             SuscripcionesSeeder::class,
-            MetasSeeder::class,
+            // MetasSeeder::class,
         ]);
     }
 }
