@@ -23,11 +23,22 @@ class Usuario extends Authenticatable
         'monthly_goal',
         'google_id',
         'avatar',
+        'payment_method',
+        'suscripcion_id',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    /**
+    * Casteos de atributos.
+    */
+    protected $casts = [
+        'fecha_inscripcion' => 'date',
+        'payment_method'    => 'string',
+        'suscripcion_id'    => 'integer',
     ];
 
     /**
@@ -97,4 +108,11 @@ class Usuario extends Authenticatable
                     ->orderBy('fecha','asc');
     }
 
+    /**
+     * Pedidos realizados por el usuario.
+     */
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'ID_Usuario');
+    }
 }

@@ -33,4 +33,12 @@ class Suscripcion extends Model
     {
         return $this->belongsTo(Usuario::class, 'ID_Usuario');
     }
+
+    /**
+     * Pedidos vinculados a esta suscripción.
+     */
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'suscripcion_id');
+    }
 }

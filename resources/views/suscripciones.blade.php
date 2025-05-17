@@ -2,7 +2,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+<div 
+  x-data="{
+    payment: 'monthly',
+    discount: 0.2,
+    prices: {
+      basico: 24.99,
+      dorado: 34.99,
+      platino: 44.99
+    }
+  }"
+  class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
+>
 
     <!-- Sección tipo 'hero' en forma de rectángulo con esquinas redondeadas -->
     <div class="bg-gradient-to-r from-indigo-500 to-purple-700 text-white rounded-xl p-8 text-center mb-8">
@@ -12,22 +23,38 @@
         </p>
     </div>
 
-    <!-- Opciones de pago y descuento -->
-    <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
-        <!-- Radios de pago mensual / anual -->
-        <div class="flex items-center space-x-2">
-            <input type="radio" id="pago-mensual" name="pago" class="h-4 w-4" checked>
-            <label for="pago-mensual" class="text-gray-700">Pago mensual</label>
-        </div>
-        <div class="flex items-center space-x-2">
-            <input type="radio" id="pago-anual" name="pago" class="h-4 w-4">
-            <label for="pago-anual" class="text-gray-700">Pago anual</label>
-        </div>
-        <!-- Botón de descuento -->
-        <button class="bg-yellow-400 text-white px-4 py-2 rounded font-semibold hover:bg-yellow-500 transition-colors">
-            ¡Descuento 20%!
-        </button>
+    <!-- Botones de selección de modo de pago -->
+    <div class="flex justify-center items-center gap-4 mb-8">
+    <!-- Pago mensual -->
+    <button
+        @click="payment = 'monthly'"
+        :class="payment === 'monthly'
+        ? 'bg-gradient-to-r from-indigo-500 to-purple-700 text-white'
+        : 'bg-gray-200 text-gray-700'"
+        class="px-6 py-2 rounded-xl transition duration-300 ease-in-out focus:outline-none"
+    >
+        Pago mensual
+    </button>
+
+    <!-- Pago anual -->
+    <button
+        @click="payment = 'annual'"
+        :class="payment === 'annual'
+        ? 'bg-gradient-to-r from-indigo-500 to-purple-700 text-white'
+        : 'bg-gray-200 text-gray-700'"
+        class="px-6 py-2 rounded-xl transition duration-300 ease-in-out focus:outline-none"
+    >
+        Pago anual
+    </button>
+
+    <!-- Badge de descuento (solo si anual) -->
+    <buttonw
+        class="bg-yellow-400 text-white px-4 py-2 rounded font-semibold hover:bg-yellow-500 transition-colors"
+    >
+        ¡Descuento 20%!
+    </button>
     </div>
+
 
     <!-- Sección de planes (Básico, Dorado, Platino) -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -83,5 +110,7 @@
             </tbody>
         </table>
     </div>
+    <br>
+    <br>
 </div>
 @endsection
