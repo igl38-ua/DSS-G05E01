@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
             UsuarioSeeder::class,
             ClaseSeeder::class,
             FechaSeeder::class,
-            ReservaSeeder::class,
+            // ReservaSeeder::class,
             SuscripcionesSeeder::class,
-            MetasSeeder::class,
+            //MetasSeeder::class,
             CategorySeeder::class,
         ]);
     }

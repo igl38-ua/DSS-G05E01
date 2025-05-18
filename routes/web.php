@@ -23,6 +23,9 @@ use App\Http\Controllers\{
     PostController,
     CommentController
 };
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+
 // RUTAS DE LA APP
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
@@ -143,6 +146,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::get('/mi-suscripcion', [App\Http\Controllers\DashboardController::class, 'suscripcionUsuario'])->name('mi-suscripcion');
     Route::get('/mis-clases', [App\Http\Controllers\ClaseUsuarioController::class, 'index'])->name('mis-clases');
+
+    // PEDIDOS
+    Route::get('/pedido/resumen/{plan}',[OrderController::class, 'showSummary'])->name('payment.summary');
+    // Crear pedido y redirigir a checkout
+    Route::post('/pedido/resumen/{plan}',[OrderController::class, 'createOrder'])->name('payment.create');
+    // Mostrar formulario de pago (checkout)
+    Route::get('/checkout/{order}',[PaymentController::class, 'showCheckout'])->name('payment.checkout');
+    // Procesar pago
+    Route::post('/checkout/{order}',[PaymentController::class, 'processPayment'])->name('payment.process');
+    // Éxito y cancelación
+    Route::get('/checkout/{order}/success',[PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/checkout/{order}/cancel',[PaymentController::class, 'cancel'])->name('payment.cancel');
+
+    // Mostrar confirmación
+    Route::get('/suscripciones/{subscription}/cancel', [SuscripcionesController::class, 'confirmCancel'])
+         ->name('suscripciones.confirm');
+    // Eliminar suscripción
+    Route::delete('/suscripciones/{subscription}', [SuscripcionesController::class, 'cancel'])
+         ->name('suscripciones.cancel');
 });
 
 Route::get('/admin', [DashboardController::class, 'index'])
