@@ -45,7 +45,7 @@ class UsuarioSeeder extends Seeder
                 'fecha_inscripcion' => $user[4],
                 'rol'               => $user[5],
                 'payment_method'    => null,
-+               'suscripcion_id'    => null,
+                'suscripcion_id'    => null,
             ]);
         }
     }
