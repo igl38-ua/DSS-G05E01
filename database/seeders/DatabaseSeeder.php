@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EmpleadoSeeder::class,
-            MonitorSeeder::class,
+            //MonitorSeeder::class,
             EntrenadorPersonalSeeder::class,
             UsuarioSeeder::class,
             ClaseSeeder::class,
@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ReservaSeeder::class,
             SuscripcionesSeeder::class,
             MetasSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }

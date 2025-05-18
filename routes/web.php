@@ -55,68 +55,76 @@ Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
 
 Route::prefix('foro')->name('foro.')->group(function () {
 
-     /* ───────── Categorías ───────── */
- 
-     // Página principal del foro (lista de categorías)
-     Route::get('/', [ForoController::class, 'index'])
+    /* ───────── Categorías ───────── */
+
+    // Página principal del foro (lista de categorías)
+    Route::get('/', [ForoController::class, 'index'])
          ->name('index');
- 
-     // Hilos dentro de una categoría
-     Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
+
+    // Hilos dentro de una categoría
+    Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
          ->name('show');
- 
-     /* ───────── Hilos ───────── */
- 
-     // Mostrar un hilo específico (público)
-     Route::get('hilo/{thread}', [ThreadController::class, 'show'])
+
+    /* ───────── Hilos ───────── */
+
+    // Mostrar un hilo específico (público)
+    Route::get('hilo/{thread}', [ThreadController::class, 'show'])
          ->name('threads.show');
- 
-     // Rutas que requieren autenticación
-     Route::middleware('auth')->group(function () {
- 
-         // Crear hilo
-         Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
+
+    // Rutas que requieren autenticación
+    Route::middleware('auth')->group(function () {
+
+        // Crear hilo
+        Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
              ->name('threads.create');
-         Route::post('categoria/{category:slug}/hilos',        [ThreadController::class, 'store'])
+        Route::post('categoria/{category:slug}/hilos', [ThreadController::class, 'store'])
              ->name('threads.store');
- 
-         // Votar hilo (👍 / 👎)
-         Route::post('hilo/{thread}/like',    [ThreadController::class, 'like'])
+
+        // Votar hilo (👍 / 👎)
+        Route::post('threads/{thread}/like', [ThreadController::class,'like'])
+             ->middleware('auth')
              ->name('threads.like');
-         Route::post('hilo/{thread}/dislike', [ThreadController::class, 'dislike'])
+
+        Route::post('threads/{thread}/dislike', [ThreadController::class,'dislike'])
+             ->middleware('auth')
              ->name('threads.dislike');
- 
-         /* ───────── Posts ───────── */
- 
-         Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
+
+        /* ───────── Posts ───────── */
+
+        Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
              ->name('posts.store');
-         Route::patch('posts/{post}',       [PostController::class, 'update'])
+        Route::patch('posts/{post}', [PostController::class, 'update'])
              ->name('posts.update');
-         Route::delete('posts/{post}',      [PostController::class, 'destroy'])
+        Route::delete('posts/{post}', [PostController::class, 'destroy'])
              ->name('posts.destroy');
- 
-         // Votar post
-         Route::post('posts/{post}/like',    [PostController::class, 'like'])
+
+        // Votar post
+        Route::post('posts/{post}/like', [PostController::class,'like'])
+             ->middleware('auth')
              ->name('posts.like');
-         Route::post('posts/{post}/dislike', [PostController::class, 'dislike'])
+
+        Route::post('posts/{post}/dislike', [PostController::class,'dislike'])
+             ->middleware('auth')
              ->name('posts.dislike');
- 
-         /* ───────── Comentarios ───────── */
- 
-         Route::post('posts/{post}/comments', [CommentController::class, 'store'])
+
+        /* ───────── Comentarios ───────── */
+
+        Route::post('posts/{post}/comments', [CommentController::class, 'store'])
              ->name('comments.store');
-         Route::patch('comments/{comment}',   [CommentController::class, 'update'])
+        Route::patch('comments/{comment}', [CommentController::class, 'update'])
              ->name('comments.update');
-         Route::delete('comments/{comment}',  [CommentController::class, 'destroy'])
+        Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
              ->name('comments.destroy');
- 
-         // Votar comentario
-         Route::post('comments/{comment}/like',    [CommentController::class, 'like'])
-             ->name('comments.like');
-         Route::post('comments/{comment}/dislike', [CommentController::class, 'dislike'])
-             ->name('comments.dislike');
-     });
- });
+
+          // Votar comentarios
+          Route::post('comments/{comment}/like',    [CommentController::class,'like'])
+               ->name('comments.like');
+
+          Route::post('comments/{comment}/dislike', [CommentController::class,'dislike'])
+               ->name('comments.dislike');
+
+    });
+});
 
 // RUTAS DE AUTENTICACION
 
