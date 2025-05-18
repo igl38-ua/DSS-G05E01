@@ -56,6 +56,14 @@ Route::get('/jam/search', [JamController::class, 'searchForm'])->name('jam.searc
 Route::post('/jam/search', [JamController::class, 'search'])->name('jam.search');
 Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
 
+Route::view('/terminos', 'terminos')
+     ->name('terminos');
+
+Route::view('/politica-privacidad', 'privacidad')->name('privacidad');
+
+Route::view('/ayuda', 'ayuda')->name('ayuda');
+
+
 Route::prefix('foro')->name('foro.')->group(function () {
 
     /* ───────── Categorías ───────── */
@@ -67,6 +75,7 @@ Route::prefix('foro')->name('foro.')->group(function () {
     // Hilos dentro de una categoría
     Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
          ->name('show');
+
 
     /* ───────── Hilos ───────── */
 

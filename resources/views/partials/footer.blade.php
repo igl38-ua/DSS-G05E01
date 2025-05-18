@@ -18,22 +18,19 @@
             <div>
                 <h5 class="font-bold mb-2">Ayuda al cliente</h5>
                 <ul class="space-y-1 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Devoluciones</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Pagos</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Términos y condiciones</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Política de privacidad</a></li>
+                    <li><a href="{{ route('suscripciones') }}" class="hover:text-gray-200 transition-colors">Pagos</a></li>
+                    <li><a href="{{ route('terminos') }}" class="hover:text-gray-200 transition-colors">Términos y condiciones</a></li>
+                    <li><a href="{{ route('privacidad') }}" class="hover:text-gray-200 transition-colors">Política de privacidad</a></li>
                 </ul>
             </div>
 
             <!-- Columna 3 -->
             <div>
-                <h5 class="font-bold mb-2">Información</h5>
+                <h5 class="font-bold mb-2">Gimnasio</h5>
                 <ul class="space-y-1 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Contáctanos</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Marcas</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Afiliados</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Inversores</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Cookies</a></li>
+                    <li><a href="{{ route('playlists.show', ['playlistId' => 'PLz-l7oWFJS0JpFK3d3qSGbMSpcKjZgQI6']) }}" class="hover:text-gray-200 transition-colors">Rutinas</a></li>
+                    <li><a href="https://es.venum.com/" class="hover:text-gray-200 transition-colors"  target="_blank">Marcas</a></li>
+                    <li><a href="https://www.prozis.com/es/es" class="hover:text-gray-200 transition-colors"  target="_blank">Inversores</a></li>
                 </ul>
             </div>
 
@@ -41,9 +38,9 @@
             <div>
                 <h5 class="font-bold mb-2">Recursos</h5>
                 <ul class="space-y-1 text-sm text-gray-400">
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">¿Qué hay de nuevo?</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Blogs</a></li>
-                    <li><a href="#" class="hover:text-gray-200 transition-colors">Centro de ayuda</a></li>
+                    <li><a href="{{ route('foro.index') }}" class="hover:text-gray-200 transition-colors">¿Qué hay de nuevo?</a></li>
+                    <li><a href="https://fitgeneration.es/blog/" class="hover:text-gray-200 transition-colors" target="_blank">Blogs</a></li>
+                    <li><a href="{{ route('ayuda') }}" class="hover:text-gray-200 transition-colors">Centro de ayuda</a></li>
                 </ul>
             </div>
 
@@ -58,16 +55,16 @@
 
                 <!-- Redes sociales -->
                 <div class="flex space-x-4 text-gray-400">
-                    <a href="#" class="hover:text-gray-200 transition-colors">
+                    <a href="https://www.facebook.com/SmartFit.Oficial?locale=es_ES%2F" class="hover:text-gray-200 transition-colors" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="hover:text-gray-200 transition-colors">
+                    <a href="https://www.instagram.com/smartfit_es/" class="hover:text-gray-200 transition-colors" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="hover:text-gray-200 transition-colors">
+                    <a href="https://x.com/Smart_CityLATAM" class="hover:text-gray-200 transition-colors" target="_blank">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="hover:text-gray-200 transition-colors">
+                    <a href="https://www.youtube.com/@smartfit" class="hover:text-gray-200 transition-colors" target="_blank">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
