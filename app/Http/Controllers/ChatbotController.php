@@ -28,7 +28,7 @@ class ChatbotController extends Controller
 
         return response()->json([
             'type'    => 'text',
-            'message' => 'Lo siento, no he entendido. ¿Puedes reformular tu pregunta?',
+            'message' => 'Lo siento, no he entendido. ¿A dónde quieres ir?',
         ]);
     }
 }
