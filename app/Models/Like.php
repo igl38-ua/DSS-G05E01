@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    protected $fillable = ['thread_id','user_id'];
+    protected $fillable = ['user_id','type','comment_id','post_id'];
+
 
     public function thread()
     {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactoMailable; // Asegúrate de que la ruta es correcta
+use App\Models\Contacto; 
 
 class ContactoController extends Controller
 {
@@ -13,7 +16,7 @@ class ContactoController extends Controller
 
     public function enviar(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'nombre' => 'required|string|max:255',
             'email' => 'required|email',
             'telefono' => 'nullable|string|max:20',
@@ -21,6 +24,8 @@ class ContactoController extends Controller
             'mensaje' => 'required|string',
         ]);
 
+        Mail::to('smartfitdsscontacto@gmail.com')
+            ->send(new ContactoMailable($data));
         return redirect()->route('contacto')->with('success', '¡Gracias! Tu mensaje ha sido enviado correctamente.');
     }
 

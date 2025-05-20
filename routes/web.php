@@ -23,6 +23,10 @@ use App\Http\Controllers\{
     PostController,
     CommentController
 };
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ChatbotController;
+
 // RUTAS DE LA APP
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
@@ -53,70 +57,87 @@ Route::get('/jam/search', [JamController::class, 'searchForm'])->name('jam.searc
 Route::post('/jam/search', [JamController::class, 'search'])->name('jam.search');
 Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
 
+Route::view('/terminos', 'terminos')
+     ->name('terminos');
+
+Route::view('/politica-privacidad', 'privacidad')->name('privacidad');
+
+Route::view('/ayuda', 'ayuda')->name('ayuda');
+
+
 Route::prefix('foro')->name('foro.')->group(function () {
 
-     /* ───────── Categorías ───────── */
- 
-     // Página principal del foro (lista de categorías)
-     Route::get('/', [ForoController::class, 'index'])
+    /* ───────── Categorías ───────── */
+
+    // Página principal del foro (lista de categorías)
+    Route::get('/', [ForoController::class, 'index'])
          ->name('index');
- 
-     // Hilos dentro de una categoría
-     Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
+
+    // Hilos dentro de una categoría
+    Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
          ->name('show');
- 
-     /* ───────── Hilos ───────── */
- 
-     // Mostrar un hilo específico (público)
-     Route::get('hilo/{thread}', [ThreadController::class, 'show'])
+
+
+    /* ───────── Hilos ───────── */
+
+    // Mostrar un hilo específico (público)
+    Route::get('hilo/{thread}', [ThreadController::class, 'show'])
          ->name('threads.show');
- 
-     // Rutas que requieren autenticación
-     Route::middleware('auth')->group(function () {
- 
-         // Crear hilo
-         Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
+
+    // Rutas que requieren autenticación
+    Route::middleware('auth')->group(function () {
+
+        // Crear hilo
+        Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
              ->name('threads.create');
-         Route::post('categoria/{category:slug}/hilos',        [ThreadController::class, 'store'])
+        Route::post('categoria/{category:slug}/hilos', [ThreadController::class, 'store'])
              ->name('threads.store');
- 
-         // Votar hilo (👍 / 👎)
-         Route::post('hilo/{thread}/like',    [ThreadController::class, 'like'])
+
+        // Votar hilo (👍 / 👎)
+        Route::post('threads/{thread}/like', [ThreadController::class,'like'])
+             ->middleware('auth')
              ->name('threads.like');
-         Route::post('hilo/{thread}/dislike', [ThreadController::class, 'dislike'])
+
+        Route::post('threads/{thread}/dislike', [ThreadController::class,'dislike'])
+             ->middleware('auth')
              ->name('threads.dislike');
- 
-         /* ───────── Posts ───────── */
- 
-         Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
+
+        /* ───────── Posts ───────── */
+
+        Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
              ->name('posts.store');
-         Route::patch('posts/{post}',       [PostController::class, 'update'])
+        Route::patch('posts/{post}', [PostController::class, 'update'])
              ->name('posts.update');
-         Route::delete('posts/{post}',      [PostController::class, 'destroy'])
+        Route::delete('posts/{post}', [PostController::class, 'destroy'])
              ->name('posts.destroy');
- 
-         // Votar post
-         Route::post('posts/{post}/like',    [PostController::class, 'like'])
+
+        // Votar post
+        Route::post('posts/{post}/like', [PostController::class,'like'])
+             ->middleware('auth')
              ->name('posts.like');
-         Route::post('posts/{post}/dislike', [PostController::class, 'dislike'])
+
+        Route::post('posts/{post}/dislike', [PostController::class,'dislike'])
+             ->middleware('auth')
              ->name('posts.dislike');
- 
-         /* ───────── Comentarios ───────── */
- 
-         Route::post('posts/{post}/comments', [CommentController::class, 'store'])
+
+        /* ───────── Comentarios ───────── */
+
+        Route::post('posts/{post}/comments', [CommentController::class, 'store'])
              ->name('comments.store');
-         Route::patch('comments/{comment}',   [CommentController::class, 'update'])
+        Route::patch('comments/{comment}', [CommentController::class, 'update'])
              ->name('comments.update');
-         Route::delete('comments/{comment}',  [CommentController::class, 'destroy'])
+        Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
              ->name('comments.destroy');
- 
-         // Votar comentario
-         Route::post('comments/{comment}/like',    [CommentController::class, 'like'])
-             ->name('comments.like');
-         Route::post('comments/{comment}/dislike', [CommentController::class, 'dislike'])
-             ->name('comments.dislike');
-     });
- });
+
+          // Votar comentarios
+          Route::post('comments/{comment}/like',    [CommentController::class,'like'])
+               ->name('comments.like');
+
+          Route::post('comments/{comment}/dislike', [CommentController::class,'dislike'])
+               ->name('comments.dislike');
+
+    });
+});
 
 // RUTAS DE AUTENTICACION
 
@@ -135,6 +156,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     Route::get('/mi-suscripcion', [App\Http\Controllers\DashboardController::class, 'suscripcionUsuario'])->name('mi-suscripcion');
     Route::get('/mis-clases', [App\Http\Controllers\ClaseUsuarioController::class, 'index'])->name('mis-clases');
+
+    // PEDIDOS
+    Route::get('/pedido/resumen/{plan}',[OrderController::class, 'showSummary'])->name('payment.summary');
+    // Crear pedido y redirigir a checkout
+    Route::post('/pedido/resumen/{plan}',[OrderController::class, 'createOrder'])->name('payment.create');
+    // Mostrar formulario de pago (checkout)
+    Route::get('/checkout/{order}',[PaymentController::class, 'showCheckout'])->name('payment.checkout');
+    // Procesar pago
+    Route::post('/checkout/{order}',[PaymentController::class, 'processPayment'])->name('payment.process');
+    // Éxito y cancelación
+    Route::get('/checkout/{order}/success',[PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/checkout/{order}/cancel',[PaymentController::class, 'cancel'])->name('payment.cancel');
+
+    // Mostrar confirmación
+    Route::get('/suscripciones/{subscription}/cancel', [SuscripcionesController::class, 'confirmCancel'])
+         ->name('suscripciones.confirm');
+    // Eliminar suscripción
+    Route::delete('/suscripciones/{subscription}', [SuscripcionesController::class, 'cancel'])
+         ->name('suscripciones.cancel');
 });
 
 Route::get('/admin', [DashboardController::class, 'index'])
@@ -160,3 +200,6 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
 Route::get('/entrenadores', [EntrenadorController::class, 'index'])->name('entrenadores.index');
+
+// Ruta chatbot
+Route::post('/chatbot/message', [ChatbotController::class, 'handle'])->name('chatbot.message');
