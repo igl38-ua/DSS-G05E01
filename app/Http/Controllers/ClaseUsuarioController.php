@@ -11,9 +11,8 @@ class ClaseUsuarioController extends Controller
     {
         $user = Auth::user();
 
-        // Asumimos que tu modelo Usuario tiene relación reservas() y cada Reserva tiene ->clase y ->fecha
         $reservas = $user->reservas()
-                         ->with(['clase', 'fecha'])
+                         ->with('clase')
                          ->orderBy('fecha', 'desc')
                          ->get();
 

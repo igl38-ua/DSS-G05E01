@@ -12,7 +12,11 @@ class Reserva extends Model
     protected $fillable = [
         'ID_Usuario',
         'ID_Clase',
-        'ID_Fecha',
+        'fecha',
+    ];
+
+    protected $casts = [
+        'fecha' => 'date',
     ];
 
     /**
@@ -21,13 +25,6 @@ class Reserva extends Model
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'ID_Usuario');
-    }
-    /**
-     * Relación con Fecha (N:1).
-     */
-    public function fecha()
-    {
-        return $this->belongsTo(Fecha::class, 'ID_Fecha'); // O usa un campo datetime
     }
 
     // Relación con clase

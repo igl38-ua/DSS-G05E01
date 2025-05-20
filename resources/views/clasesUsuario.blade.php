@@ -23,10 +23,9 @@
             @forelse($reservas as $reserva)
               <tr class="border-t border-gray-400">
                 <td class="py-2">{{ $reserva->clase->nombre }}</td>
-                <td class="py-2">{{ optional($reserva->fecha)->hora_fin_formateada}}</td>
+                <td class="py-2">{{ $reserva->fecha_formateada }}</td>
                 <td class="py-2">
-                  {{ optional($reserva->fecha)->hora_inicio }} –
-                  {{ optional($reserva->fecha)->hora_fin }}
+                  {{ $reserva->clase->horario }}
                 </td>
                 <td class="py-2">{{ $reserva->clase->instructor }}</td>
               </tr>

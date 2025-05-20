@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('ID_Usuario');
             $table->unsignedInteger('ID_Clase');
-            $table->unsignedInteger('ID_Fecha');
+            $table->date('fecha');
             $table->timestamps();
             $table->foreign('ID_Usuario')
                   ->references('id')
@@ -24,10 +24,6 @@ return new class extends Migration
             $table->foreign('ID_Clase')
                   ->references('id')
                   ->on('clase')
-                  ->onDelete('cascade');
-            $table->foreign('ID_Fecha')
-                  ->references('id')
-                  ->on('fecha')
                   ->onDelete('cascade');
         });
     }
