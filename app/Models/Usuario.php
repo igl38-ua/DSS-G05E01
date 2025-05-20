@@ -97,4 +97,14 @@ class Usuario extends Authenticatable
                     ->orderBy('fecha','asc');
     }
 
+    // En App\Models\Usuario.php
+    public function clases()
+    {
+        return $this->belongsToMany(
+            Clase::class,
+            'reserva', // Nombre real de la tabla pivote (singular)
+            'ID_Usuario', // FK del usuario en reserva
+            'ID_Clase'   // FK de la clase en reserva
+        )->withTimestamps();
+    }
 }
