@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="flex-grow px-20 py-20">
 <div class="container mx-auto px-4 py-8">
   <div class="flex flex-col lg:flex-row -mx-2">
     {{-- Panel izquierdo: categorías --}}
@@ -87,10 +88,13 @@
             </h3>
 
             <p class="text-xs text-gray-500 flex items-center space-x-1">
-              <span>por {{ optional($thread->author)->name ?? 'Anónimo' }}</span>
+              <span>por {{ optional($thread->author)->nombre ?? 'Anónimo' }}</span>
               <span>·</span>
-              <img src="{{ asset('images/Icono_Like.png') }}" alt="Like" class="h-3 w-3">
-              <span>{{ $thread->likes }} likes</span>
+              @foreach($categories as $cat)
+                @if($cat->id == $thread->category_id)
+                  <span class="text-purple-600">{{ $cat->name }}</span>
+                @endif
+              @endforeach
             </p>
 
           </a>
@@ -101,5 +105,6 @@
 
 
   </div>
+</div>
 </div>
 @endsection

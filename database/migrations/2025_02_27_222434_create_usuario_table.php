@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password', 50);
             $table->date('fecha_inscripcion')->nullable();
             $table->string('rol', 20);
+            $table->string('payment_method')->nullable()->after('rol');
             $table->timestamps();
         });
     }

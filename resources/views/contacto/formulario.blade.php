@@ -32,7 +32,7 @@
             <textarea name="mensaje" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none" required>{{ old('mensaje') }}</textarea>
             @error('mensaje') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
-        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+        <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-purple-700 text-white py-3 px-4 rounded-lg transition duration-300">
             Enviar mensaje
         </button>
     </form>

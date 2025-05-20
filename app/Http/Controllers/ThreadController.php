@@ -7,48 +7,33 @@ use App\Models\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 
 
 class ThreadController extends Controller
 {
-    public function byCategory(Category $category)
+   public function byCategory(Category $category)
     {
-        // lista paginada “normal”
-        $threads = Thread::where('category_id', $category->id)
-            ->select('threads.*')
-            ->selectSub(
-                Like::selectRaw('COUNT(*)')
-                    ->whereColumn('thread_id', 'threads.id')
-                    ->where('type', 'like'),
-                'likes_count'
-            )
-            ->selectSub(
-                Like::selectRaw('COUNT(*)')
-                    ->whereColumn('thread_id', 'threads.id')
-                    ->where('type', 'dislike'),
-                'dislikes_count'
-            )
-            ->latest()
+        $allThreads = Thread::where('category_id', $category->id)
+            ->with('author')  // para no hacer N+1 al pedir el nombre
+            //->withCount(['likes','dislikes'])
+            ->orderByDesc('likes_count')
             ->paginate(15);
-    
-        // Top‑5 dentro de la categoría
+
         $topThreads = Thread::where('category_id', $category->id)
-            ->orderByDesc('likes')
+            ->with('author')
+            //->withCount(['liked','dislikes'])
+            ->orderByDesc('likes_count')
             ->take(5)
             ->get();
 
-        // Lista paginada completa
-        $allThreads = Thread::where('category_id', $category->id)
-            ->latest()          // o ->orderByDesc('created_at')
-            ->paginate(15);
-
-        
         return view('foro.category', [
-            'category'    => $category,
-            'topThreads'  => $topThreads,
-            'allThreads'  => $allThreads,
+            'category'   => $category,
+            'topThreads' => $topThreads,
+            'allThreads' => $allThreads,
         ]);
     }
+
 
     // formulario para nuevo hilo
     public function create(Category $category)
@@ -80,27 +65,68 @@ class ThreadController extends Controller
                          ->with('success','Hilo creado correctamente.');
     }
     
-    public function show(Thread $thread)
-    {
-        // Carga los posts, sus autores, y para CADA post sus comentarios y autores de comentarios
-        $thread->load([
-           'posts.author',
-           'posts.comments.author',
+public function show(Thread $thread)
+{
+
+    $posts = $thread
+        ->posts()
+        ->with(['author', 'comments.author'])
+        ->orderBy('likes', 'desc')
+        ->orderBy('created_at', 'desc')
+        ->Paginate(5);
+
+    // 2) devolvemos ambas variables
+    return view('foro.show', compact('thread', 'posts'));
+}
+
+public function like(Thread $thread)
+{
+        $userId = Auth::id();
+
+        // 1) Si ya había like → lo borramos (toggle off)
+        if ($thread->likes()->where('user_id', $userId)->exists()) {
+            $thread->likes()->where('user_id', $userId)->delete();
+            return back();
+        }
+
+        // 2) Borramos por si hubiera duplicados
+        $thread->likes()->where('user_id', $userId)->delete();
+
+        // 3) Creamos el like, incluyendo thread_id
+        $thread->likes()->create([
+            'user_id'    => $userId,
+            'comment_id' => $thread->id,
         ]);
-    
-        return view('foro.show', compact('thread'));
+
+        return back();
+}
+
+public function dislike(Thread $thread)
+{
+    $userId = auth()->id();
+
+    $vote = $thread->likes()
+                   ->where('user_id', $userId)
+                   ->first();
+
+    if ($vote) {
+        if ($vote->type === 'dislike') {
+            // Si ya era DISLIKE, lo borramos (toggle off)
+            $vote->delete();
+        } else {
+            // Si era LIKE, lo convertimos a DISLIKE
+            $vote->update(['type' => 'dislike']);
+        }
+    } else {
+        // Si no existía ningún voto, creamos un DISLIKE
+        $thread->likes()->create([
+            'user_id'   => $userId,
+            'thread_id' => $thread->id,
+            'type'      => 'dislike',
+        ]);
     }
 
-    public function like(Thread $thread)
-    {
-        $thread->increment('likes');
-        // si llevas registro por usuario, crea/actualiza aquí la fila en la tabla likes
-        return back();
-    }
+    return back();
+}
 
-    public function dislike(Thread $thread)
-    {
-        $thread->increment('dislikes');
-        return back();
-    }
 }
