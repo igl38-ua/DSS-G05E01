@@ -65,7 +65,7 @@ class UsuarioController extends Controller
         // Clases disponibles (no asociadas al usuario)
         $clasesDisponibles = Clase::whereNotIn('id', $clasesApuntadas->pluck('id'))->get();
 
-        return view('usuarios.edit', compact('usuario', 'clasesApuntadas', 'clasesDisponibles'));
+        return view("admin.usuarios.edit", compact('usuario', 'clasesApuntadas', 'clasesDisponibles'));
     }
 
     /**
@@ -91,7 +91,7 @@ class UsuarioController extends Controller
          // Sincronizar las clases seleccionadas en la tabla intermedia
          $usuario->clases()->sync($request->input('clase_id', []));
      
-         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
+         return redirect()->route('admin.usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
      }
 
     /**
