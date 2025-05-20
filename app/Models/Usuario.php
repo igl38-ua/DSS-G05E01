@@ -115,4 +115,15 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany(Pedido::class, 'ID_Usuario');
     }
+
+    public function clases()
+    {
+        return $this->belongsToMany(
+            Clase::class,
+            'reserva', // Nombre real de la tabla pivote (singular)
+            'ID_Usuario', // FK del usuario en reserva
+            'ID_Clase'   // FK de la clase en reserva
+        )->withTimestamps();
+    }
+
 }
