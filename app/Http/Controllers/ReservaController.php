@@ -13,35 +13,39 @@ class ReservaController extends Controller
       //  $this->middleware('auth');
     //}
 
-    public function store(Request $request){
-        // Validación de la solicitud
+    public function store(Request $request)
+    {
+        $request->merge(['fecha' => now()->toDateString()]);
+        
+        // Validación, incluyendo la fecha
         $validated = $request->validate([
             'ID_Clase' => 'required|exists:clase,id',
+            'fecha'    => 'required|date',
         ]);
 
-        // Obtener ID del usuario autenticado
-        $userId = Auth::id();
+        $userId  = Auth::id();
         $claseId = $validated['ID_Clase'];
+        $fecha   = $validated['fecha'];
 
-        // Verificar si el usuario ya reservó esta clase
+        // Evitar reservas duplicadas en la misma fecha
         if (Reserva::where('ID_Usuario', $userId)
-                 ->where('ID_Clase', $claseId)
-                 ->exists()) {
-            return back()->with('error', 'Ya has reservado esta clase');
+                   ->where('ID_Clase', $claseId)
+                   ->where('fecha', $fecha)
+                   ->exists()) {
+            return back()->with('error', 'Ya has reservado esta clase en esa fecha');
         }
 
-        // Verificar disponibilidad
+        // Verificar capacidad
         $clase = Clase::withCount('reservas')->findOrFail($claseId);
-        
         if ($clase->capacidad_max && $clase->reservas_count >= $clase->capacidad_max) {
             return back()->with('error', 'La clase está llena');
         }
 
-        // Crear la reserva
+        // Crear la reserva con fecha específica
         Reserva::create([
             'ID_Usuario' => $userId,
-            'ID_Clase' => $claseId,
-            'fecha' => now(),
+            'ID_Clase'   => $claseId,
+            'fecha'      => now(),
         ]);
 
         return back()->with('success', 'Reserva realizada con éxito');
