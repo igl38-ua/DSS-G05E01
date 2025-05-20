@@ -153,16 +153,104 @@
   <!-- Sección de Suscripciones -->
   <section id="suscripciones" class="mb-8">
     <h2 class="text-2xl font-bold mb-4">Suscripciones</h2>
+
     <!-- Ajusta la rejilla para 3 columnas en pantallas md+ -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Plan Básico -->
-        @include('suscripciones.basico')
-        <!-- Plan Dorado -->
-        @include('suscripciones.dorado')
-        <!-- Plan Platino -->   
-        @include('suscripciones.platino')
+    <!-- Rejilla de planes -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <!-- ────────────────────────────  PLAN BÁSICO  ──────────────────────────── -->
+      <article
+        class="group relative p-8 bg-slate-50 border border-gray-300 rounded-xl shadow-sm 
+              transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl"
+      >
+        <!-- anillo decorativo en hover -->
+        <div
+          class="pointer-events-none absolute inset-0 rounded-xl ring-0 
+                transition duration-300 ease-out 
+                group-hover:ring-4 group-hover:ring-indigo-400"
+        ></div>
+
+        <h3 class="text-center text-lg font-bold uppercase text-gray-700 tracking-wide mb-4">
+          Básico
+        </h3>
+
+        <ul class="space-y-2 text-center text-gray-600 leading-relaxed">
+          <li>Pase 3 veces por semana</li>
+          <li>Posibilidad de reservar entrenadores personales</li>
+        </ul>
+      </article>
+
+      <!-- ────────────────────────────  PLAN DORADO  ──────────────────────────── -->
+      <article
+        class="group relative p-8 bg-amber-50 border border-amber-400/60 rounded-xl shadow-sm 
+              transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 rounded-xl ring-0 
+                transition duration-300 ease-out 
+                group-hover:ring-4 group-hover:ring-amber-500"
+        ></div>
+
+        <h3 class="text-center text-lg font-bold uppercase text-amber-600 tracking-wide mb-4">
+          Dorado
+        </h3>
+
+        <ul class="space-y-2 text-center text-gray-700 leading-relaxed">
+          <li>Entradas ilimitadas</li>
+          <li>Descuento de un 20 % en entrenadores personales</li>
+          <li>Posibilidad de tener una dieta personalizada</li>
+        </ul>
+      </article>
+
+      <!-- ────────────────────────────  PLAN PLATINO  ──────────────────────────── -->
+      <article
+        class="group relative p-8 bg-slate-50 border border-gray-300 rounded-xl shadow-sm 
+              transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 rounded-xl ring-0 
+                transition duration-300 ease-out 
+                group-hover:ring-4 group-hover:ring-sky-400"
+        ></div>
+
+        <h3 class="text-center text-lg font-bold uppercase text-gray-700 tracking-wide mb-4">
+          Platino
+        </h3>
+
+        <ul class="space-y-2 text-center text-gray-600 leading-relaxed">
+          <li>Entradas ilimitadas</li>
+          <li>Descuento de un 50 % en entrenadores personales</li>
+          <li>Dieta incluida en la suscripción</li>
+          <li>Reservas antes de tiempo</li>
+        </ul>
+      </article>
     </div>
-    </section>
+
+
+    <!-- Botón “reactivo” que lleva a la página de suscripciones -->
+  <div class="flex justify-center">
+    <button
+      x-data="{ hover: false }"
+      @click="window.location='{{ route('suscripciones') }}'"
+      @mouseenter="hover = true"
+      @mouseleave="hover = false"
+      class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg
+            transition-all duration-500 ease-in-out transform"
+      :class="hover ? 'scale-105 shadow-xl' : ''"
+    >
+      <!-- texto que ves normalmente -->
+      <span x-show="!hover"
+            x-transition.opacity.duration.500ms
+      >Ver todos los planes</span>
+
+      <!-- texto cuando pasas el cursor -->
+      <span x-show="hover"
+            x-transition.opacity.duration.500ms
+      >¡Suscribirme ahora!</span>
+    </button>
+  </div>
+
+  </section>
+
 
   <!-- Sección de Localizar Gimnasio -->
   <section id="localizar-gimnasio" class="mb-8">
