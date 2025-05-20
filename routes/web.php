@@ -25,6 +25,7 @@ use App\Http\Controllers\{
 };
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ChatbotController;
 
 // RUTAS DE LA APP
 
@@ -199,3 +200,6 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
 Route::get('/entrenadores', [EntrenadorController::class, 'index'])->name('entrenadores.index');
+
+// Ruta chatbot
+Route::post('/chatbot/message', [ChatbotController::class, 'handle'])->name('chatbot.message');

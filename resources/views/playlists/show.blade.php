@@ -5,7 +5,7 @@
 <div class="flex-grow px-20 py-20">
 <div class="container mx-auto px-4 py-8">
 
-    <h1 class="text-2xl font-bold mb-6">V�deos de la Playlist</h1>
+    <h1 class="text-2xl font-bold mb-6">Vídeos de la Playlist</h1>
     {{-- Puedes obtener el t�tulo de la playlist haciendo otra llamada API si quieres --}}
     {{-- <p class="mb-4 text-gray-600">Playlist ID: {{ $playlistId }}</p> --}}
 
