@@ -60,7 +60,7 @@
         style="display: none;"
       >
       <div class="p-4 bg-indigo-600 text-white overflow-y-auto rounded-lg transition">
-        Hola soy Topuria de Smart Fit, en qué puedo ayudarte?
+        Hola soy Topuria de Smart Fit, ¿A dónde quieres ir?
       </div>
         {{-- Contenedor de mensajes --}}
         <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto space-y-1 bg-gray-50"></div>
