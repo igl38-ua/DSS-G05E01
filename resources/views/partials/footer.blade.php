@@ -61,7 +61,7 @@
                     <a href="https://www.instagram.com/smartfit_es/" class="hover:text-gray-200 transition-colors" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://x.com/Smart_CityLATAM" class="hover:text-gray-200 transition-colors" target="_blank">
+                    <a href="https://x.com/Smartfit2023fit" class="hover:text-gray-200 transition-colors" target="_blank">
                         <i class="fab fa-twitter"></i>
                     </a>
                     <a href="https://www.youtube.com/@smartfit" class="hover:text-gray-200 transition-colors" target="_blank">
