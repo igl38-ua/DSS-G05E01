@@ -135,13 +135,15 @@
         <div class="bg-gray-300 rounded-2xl shadow p-6">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold text-black">Objetivo del mes</h2>
-            <a class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-indigo-500 to-purple-700 text-white rounded hover:from-indigo-600 hover:to-purple-800">
-              Editar
+            <a href="{{ route('objetivo.edit') }}" class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-indigo-500 to-purple-700 text-white rounded hover:from-indigo-600 hover:to-purple-800">
+              <button class="text-white">
+                Editar
+              </button>
             </a>
           </div>
           <p class="text-gray-500 mb-4">
             Has completado <strong class="text-black">{{ $completedClasses }}</strong> de 
-            <strong class="text-black">{{ $monthlyGoal }}</strong> clases este mes.
+            <strong class="text-black">{{ Auth::user()->objetivoMes->target ?? 0 }} </strong> clases este mes.
           </p>
           <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden mb-2">
             <div class="h-full bg-purple-500" style="width: {{ $progressPercentage }}%"></div>

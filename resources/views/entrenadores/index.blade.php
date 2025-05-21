@@ -32,7 +32,6 @@
           <p class="text-2xl font-bold">{{ $clasesAgrupadas['pasadas']->count() }}</p>
         </div>
       </div>
-
       <!-- Listado completo de clases -->
       <div class="bg-white shadow overflow-hidden sm:rounded-lg">
         <div class="overflow-x-auto">
@@ -69,7 +68,6 @@
                     @php
                       $reserva = Auth::user()->reservas->firstWhere('ID_Clase', $clase->id);
                     @endphp
-
                     @if(!$reserva)
                       <!-- Botón reservar -->
                       <form action="{{ route('reserva.store') }}" method="POST" class="inline-block">
@@ -128,7 +126,7 @@
           </div>
         </div>
         @endif
-
+        
         <!-- Clases completas -->
         @if($clasesAgrupadas['completas']->isNotEmpty())
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">

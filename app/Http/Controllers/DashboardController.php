@@ -44,9 +44,11 @@ class DashboardController extends Controller
             ->get();
 
         // 5. Objetivo mensual
-        $monthlyGoal        = $user->monthly_goal ?? 0;
-        $completedClasses   = $user->reservasThisMonth()->count();
-        $progressPercentage = $monthlyGoal
+        $completedClasses = $user->reservasThisMonth()->count();
+
+        $monthlyGoal = $user->objetivoMes->target ?? 0;
+
+        $progressPercentage = $monthlyGoal > 0
             ? min(round($completedClasses / $monthlyGoal * 100, 2), 100)
             : 0;
 
@@ -55,8 +57,8 @@ class DashboardController extends Controller
             'currentSubscription',
             'upcomingClasses',
             'recentClasses',
-            'monthlyGoal',
             'completedClasses',
+            'monthlyGoal',         // pásalo también si quieres mostrarlo en la vista
             'progressPercentage'
         ));
     }
