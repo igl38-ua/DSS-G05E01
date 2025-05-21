@@ -126,4 +126,10 @@ class Usuario extends Authenticatable
         )->withTimestamps();
     }
 
+    public function objetivoMes()
+    {
+        return $this->hasOne(ObjetivoMes::class, 'user_id');
+    }
+
+
 }

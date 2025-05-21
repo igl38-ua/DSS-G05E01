@@ -52,7 +52,7 @@
                         <td class="py-2 px-4 border">{{ $clase->nombre }}</td>
                         <td class="py-2 px-4 border">{{ $clase->descripcion ?? 'Sin descripción' }}</td>
                         <td class="py-2 px-4 border">
-                            {{ $clase->fecha ? \Carbon\Carbon::parse($clase->fecha)->format('d/m/Y') : 'Sin fecha' }}
+                            {{ today()->format('d/m/Y') }}
                             <br>
                             {{ $clase->horario ?? 'Sin horario' }}
                         </td>
@@ -123,7 +123,7 @@
                     @foreach($clasesAgrupadas['sin_instructor'] as $clase)
                     <div class="py-3">
                         <h4 class="font-medium">{{ $clase->nombre }}</h4>
-                        <p class="text-sm text-gray-600">{{ $clase->fecha ? \Carbon\Carbon::parse($clase->fecha)->format('d/m/Y') : 'Sin fecha' }} a las {{ $clase->horario ?? '--:--' }}</p>
+                        <p class="text-sm text-gray-600">{{ today()->format('d/m/Y') }} a las {{ $clase->horario ?? '--:--' }}</p>
                     </div>
                     @endforeach
                 </div>
@@ -145,7 +145,7 @@
                         <h4 class="font-medium">{{ $clase->nombre }}</h4>
                         <p class="text-sm text-gray-600">
                             Con {{ $clase->instructor ?? 'Sin instructor' }} | 
-                            {{ $clase->fecha ? \Carbon\Carbon::parse($clase->fecha)->format('d/m/Y') : 'Sin fecha' }}
+                            {{ today()->format('d/m/Y') }}
                         </p>
                     </div>
                     @endforeach
