@@ -146,10 +146,13 @@ Route::prefix('foro')->name('foro.')->group(function () {
 Route::resource('login', LoginController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
-->name('password.request'); // Mostrar el formulario de solicitud de restablecimiento de contraseña
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
-->name('password.email'); // Procesar el envío del enlace de restablecimiento
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])
+     ->middleware('guest')
+     ->name('password.request');
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+     ->middleware('guest')
+     ->name('password.email');
 
 Route::resource('register', RegisterController::class);
 

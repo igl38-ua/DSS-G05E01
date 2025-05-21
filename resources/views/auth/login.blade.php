@@ -10,6 +10,18 @@
             Introduce tu dirección de correo y contraseña para acceder.
         </p>
 
+        @if(session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @error('email')
+            <div class="mb-4 font-medium text-sm text-red-600">
+                {{ $message }}
+            </div>
+        @enderror
+
         {{-- Muestra errores generales o de Google si existen --}}
         @if (session('error'))
             <div class="mb-4 p-3 bg-red-100 text-red-700 border border-red-300 rounded text-sm">
