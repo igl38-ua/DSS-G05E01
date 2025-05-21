@@ -17,6 +17,9 @@ use App\Http\Controllers\Auth\PerfilController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\ObjetivoMesController;
+use App\Http\Controllers\ProgresoController;
+use App\Http\Controllers\Admin\DynamicListingController;
 use App\Http\Controllers\{
     ForoController,
     ThreadController,
@@ -34,8 +37,7 @@ Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('s
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto');
 Route::get('/progreso', [ProgresoController::class, 'index'])->name('progreso');
-Route::get('/help', [HelpController::class, 'index'])->name('help');
-Route::get('/metas', [MetasController::class, 'index'])->name('metas');
+
 
 // Mostrar una playlist concreta
 Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])
@@ -180,6 +182,18 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin', [DashboardController::class, 'index'])
     ->middleware(['auth', 'is_admin'])
     ->name('admin.dashboard');
+
+// Para procesar la actualización
+Route::put('/objetivo/mes', [ObjetivoMesController::class, 'update'])
+     ->name('objetivo.update')
+     ->middleware('auth');
+     
+    // Para mostrar el formulario de edición
+Route::get('/objetivo/mes/editar', [ObjetivoMesController::class, 'edit'])
+     ->name('objetivo.edit')
+     ->middleware('auth');
+
+
 
 
 
