@@ -11,6 +11,16 @@
 
         <!-- Formulario de Pago -->
         <div class="bg-gray-50 w-full p-6 rounded-xl shadow">
+            @if($errors->any())
+                <div class="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded">  
+                    Por favor corrige los siguientes campos:
+                    <ul class="mt-2 list-disc list-inside">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <!-- resources/views/payment/checkout.blade.php -->
             <form
             action="{{ route('payment.process', $pedido->id) }}"
