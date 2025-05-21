@@ -45,7 +45,7 @@
   </nav>
 
   <div class="p-4 border-t">
-    <a href="{{ route('help') }}"
+    <a href="{{ route('contacto') }}"
        class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100">
       <i class="fas fa-question-circle mr-3 text-purple-600"></i>
       <div>
