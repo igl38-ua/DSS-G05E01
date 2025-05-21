@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
@@ -93,5 +94,30 @@
 
     {{-- Tu lógica en public/js/chatbot.js --}}
     <script src="{{ asset('js/chatbot.js') }}" defer></script>
+    <script>
+    // Función que calcula una cadena “hace X …” a partir de un Date
+      function timeAgo(date) {
+        const diff = Math.floor((Date.now() - date.getTime()) / 1000);
+        if (diff < 60) return 'justo ahora';
+        if (diff < 3600) return Math.floor(diff/60) + ' minutos';
+        if (diff < 86400) return Math.floor(diff/3600) + ' horas';
+        return Math.floor(diff/86400) + ' días';
+      }
+
+      // Recoge todos los spans con .js-timeago y actualiza su texto
+      function refreshTimes() {
+        document.querySelectorAll('.js-timeago').forEach(el => {
+          const ts = el.getAttribute('data-time');
+          if (!ts) return;
+          const d = new Date(ts);
+          el.textContent = timeAgo(d);
+        });
+      }
+
+      // Primera pasada y luego cada segundo
+      refreshTimes();
+      setInterval(refreshTimes, 1000);
+    </script>
+
 </body>
 </html>

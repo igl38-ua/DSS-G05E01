@@ -18,7 +18,7 @@ class ThreadController extends Controller
             ->with('author')  // para no hacer N+1 al pedir el nombre
             //->withCount(['likes','dislikes'])
             ->orderByDesc('likes_count')
-            ->paginate(15);
+            ->paginate(5);
 
         $topThreads = Thread::where('category_id', $category->id)
             ->with('author')

@@ -37,12 +37,41 @@
                 por <strong>{{ optional($thread->author)->nombre ?? 'Anónimo' }}</strong>
               </p>
               <div class="flex items-center mt-3 text-gray-600 space-x-3 text-sm">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7,22H4c-0.6,0-1-0.4-1-1v-9c0-0.6,0.4-1,1-1h3c0.6,0,1,0.4,1,1v9C8,21.6,7.6,22,7,22z"
+                  fill="#000000"
+                />
+                <path
+                  d="M21,10h-5.5l0.7-3.2C16.3,6,16,5,15.3,4.3C15,4,14.6,3.8,14.1,3.8h-0.4c-0.5,0-0.9,0.3-1.1,0.7l-3.3,6.5
+                    C9.1,11.3,9,11.6,9,12v8c0,1.1,0.9,2,2,2h7.8c0.9,0,1.6-0.6,1.9-1.4l2.2-7.6c0.1-0.2,0.1-0.4,0.1-0.6v-0.4C23,11,22,10,21,10z"
+                  fill="#000000"
+                />
+              </svg>
+
+
                 <span class="flex items-center space-x-1">
-                  <img src="{{ asset('images/Icono_Like.png') }}" class="h-4 w-4" alt="Likes">
-                  <span>{{ $thread->likes_count }}</span>
-                </span>
-                <span class="flex items-center space-x-1">
-                  <img src="{{ asset('images/Icono_Dislike.png') }}" class="h-4 w-4" alt="Dislikes">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7,2H4C3.4,2,3,2.4,3,3v9c0,0.6,0.4,1,1,1h3c0.6,0,1-0.4,1-1V3C8,2.4,7.6,2,7,2z"
+                      fill="#000000"
+                    />
+                    <path
+                      d="M21,14h-5.5l0.7,3.2c0.1,0.8-0.2,1.8-0.9,2.5C15,20,14.6,20.2,14.1,20.2h-0.4c-0.5,0-0.9-0.3-1.1-0.7l-3.3-6.5
+                        C9.1,12.7,9,12.4,9,12V4c0-1.1,0.9-2,2-2h7.8c0.9,0,1.6,0.6,1.9,1.4l2.2,7.6c0.1,0.2,0.1,0.4,0.1,0.6v0.4C23,13,22,14,21,14z"
+                      fill="#000000"
+                    />
+                  </svg>
                   <span>{{ $thread->dislikes_count }}</span>
                 </span>
               </div>
@@ -76,8 +105,22 @@
               @csrf
               <button type="submit"
                       class="flex items-center space-x-1 hover:text-green-600 transition">
-                <img src="{{ asset('images/Icono_Like.png') }}"
-                     alt="Like" class="h-4 w-4">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7,22H4c-0.6,0-1-0.4-1-1v-9c0-0.6,0.4-1,1-1h3c0.6,0,1,0.4,1,1v9C8,21.6,7.6,22,7,22z"
+                  fill="#000000"
+                />
+                <path
+                  d="M21,10h-5.5l0.7-3.2C16.3,6,16,5,15.3,4.3C15,4,14.6,3.8,14.1,3.8h-0.4c-0.5,0-0.9,0.3-1.1,0.7l-3.3,6.5
+                    C9.1,11.3,9,11.6,9,12v8c0,1.1,0.9,2,2,2h7.8c0.9,0,1.6-0.6,1.9-1.4l2.2-7.6c0.1-0.2,0.1-0.4,0.1-0.6v-0.4C23,11,22,10,21,10z"
+                  fill="#000000"
+                />
+              </svg>
                 <span class="text-sm">{{ $thread->likes_count }}</span>
               </button>
             </form>
@@ -86,8 +129,22 @@
               @csrf
               <button type="submit"
                       class="flex items-center space-x-1 hover:text-red-600 transition">
-                <img src="{{ asset('images/Icono_Dislike.png') }}"
-                     alt="Dislike" class="h-4 w-4">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7,2H4C3.4,2,3,2.4,3,3v9c0,0.6,0.4,1,1,1h3c0.6,0,1-0.4,1-1V3C8,2.4,7.6,2,7,2z"
+                    fill="#000000"
+                  />
+                  <path
+                    d="M21,14h-5.5l0.7,3.2c0.1,0.8-0.2,1.8-0.9,2.5C15,20,14.6,20.2,14.1,20.2h-0.4c-0.5,0-0.9-0.3-1.1-0.7l-3.3-6.5
+                      C9.1,12.7,9,12.4,9,12V4c0-1.1,0.9-2,2-2h7.8c0.9,0,1.6,0.6,1.9,1.4l2.2,7.6c0.1,0.2,0.1,0.4,0.1,0.6v0.4C23,13,22,14,21,14z"
+                    fill="#000000"
+                  />
+                </svg>
                 <span class="text-sm">{{ $thread->dislikes_count }}</span>
               </button>
             </form>
