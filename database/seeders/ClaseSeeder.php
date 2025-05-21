@@ -19,7 +19,7 @@ class ClaseSeeder extends Seeder
             'descripcion'   => 'Clase de Pilates para principiantes',
             'horario'       => '09:00',
             'capacidad_max' => 20,
-            'instructor'           => 'Lana Rhoades',
+            'instructor'    => 'Lana Rhoades',
         ]);
 
         Clase::create([
@@ -27,7 +27,7 @@ class ClaseSeeder extends Seeder
             'descripcion'   => 'Entrenamiento de alta intensidad',
             'horario'       => '18:00',
             'capacidad_max' => 15,
-            'instructor'           => 'Juan',
+            'instructor'    => 'Juan',
         ]);
 
         Clase::create([
@@ -35,7 +35,7 @@ class ClaseSeeder extends Seeder
             'descripcion'   => 'Clase de baile para cardio y diversión',
             'horario'       => '11:00',
             'capacidad_max' => 25,
-            'instructor'           => 'Esteban',
+            'instructor'    => 'Esteban',
         ]);
 
         Clase::create([
