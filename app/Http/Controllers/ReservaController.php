@@ -52,7 +52,7 @@ class ReservaController extends Controller
     }
 
     public function edit($id)
-{
+    {
         // Obtener el usuario por su ID
         $usuario = Usuario::findOrFail($id);
 
@@ -67,7 +67,7 @@ class ReservaController extends Controller
     }
 
     public function update(Request $request, $id)
-{
+    {
         $usuario = Usuario::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -93,5 +93,22 @@ class ReservaController extends Controller
         $usuario->clases()->sync($clasesConFecha);
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
+    }
+
+    /**
+     * Remove the specified reservation from storage.
+     */
+    public function destroy($id)
+    {
+        $reserva = Reserva::findOrFail($id);
+
+        // Sólo el usuario propietario puede cancelar
+        if ($reserva->ID_Usuario !== Auth::id()) {
+            abort(403, 'Acción no autorizada.');
+        }
+
+        $reserva->delete();
+
+        return back()->with('success', 'Reserva cancelada correctamente.');
     }
 }
