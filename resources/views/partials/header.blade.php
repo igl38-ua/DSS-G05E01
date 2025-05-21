@@ -63,7 +63,7 @@
           </a>
 
           {{-- Sección: Rutina --}}
-          <a href="{{ route('playlists.show', ['playlistId' => '...bMSpcKjZgQI6']) }}" class="hover:opacity-80 transition-opacity flex items-center">
+          <a href="{{ route('playlists.show', ['playlistId' => 'PLz-l7oWFJS0JpFK3d3qSGbMSpcKjZgQI6']) }}" class="hover:opacity-80 transition-opacity flex items-center">
             <!-- Icono Rutina (checklist) -->
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <!-- Clipbord outline -->
@@ -191,7 +191,7 @@
           </a>
           
           {{-- Sección: Rutina --}}
-          <a href="{{ route('playlists.show', ['playlistId' => '...bMSpcKjZgQI6']) }}" class="hover:opacity-80 transition-opacity flex items-center">
+          <a href="{{ route('playlists.show', ['playlistId' => 'PLz-l7oWFJS0JpFK3d3qSGbMSpcKjZgQI6']) }}" class="hover:opacity-80 transition-opacity flex items-center">
             <!-- Icono Rutina (checklist) -->
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <!-- Clipbord outline -->
