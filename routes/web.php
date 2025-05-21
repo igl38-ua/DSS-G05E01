@@ -213,6 +213,7 @@ Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
 
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
+Route::delete('reserva/{id}', [ReservaController::class, 'destroy'])->name('reserva.destroy');
 Route::get('/entrenadores', [EntrenadorController::class, 'index'])->name('entrenadores.index');
 
 // Ruta chatbot

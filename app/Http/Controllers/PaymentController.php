@@ -32,6 +32,26 @@ class PaymentController extends Controller
      */
     public function processPayment(Request $request, int $order)
     {
+        $request->validate([
+            'card_holder_name' => 'required|string|min:3|max:50',
+            'card_number'      => 'required|digits_between:13,19',
+            'expiry_date'      => ['required','regex:/^(0[1-9]|1[0-2])\\/\\d{2}$/'],
+            'cvv'              => 'required|digits_between:3,4',
+        ],[
+            'card_holder_name.required'   => 'El nombre del titular es obligatorio.',
+            'card_holder_name.min'        => 'El nombre del titular debe tener al menos :min caracteres.',
+            'card_holder_name.max'        => 'El nombre del titular no puede exceder de :max caracteres.',
+
+            'card_number.required'        => 'El número de tarjeta es obligatorio.',
+            'card_number.digits_between'  => 'El número de tarjeta debe tener 16 dígitos.',
+
+            'expiry_date.required'        => 'La fecha de expiración es obligatoria.',
+            'expiry_date.regex'           => 'El formato de la fecha de expiración es inválido. Debe ser MM/AA.',
+
+            'cvv.required'                => 'El CVV es obligatorio.',
+            'cvv.digits_between'          => 'El CVV debe tener entre 1 y 3 dígitos.',
+        ]);
+
         $pedido = Pedido::findOrFail($order);
         $user   = Auth::user();
 
@@ -98,8 +118,6 @@ class PaymentController extends Controller
             ->route('payment.cancel', ['order' => $pedido->id])
             ->with('error', 'Pago fallido, inténtalo de nuevo.');
     }
-
-
 
     public function success(int $order)
     {
