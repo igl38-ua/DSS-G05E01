@@ -102,7 +102,7 @@
 
             <button
                 type="submit"
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded transition-colors mb-4" {{-- A�adido mb-4 --}}
+                class="w-full bg-gradient-to-r from-indigo-500 to-purple-700 text-white text-white font-semibold py-2 rounded transition-colors mb-4" {{-- A�adido mb-4 --}}
             >
                 Iniciar sesión
             </button>

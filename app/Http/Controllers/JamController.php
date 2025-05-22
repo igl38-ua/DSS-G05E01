@@ -92,7 +92,7 @@ class JamController extends Controller
             return back()->withErrors('No se pudo obtener información del track.');
         }
 
-        // Añade a la playlist (usa tu playlist ID)
+        // Para cambiar la playlist en base al id
         $playlistId = '5vfq9lcBaUyi5FfoXHMSuv';
         try {
             $api->addPlaylistTracks($playlistId, [$trackUri]);

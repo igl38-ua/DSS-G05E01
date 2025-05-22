@@ -7,7 +7,6 @@ use App\Models\Usuaro;
 
 class Thread extends Model
 {
-    // Añade todas las columnas que vayas a rellenar por create():
     protected $fillable = [
         'category_id',
         'title',

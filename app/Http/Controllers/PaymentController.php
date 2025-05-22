@@ -64,7 +64,7 @@ class PaymentController extends Controller
         $pedido->payment_method = $paymentMethod;
         $pedido->save();
 
-        // Procesa el pago (real o simulado)
+        // Procesa el pago 
         $gateway  = new PaymentGateway();
         $response = $gateway->charge([
             'amount'         => $pedido->amount,
@@ -88,7 +88,7 @@ class PaymentController extends Controller
             $start = $now->toDateString();
             $end   = $now->copy()->addYear()->toDateString();
 
-            $suscripcion = $user->suscripcionActual;       // ← propiedad dinámica
+            $suscripcion = $user->suscripcionActual;
 
             if ($suscripcion) {
                 $suscripcion->update([

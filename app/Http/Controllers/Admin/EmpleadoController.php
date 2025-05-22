@@ -40,7 +40,6 @@ class EmpleadoController extends Controller
             'horarioTrabajo'=> 'required|max:50',
             'nomina'        => 'required|numeric',
             'direccion'     => 'required|max:50',
-            // 'direccion' es opcional
         ]);
 
         Empleado::create($validatedData);

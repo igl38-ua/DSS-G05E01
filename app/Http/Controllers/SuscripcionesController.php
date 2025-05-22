@@ -15,7 +15,6 @@ class SuscripcionesController extends Controller
     {
         $sub = Suscripcion::findOrFail($id);
 
-        // Opcional: verificar que el sub->ID_Usuario coincide con Auth::id()
         abort_unless($sub->ID_Usuario === auth()->id(), 403);
 
         return view('suscripciones.confirm_cancel', compact('sub'));
@@ -26,7 +25,6 @@ class SuscripcionesController extends Controller
         $sub = Suscripcion::findOrFail($id);
         abort_unless($sub->ID_Usuario === auth()->id(), 403);
 
-        // Elimina o marca como cancelada
         $sub->delete();
         $user = auth()->user();
         if ($user->suscripcion_id === $sub->id) {

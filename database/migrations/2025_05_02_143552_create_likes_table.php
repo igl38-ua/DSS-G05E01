@@ -8,11 +8,9 @@ return new class extends Migration {
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            // clave al hilo
             $table->foreignId('thread_id')
                   ->constrained('threads')
                   ->onDelete('cascade');
-            // clave al usuario (tu tabla se llama 'usuario')
             $table->foreignId('user_id')
                   ->constrained('usuario')
                   ->onDelete('cascade');

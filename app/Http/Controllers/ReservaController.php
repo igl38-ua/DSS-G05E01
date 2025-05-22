@@ -56,8 +56,8 @@ class ReservaController extends Controller
         // Obtener el usuario por su ID
         $usuario = Usuario::findOrFail($id);
 
-        // Obtener las clases asociadas al usuario (puede depender de tu modelo y relaciones)
-        $clases = Clase::where('usuario_id', $id)->get(); // Ajusta según tu lógica
+        // Obtener las clases asociadas al usuario
+        $clases = Clase::where('usuario_id', $id)->get(); 
 
         // Pasar los datos a la vista
         return view('usuarios.edit', [
@@ -76,8 +76,8 @@ class ReservaController extends Controller
             'telefono'          => 'nullable|max:15',
             'contrasena'        => 'required|min:6',
             'fecha_inscripcion' => 'required|date',
-            'clase_id'          => 'array', // Validar que sea un array de IDs
-            'clase_id.*'        => 'exists:clases,id', // Validar que cada ID exista en la tabla clases
+            'clase_id'          => 'array',
+            'clase_id.*'        => 'exists:clases,id',
         ]);
 
         // Actualizar los datos del usuario
@@ -86,7 +86,7 @@ class ReservaController extends Controller
         // Preparar los datos para sincronizar en la tabla intermedia
         $clasesConFecha = [];
         foreach ($request->input('clase_id', []) as $claseId) {
-            $clasesConFecha[$claseId] = ['ID_Fecha' => now()]; // Agregar la fecha actual
+            $clasesConFecha[$claseId] = ['ID_Fecha' => now()];
         }
 
         // Sincronizar las clases seleccionadas con datos adicionales

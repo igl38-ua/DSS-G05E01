@@ -62,7 +62,7 @@ public function like(Post $post)
     {
         $userId = Auth::id();
 
-        // “Dislike” = borrar el like
+        // Dislike
         $post->likes()->where('user_id', $userId)->delete();
 
         return back();

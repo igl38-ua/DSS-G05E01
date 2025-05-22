@@ -33,7 +33,6 @@ class Reserva extends Model
         return $this->belongsTo(Clase::class, 'ID_Clase');
     }
 
-    // En Reserva.php
     public function getFechaFormateadaAttribute()
     {
         return $this->fecha ? $this->fecha->format('d/m/Y') : 'No definida';

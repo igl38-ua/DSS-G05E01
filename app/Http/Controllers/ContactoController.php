@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactoMailable; // Asegúrate de que la ruta es correcta
+use App\Mail\ContactoMailable;
 use App\Models\Contacto; 
 
 class ContactoController extends Controller

@@ -31,17 +31,14 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ChatbotController;
 
 // RUTAS DE LA APP
-
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::get('/suscripciones', [SuscripcionesController::class, 'index'])->name('suscripciones');
 Route::get('/clases', [ClaseController::class, 'index']) ->name('clases');
 Route::get('/contacto', [ContactoController::class, 'index']) ->name('contacto');
 Route::get('/progreso', [ProgresoController::class, 'index'])->name('progreso');
 
-
-// Mostrar una playlist concreta
-Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])
-     ->name('playlists.show');
+// RUTINAS
+Route::get('/playlists/{playlistId}', [YoutubeController::class, 'show'])->name('playlists.show');
 
 // RUTAS DE CONTACTO
 Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
@@ -49,28 +46,20 @@ Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.
 Route::post('/contacto/pregunta', [ContactoController::class, 'enviarPregunta'])->name('contacto.pregunta');
 
 // RUTAS DE INTEGRACIÓN CON SPOTIFY Y JAM
-
 Route::get('/login/spotify', [SpotifyController::class, 'redirectToSpotify'])->name('spotify.login');
 Route::get('/spotify/callback', [SpotifyController::class, 'handleSpotifyCallback'])->name('spotify.callback');
 Route::get('/jam', [JamController::class, 'index'])->name('jam.index');
-// Formulario (o campo) para introducir el término de búsqueda
 Route::get('/jam/search', [JamController::class, 'searchForm'])->name('jam.search.form');
-// Procesar la búsqueda
 Route::post('/jam/search', [JamController::class, 'search'])->name('jam.search');
 Route::post('/jam/add', [JamController::class, 'store'])->name('jam.store');
 
-Route::view('/terminos', 'terminos')
-     ->name('terminos');
-
+Route::view('/terminos', 'terminos')->name('terminos');
 Route::view('/politica-privacidad', 'privacidad')->name('privacidad');
-
 Route::view('/ayuda', 'ayuda')->name('ayuda');
 
-
+// FOROS
 Route::prefix('foro')->name('foro.')->group(function () {
-
     /* ───────── Categorías ───────── */
-
     // Página principal del foro (lista de categorías)
     Route::get('/', [ForoController::class, 'index'])
          ->name('index');
@@ -79,57 +68,52 @@ Route::prefix('foro')->name('foro.')->group(function () {
     Route::get('categoria/{category:slug}', [ThreadController::class, 'byCategory'])
          ->name('show');
 
-
     /* ───────── Hilos ───────── */
-
     // Mostrar un hilo específico (público)
     Route::get('hilo/{thread}', [ThreadController::class, 'show'])
          ->name('threads.show');
 
     // Rutas que requieren autenticación
     Route::middleware('auth')->group(function () {
+          // Crear hilo
+          Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
+          ->name('threads.create');
+          Route::post('categoria/{category:slug}/hilos', [ThreadController::class, 'store'])
+          ->name('threads.store');
 
-        // Crear hilo
-        Route::get('categoria/{category:slug}/hilos/create', [ThreadController::class, 'create'])
-             ->name('threads.create');
-        Route::post('categoria/{category:slug}/hilos', [ThreadController::class, 'store'])
-             ->name('threads.store');
+          // Votar hilo 
+          Route::post('threads/{thread}/like', [ThreadController::class,'like'])
+          ->middleware('auth')
+          ->name('threads.like');
 
-        // Votar hilo (👍 / 👎)
-        Route::post('threads/{thread}/like', [ThreadController::class,'like'])
-             ->middleware('auth')
-             ->name('threads.like');
+          Route::post('threads/{thread}/dislike', [ThreadController::class,'dislike'])
+          ->middleware('auth')
+          ->name('threads.dislike');
 
-        Route::post('threads/{thread}/dislike', [ThreadController::class,'dislike'])
-             ->middleware('auth')
-             ->name('threads.dislike');
+          /* ───────── Posts ───────── */
+          Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
+          ->name('posts.store');
+          Route::patch('posts/{post}', [PostController::class, 'update'])
+          ->name('posts.update');
+          Route::delete('posts/{post}', [PostController::class, 'destroy'])
+          ->name('posts.destroy');
 
-        /* ───────── Posts ───────── */
+          // Votar post
+          Route::post('posts/{post}/like', [PostController::class,'like'])
+          ->middleware('auth')
+          ->name('posts.like');
 
-        Route::post('hilo/{thread}/posts', [PostController::class, 'store'])
-             ->name('posts.store');
-        Route::patch('posts/{post}', [PostController::class, 'update'])
-             ->name('posts.update');
-        Route::delete('posts/{post}', [PostController::class, 'destroy'])
-             ->name('posts.destroy');
+          Route::post('posts/{post}/dislike', [PostController::class,'dislike'])
+          ->middleware('auth')
+          ->name('posts.dislike');
 
-        // Votar post
-        Route::post('posts/{post}/like', [PostController::class,'like'])
-             ->middleware('auth')
-             ->name('posts.like');
-
-        Route::post('posts/{post}/dislike', [PostController::class,'dislike'])
-             ->middleware('auth')
-             ->name('posts.dislike');
-
-        /* ───────── Comentarios ───────── */
-
-        Route::post('posts/{post}/comments', [CommentController::class, 'store'])
-             ->name('comments.store');
-        Route::patch('comments/{comment}', [CommentController::class, 'update'])
-             ->name('comments.update');
-        Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
-             ->name('comments.destroy');
+          /* ───────── Comentarios ───────── */
+          Route::post('posts/{post}/comments', [CommentController::class, 'store'])
+          ->name('comments.store');
+          Route::patch('comments/{comment}', [CommentController::class, 'update'])
+          ->name('comments.update');
+          Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
+          ->name('comments.destroy');
 
           // Votar comentarios
           Route::post('comments/{comment}/like',    [CommentController::class,'like'])
@@ -137,25 +121,19 @@ Route::prefix('foro')->name('foro.')->group(function () {
 
           Route::post('comments/{comment}/dislike', [CommentController::class,'dislike'])
                ->name('comments.dislike');
-
     });
 });
 
 // RUTAS DE AUTENTICACION
-
 Route::resource('login', LoginController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])
      ->middleware('guest')
      ->name('password.request');
-
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])
      ->middleware('guest')
      ->name('password.email');
-
 Route::resource('register', RegisterController::class);
-
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
@@ -164,20 +142,14 @@ Route::middleware('auth')->group(function () {
 
     // PEDIDOS
     Route::get('/pedido/resumen/{plan}',[OrderController::class, 'showSummary'])->name('payment.summary');
-    // Crear pedido y redirigir a checkout
     Route::post('/pedido/resumen/{plan}',[OrderController::class, 'createOrder'])->name('payment.create');
-    // Mostrar formulario de pago (checkout)
     Route::get('/checkout/{order}',[PaymentController::class, 'showCheckout'])->name('payment.checkout');
-    // Procesar pago
     Route::post('/checkout/{order}',[PaymentController::class, 'processPayment'])->name('payment.process');
-    // Éxito y cancelación
     Route::get('/checkout/{order}/success',[PaymentController::class, 'success'])->name('payment.success');
     Route::get('/checkout/{order}/cancel',[PaymentController::class, 'cancel'])->name('payment.cancel');
 
-    // Mostrar confirmación
     Route::get('/suscripciones/{subscription}/cancel', [SuscripcionesController::class, 'confirmCancel'])
          ->name('suscripciones.confirm');
-    // Eliminar suscripción
     Route::delete('/suscripciones/{subscription}', [SuscripcionesController::class, 'cancel'])
          ->name('suscripciones.cancel');
 });
@@ -186,21 +158,15 @@ Route::get('/admin', [DashboardController::class, 'index'])
     ->middleware(['auth', 'is_admin'])
     ->name('admin.dashboard');
 
-// Para procesar la actualización
+// OBJETIVOS
 Route::put('/objetivo/mes', [ObjetivoMesController::class, 'update'])
      ->name('objetivo.update')
      ->middleware('auth');
-     
-    // Para mostrar el formulario de edición
 Route::get('/objetivo/mes/editar', [ObjetivoMesController::class, 'edit'])
      ->name('objetivo.edit')
      ->middleware('auth');
 
-
-
-
-
-// cambiar esto
+// ADMINISTRACIÓN
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/clases', App\Http\Controllers\Admin\ClaseController::class);
     Route::resource('/empleados', App\Http\Controllers\Admin\EmpleadoController::class);
@@ -211,13 +177,14 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
         ->name('dynamic.destroy');
 });
 
-// Rutas para Google Login
+// GOOGLE LOGIN
 Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
 
+// RESERVAS
 Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
 Route::delete('reserva/{id}', [ReservaController::class, 'destroy'])->name('reserva.destroy');
 Route::get('/entrenadores', [EntrenadorController::class, 'index'])->name('entrenadores.index');
 
-// Ruta chatbot
+// CHATBOT
 Route::post('/chatbot/message', [ChatbotController::class, 'handle'])->name('chatbot.message');
