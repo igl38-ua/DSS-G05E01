@@ -3,48 +3,47 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Usuario; // Importa el modelo Usuario
+use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Para manejar la autenticación
-use Illuminate\Support\Facades\Hash; // Para hashear passwords si es necesario
-use Illuminate\Support\Str;          // Para generar strings aleatorios si es necesario
-use Laravel\Socialite\Facades\Socialite; // Importa Socialite
-use Exception; // Para capturar errores
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
+use Exception;
 
 class GoogleController extends Controller
 {
     /**
-     * Redirige al usuario a la página de autenticación de Google.
+     * Redirige al usuario a la pï¿½gina de autenticaciï¿½n de Google.
      */
     public function redirectToGoogle()
     {
-        // Simplemente redirige al driver 'google' configurado en services.php
         return Socialite::driver('google')->redirect();
     }
 
     /**
-     * Obtiene la información del usuario de Google y maneja el login/registro.
+     * Obtiene la informaciï¿½n del usuario de Google y maneja el login/registro.
      */
     public function handleGoogleCallback()
     {
         try {
-            // Obtiene la información del usuario de Google
+            // Obtiene la informaciï¿½n del usuario de Google
             $googleUser = Socialite::driver('google')->stateless()->user();
 
             // Busca si ya existe un usuario con ese Google ID
             $user = Usuario::where('google_id', $googleUser->getId())->first();
 
             if ($user) {
-                // Si el usuario existe, inicia sesión
+                // Si el usuario existe, inicia sesiï¿½n
                 Auth::login($user);
-                return redirect('/dashboard'); // O a donde quieras redirigir después del login
+                return redirect('/dashboard'); 
                 
             } else {
                 // Si no existe, busca por email por si ya estaba registrado
                 $user = Usuario::where('email', $googleUser->getEmail())->first();
 
                 if ($user) {
-                    // Si existe por email, actualiza su google_id y avatar, luego inicia sesión
+                    // Si existe por email, actualiza su google_id y avatar, luego inicia sesiï¿½n
                     $user->update([
                         'google_id' => $googleUser->getId(),
                         'avatar' => $googleUser->getAvatar(),
@@ -59,18 +58,16 @@ class GoogleController extends Controller
                         'rol' => 'user',
                         'fecha_inscripcion' => now(), 
                         'password' => Hash::make(Str::random(24))
-                        // Opcional: Si tu tabla 'password' NO es nullable, genera una:
-                        // 'password' => Hash::make(Str::random(24))
                     ]);
                 }
 
-                // Inicia sesión con el usuario encontrado/creado
+                // Inicia sesiï¿½n con el usuario encontrado/creado
                 Auth::login($user);
-                return redirect('/dashboard'); // O a donde quieras redirigir
+                return redirect('/dashboard');
             }
 
         } catch (Exception $e) {
-            \Log::error($e);          // guarda todo en storage/logs/laravel.log
+            \Log::error($e);
             return redirect('/login')->with('error', $e->getMessage());
         }
         

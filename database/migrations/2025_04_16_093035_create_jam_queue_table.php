@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('track_uri'); // El URI de la canción en Spotify (ejemplo: spotify:track:...)
             $table->string('track_name')->nullable();
             $table->string('track_artist')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable(); // Si deseas asociar la canción a un usuario
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

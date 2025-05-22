@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('usuario', function (Blueprint $table) {
-            $table->string('google_id')->nullable()->unique()->after('id'); // ID único de Google
+            $table->string('google_id')->nullable()->unique()->after('id'); // ID ï¿½nico de Google
             $table->string('avatar')->nullable()->after('email'); // URL del avatar
-            $table->string('password')->nullable()->change(); // Hacer la contraseña opcional
+            $table->string('password')->nullable()->change(); // Hacer la contraseï¿½a opcional
         });
     }
 
@@ -24,12 +24,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('usuario', function (Blueprint $table) {
-              // Comprueba si la plataforma soporta la reversión de nullable si quieres ser muy cuidadoso
             //if (!($this->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\SqlitePlatform)) {
                 $table->string('password')->nullable(false)->change();
-            //} // Nota: Revertir nullable puede ser complejo dependiendo del DB Driver y contenido. Simplificamos aquí.
+            //}
 
-            $table->dropUnique(['google_id']); // Importante quitar el índice unique
+            $table->dropUnique(['google_id']);
             $table->dropColumn(['google_id', 'avatar']);
         });
     }

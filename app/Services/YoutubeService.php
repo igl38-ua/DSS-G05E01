@@ -18,16 +18,13 @@ class YouTubeService
         $this->apiKey = env('YOUTUBE_API_KEY');
 
         if (empty($this->apiKey)) {
-             Log::error('YOUTUBE_API_KEY no est� configurada en el archivo .env');
-             // Decide c�mo manejar esto: lanzar excepci�n, devolver null, etc.
-             // throw new Exception('YOUTUBE_API_KEY no configurada.');
-             return; // O simplemente no instancies el cliente si falta la clave
+             Log::error('YOUTUBE_API_KEY no está configurada en el archivo .env');
+             return;
         }
 
         $this->client = new Google_Client();
         $this->client->setDeveloperKey($this->apiKey);
 
-        // Manejo de errores de cliente (Opcional pero �til en local)
         // $this->client->setHttpClient(new \GuzzleHttp\Client(['verify' => false]));
 
         $this->youtube = new Google_Service_YouTube($this->client);
@@ -64,20 +61,17 @@ class YouTubeService
             $playlistItemsResponse = $this->youtube->playlistItems->listPlaylistItems('snippet', [
                 'playlistId' => $playlistId,
                 'maxResults' => $limit,
-                 // 'pageToken' => $nextPageToken, // Para paginaci�n si necesitas m�s resultados
+                 // 'pageToken' => $nextPageToken,
             ]);
 
             // 5. Devuelve los items (v�deos)
             return $playlistItemsResponse['items'] ?? [];
 
         } catch (Exception $e) {
-            // Maneja el error (registra, devuelve vac�o, etc.)
+            // Maneja el error
             Log::error("Error al obtener v�deos de playlist {$playlistId}: " . $e->getMessage());
-            // report($e); // Tambi�n puedes usar el helper report()
+            // report($e);
             return [];
         }
     }
-
-     // Puedes mantener los otros m�todos (searchVideos, getMyChannels) si tambi�n los necesitas,
-     // pero aseg�rate de que su l�gica de autenticaci�n sea la correcta para cada caso (API Key o OAuth).
 }

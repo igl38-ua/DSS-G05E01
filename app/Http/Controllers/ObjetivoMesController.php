@@ -22,9 +22,9 @@ class ObjetivoMesController extends Controller
 
         // usa el método relación que acabas de definir
         Auth::user()
-            ->objetivoMes()                   // nota camelCase
+            ->objetivoMes()
             ->updateOrCreate(
-                [],                           // aquí irían condiciones extra si las necesitas
+                [],
                 ['target' => $data['target']]
             );
 

@@ -9,10 +9,7 @@ class RenameUserIdToUsuarioOnThreads extends Migration
     public function up()
     {
         Schema::table('threads', function (Blueprint $table) {
-            // Si tienes habilitadas las constraints, primero quita la foreign:
             $table->dropForeign(['user_id']);
-
-            // Ahora renombra la columna:
             $table->renameColumn('user_id', 'usuario');
         });
     }

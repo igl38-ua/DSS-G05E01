@@ -14,7 +14,6 @@ class SuscripcionesSeeder extends Seeder
      */
     public function run()
     {
-        // Seeder de 5 suscripciones de ejemplo usando Eloquent::create
         Suscripcion::create([
             'ID_Usuario'       => 1,
             'plan'             => 'Básico',

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('objetivo_mes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                ->constrained()       // apunta a users.id
+                ->constrained()
                 ->cascadeOnDelete();
             $table->integer('target');
             $table->timestamps();

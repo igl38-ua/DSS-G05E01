@@ -27,7 +27,7 @@ class EntrenadorController extends Controller
         ];
 
         return view('entrenadores.index', [
-            'clases' => $todasLasClases, // Cambiado de $todasLasClases a $clases
+            'clases' => $todasLasClases,
             'clasesAgrupadas' => $clasesAgrupadas,
             'totalClases' => $todasLasClases->count()
         ]);

@@ -35,7 +35,6 @@ class OrderController extends Controller
         // calcula amount según period
         if ($period === 'annual') {
             $amount = round($prices[$plan] * 12 * (1 - 0.2), 2);
-            // opcional: precio equivalente al mes
             $monthlyEquivalent = round($prices[$plan] * (1 - 0.2), 2);
         } else {
             $amount = $prices[$plan];

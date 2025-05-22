@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ClaseController extends Controller
 {
-    // En ClaseController.php (si puedes añadir código):
     public function index()
     {
         $clases = Clase::all()->groupBy('nombre'); // Agrupa por columna "nombre"
@@ -17,7 +16,7 @@ class ClaseController extends Controller
             : [];
     
         return view('clases', [
-            'clasesAgrupadas' => $clases, // Nombre correcto para la vista
+            'clasesAgrupadas' => $clases,
             'reservasUsuario' => $reservasUsuario
         ]);
     }
