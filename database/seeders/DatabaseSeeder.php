@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             EntrenadorPersonalSeeder::class,
             UsuarioSeeder::class,
             ClaseSeeder::class,
-            FechaSeeder::class,
             // ReservaSeeder::class,
             SuscripcionesSeeder::class,
             CategorySeeder::class,
