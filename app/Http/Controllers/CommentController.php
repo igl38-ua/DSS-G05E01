@@ -1,5 +1,5 @@
 <?php
-// app/Http/Controllers/CommentController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Post;
@@ -40,16 +40,16 @@ class CommentController extends Controller
     {
         $userId = Auth::id();
 
-        // 1) Si ya había like → lo borramos (toggle off)
+        // Si ya había like lo borramos 
         if ($comment->likes()->where('user_id', $userId)->exists()) {
             $comment->likes()->where('user_id', $userId)->delete();
             return back();
         }
 
-        // 2) Borramos por si hubiera duplicados
+        // Borramos por si hubiera duplicados
         $comment->likes()->where('user_id', $userId)->delete();
 
-        // 3) Creamos el like, incluyendo thread_id
+        // Creamos el like, incluyendo thread_id
         $comment->likes()->create([
             'user_id'    => $userId,
             'comment_id' => $comment->id,
@@ -64,11 +64,9 @@ class CommentController extends Controller
 
     public function dislike(Comment $comment)
     {
-        // Un “dislike” = quitar el like
         $comment->likes()
                 ->where('user_id', Auth::id())
                 ->delete();
-                // 1) Si ya había like, salimos
 
         return back();
     }

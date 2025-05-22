@@ -16,7 +16,7 @@ return new class extends Migration
             if (!Schema::hasColumn('likes', 'post_id')) {
                 $table->foreignId('post_id')
                     ->nullable()
-                    ->constrained()           // por defecto referencia a 'posts'
+                    ->constrained() // por defecto referencia a 'posts'
                     ->cascadeOnDelete()
                     ->after('user_id');
             }

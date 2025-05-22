@@ -82,7 +82,7 @@ class UsuarioController extends Controller
              'telefono'          => 'nullable|max:15',
              'contrasena'        => 'required|min:6',
              'fecha_inscripcion' => 'required|date',
-             'clase_id'          => 'array', // Validar que sea un array de IDs
+             'clase_id'          => 'array',
          ]);
      
          // Actualizar los datos del usuario

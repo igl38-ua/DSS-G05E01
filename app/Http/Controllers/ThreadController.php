@@ -83,7 +83,7 @@ public function like(Thread $thread)
 {
         $userId = Auth::id();
 
-        // 1) Si ya había like → lo borramos (toggle off)
+        // 1) Si ya había like lo borramos
         if ($thread->likes()->where('user_id', $userId)->exists()) {
             $thread->likes()->where('user_id', $userId)->delete();
             return back();

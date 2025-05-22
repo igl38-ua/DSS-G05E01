@@ -8,15 +8,10 @@ return new class extends Migration
 {public function up()
     {
         Schema::table('threads', function (Blueprint $table) {
-            // Si tienes foreign key, quítala primero
             $table->dropForeign(['usuario']);
-    
-            // Cambia la columna a nullable
             $table->unsignedBigInteger('usuario')
                   ->nullable()
                   ->change();
-    
-            // Y vuelve a reaplicar la FK si quieres
             $table->foreign('usuario')
                   ->references('id')
                   ->on('usuario')

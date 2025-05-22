@@ -39,11 +39,8 @@
 
     {{-- Preguntas Frecuentes --}}
     <section class="container mx-auto px-4 pb-12 space-y-8">
-        <div class="bg-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div class="bg-white rounded-lg  transition-all ">
             @include('contacto.faq')
-        </div>
-        <div class="bg-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            @include('contacto.pregunta')
         </div>
     </section>
 @endsection

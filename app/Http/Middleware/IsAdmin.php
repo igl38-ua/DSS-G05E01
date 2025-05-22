@@ -14,7 +14,6 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         // Verifica que el usuario esté autenticado y tenga el rol de admin.
-        // Aquí se asume que tienes una propiedad 'role' en tu modelo User.
         if (!Auth::check() || Auth::user()->rol !== 'admin') {
             abort(403, 'Acceso no autorizado');
         }

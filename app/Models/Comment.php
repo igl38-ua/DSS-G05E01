@@ -11,7 +11,6 @@ class Comment extends Model
     public function author() { return $this->belongsTo(Usuario::class,'user_id'); }
     public function likes()
     {
-        // Ajusta 'comment_id' si tu columna se llama distinto
         return $this->hasMany(Like::class, 'comment_id', 'id');
     }
 

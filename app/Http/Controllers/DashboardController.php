@@ -25,7 +25,7 @@ class DashboardController extends Controller
         // 2. Suscripción activa
         $currentSubscription = $user->suscripcionActual()->first();
 
-        // 3. Próximas clases (hasta 6) — devolvemos modelos Reserva
+        // 3. Próximas clases (hasta 6) devolvemos modelos Reserva
         $upcomingClasses = $user->reservas()
             ->with('clase:id,nombre,instructor,horario')
             ->whereNotNull('fecha')
@@ -58,7 +58,7 @@ class DashboardController extends Controller
             'upcomingClasses',
             'recentClasses',
             'completedClasses',
-            'monthlyGoal',         // pásalo también si quieres mostrarlo en la vista
+            'monthlyGoal',
             'progressPercentage'
         ));
     }

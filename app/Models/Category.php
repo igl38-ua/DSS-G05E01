@@ -28,7 +28,6 @@ class Thread extends Model
     }
     public function threads()
     {
-        // <? Asegúrate de que apunta a App\Models\Thread
         return $this->hasMany(Thread::class, 'category_id');
     }
 }
