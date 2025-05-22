@@ -1,6 +1,6 @@
 <div class="space-y-8">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white rounded-xl shadow-lg p-6 contact-card hover:shadow-xl hover:-translate-y-1">
+        <div class="bg-white rounded-xl shadow-lg p-6 contact-card duration-300 hover:shadow-xl hover:-translate-y-1">
             <div class="flex items-start">
                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                     <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 contact-card hover:shadow-xl hover:-translate-y-1">
+        <div class="bg-white rounded-xl shadow-lg p-6 contact-card duration-300 hover:shadow-xl hover:-translate-y-1">
             <div class="flex items-start">
                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                     <i class="fas fa-phone-alt text-blue-600 text-xl"></i>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 contact-card hover:shadow-xl hover:-translate-y-1">
+        <div class="bg-white rounded-xl shadow-lg p-6 contact-card duration-300 hover:shadow-xl hover:-translate-y-1">
             <div class="flex items-start">
                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                     <i class="fas fa-envelope text-blue-600 text-xl"></i>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 contact-card hover:shadow-xl hover:-translate-y-1">
+        <div class="bg-white rounded-xl shadow-lg p-6 contact-card duration-300 hover:shadow-xl hover:-translate-y-1">
             <div class="flex items-start">
                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                     <i class="fas fa-clock text-blue-600 text-xl"></i>

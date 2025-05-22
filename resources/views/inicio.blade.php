@@ -141,15 +141,6 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
 
 
-  <!-- Sección de Búsqueda -->
-  <section id="busqueda" class="mb-8">
-      <h2 class="text-2xl font-bold mb-4">Búsqueda</h2>
-      <form action="#" method="GET" class="flex items-center space-x-2">
-          <input class="border border-gray-300 rounded py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" type="search" name="query" placeholder="Buscar..." aria-label="Buscar">
-          <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors" type="submit">Buscar</button>
-      </form>
-  </section>
-
   <!-- Sección de Suscripciones -->
   <section id="suscripciones" class="mb-8">
     <h2 class="text-2xl font-bold mb-4">Suscripciones</h2>
