@@ -172,7 +172,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('/empleados', App\Http\Controllers\Admin\EmpleadoController::class);
     Route::resource('/usuarios', App\Http\Controllers\Admin\UsuarioController::class);
     Route::post('/reservas', [ReservaController::class, 'store'])->name('reserva.store');
-    Route::resource('/dynamic', App\Http\Controllers\Admin\DynamicListingController::class);
+    Route::resource('/dynamic', App\Http\Controllers\Admin\DynamicListingController::class)->except(['destroy']);
     Route::delete('dynamic/{entity}/{id}', [DynamicListingController::class, 'destroy'])
         ->name('dynamic.destroy');
 });
