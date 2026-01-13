@@ -188,3 +188,18 @@ Route::get('/entrenadores', [EntrenadorController::class, 'index'])->name('entre
 
 // CHATBOT
 Route::post('/chatbot/message', [ChatbotController::class, 'handle'])->name('chatbot.message');
+
+use Illuminate\Support\Facades\Artisan;
+
+// RUTA TEMPORAL DE INSTALACIÓN
+Route::get('/instalar-db', function () {
+    try {
+        Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true 
+        ]);
+        return "ÉXITO: Base de datos migrada y seeders ejecutados.<br><br>Log:<br><pre>" . Artisan::output() . "</pre>";
+    } catch (\Exception $e) {
+        return "ERROR: " . $e->getMessage();
+    }
+});
